@@ -1,4 +1,10 @@
 # Monopoly-Calculator
+
+<p align="center">
+  <img src="/Monopoly%20Calculator%20Icons/drawable-xhdpi/launcher.png" alt=""/>
+</p>
+
+
 APK file for Monopoly Calculator App 
 
 APK file containing the Android application "Monopoly Calculator"
