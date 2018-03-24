@@ -8,6 +8,9 @@
     android:orientation="vertical"
     tools:context="com.inge.nathan.monopolycalculator.UI.MainActivity" >
 
+    <include
+        layout="@layout/toolbar_custom_home" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
