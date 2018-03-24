@@ -6,5 +6,8 @@
     <string name="player_4">Player 4</string>
     <string name="next">Next</string>
     <string name="main_activity">Monopoly Calculator</string>
+    <string name="title_activity_standings">Monopoly Calculator</string>
+    <string name="ranking_placeholder">-</string>
+    <string name="player_name_placeholder">Player</string>
 
 </resources>

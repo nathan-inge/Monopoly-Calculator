@@ -1,6 +1,7 @@
 package com.inge.nathan.monopolycalculator.UI;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -73,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
             // Create new game
             createGame(playerNames);
 
+            // Go to standings activity
+            Intent i = new Intent(this, StandingsActivity.class);
+            startActivity(i);
         }
     }
 
