@@ -1,5 +1,6 @@
 package com.inge.nathan.monopolycalculator.UI;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,6 +12,7 @@ import android.widget.ListView;
 
 import com.inge.nathan.monopolycalculator.MonopolyGame;
 import com.inge.nathan.monopolycalculator.R;
+import com.inge.nathan.monopolycalculator.Utilities.Constants;
 import com.inge.nathan.monopolycalculator.Utilities.StandingsListAdapter;
 
 public class StandingsActivity extends AppCompatActivity {
@@ -38,6 +40,17 @@ public class StandingsActivity extends AppCompatActivity {
             currentGame.getPlayers());
 
         playerStandingsList.setAdapter(adapter);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if((requestCode == Constants.REQUEST_EDIT_PLAYER) && (resultCode == Constants.PLAYER_EDITTED)) {
+            // Refresh info
+            finish();
+            overridePendingTransition(0, 0);
+            startActivity(getIntent());
+            overridePendingTransition(0,0);
+        }
     }
 
 }

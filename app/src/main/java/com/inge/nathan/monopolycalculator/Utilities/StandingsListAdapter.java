@@ -1,6 +1,7 @@
 package com.inge.nathan.monopolycalculator.Utilities;
 
 
+import android.app.Activity;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
@@ -65,7 +66,7 @@ public class StandingsListAdapter extends ArrayAdapter<MonopolyPlayer> {
                 public void onClick(View v) {
                     Intent i = new Intent(getContext(), EditPlayerActivity.class);
                     i.putExtra("playerIndex", position);
-                    getContext().startActivity(i);
+                    ((Activity) getContext()).startActivityForResult(i, Constants.REQUEST_EDIT_PLAYER);
                 }
             });
         }
