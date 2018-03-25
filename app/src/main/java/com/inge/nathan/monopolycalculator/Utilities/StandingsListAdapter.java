@@ -3,11 +3,13 @@ package com.inge.nathan.monopolycalculator.Utilities;
 
 import android.content.ClipData;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.inge.nathan.monopolycalculator.MonopolyPlayer;
@@ -28,35 +30,39 @@ public class StandingsListAdapter extends ArrayAdapter<MonopolyPlayer> {
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
 
-        View v = convertView;
+        View rankingsView = convertView;
 
-        if (v == null) {
+        if (rankingsView == null) {
             LayoutInflater vi;
             vi = LayoutInflater.from(getContext());
-            v = vi.inflate(R.layout.list_row_standings, null);
+            rankingsView = vi.inflate(R.layout.list_row_standings, null);
         }
 
         MonopolyPlayer player = getItem(position);
 
         if (player != null) {
-            TextView name = v.findViewById(R.id.name_view);
-            TextView ranking = v.findViewById(R.id.ranking_view);
-            TextView total = v.findViewById(R.id.total_view);
+            TextView nameView = rankingsView.findViewById(R.id.name_view);
+            TextView rankingView = rankingsView.findViewById(R.id.ranking_view);
+            TextView totalView = rankingsView.findViewById(R.id.total_view);
+            Button editButton = rankingsView.findViewById(R.id.edit_player_button);
 
-            if (name != null) {
-                name.setText(player.getName());
-            }
+            if (nameView != null) nameView.setText(player.getName());
 
-            if (ranking != null) {
-                ranking.setText("1st");
-            }
+            if (rankingView != null) rankingView.setText("1st");
 
-            if (total != null) {
-                total.setText("$1000");
+            if (totalView != null) totalView.setText("$1000");
+
+            if (editButton != null) {
+                editButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
             }
         }
 
-        return v;
+        return rankingsView;
     }
 
 }
