@@ -13,5 +13,6 @@
     <string name="edit">Edit</string>
     <string name="cash">Cash:</string>
     <string name="property">Property:</string>
+    <string name="save">Save</string>
 
 </resources>
