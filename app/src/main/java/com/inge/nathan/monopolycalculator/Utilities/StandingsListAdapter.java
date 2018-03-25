@@ -54,7 +54,7 @@ public class StandingsListAdapter extends ArrayAdapter<MonopolyPlayer> {
 
             nameView.setText(player.getName());
 
-            rankingView.setText("1st");
+            rankingView.setText(MonopolyPlayer.formatStanding(position));
             totalView.setText(MonopolyPlayer.formatMoney(player.getTotalValue()));
 
             cashView.setText(MonopolyPlayer.formatMoney(player.getCashValue()));

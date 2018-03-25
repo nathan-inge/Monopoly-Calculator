@@ -20,6 +20,21 @@ public class MonopolyPlayer {
         return currencyFormat.format(amount);
     }
 
+    public static String formatStanding(int pos) {
+        switch (pos) {
+            case 0:
+                return "1st";
+            case 1:
+                return "2nd";
+            case 2:
+                return "3rd";
+            case 3:
+                return "4th";
+            default:
+                return "-";
+        }
+    }
+
     /// MARK - Getters + Setters
     public String getName() {
         return this.name;

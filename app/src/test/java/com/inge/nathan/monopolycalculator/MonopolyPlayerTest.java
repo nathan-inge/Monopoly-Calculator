@@ -19,6 +19,15 @@ public class MonopolyPlayerTest {
         assertEquals("$345,123", MonopolyPlayer.formatMoney(345123));
         assertEquals("$6,345,123", MonopolyPlayer.formatMoney(6345123));
         assertEquals("$10,000,000", MonopolyPlayer.formatMoney(10000000));
+    }
 
+    @Test
+    public void test_formartStanding() {
+        assertEquals("1st", MonopolyPlayer.formatStanding(0));
+        assertEquals("2nd", MonopolyPlayer.formatStanding(1));
+        assertEquals("3rd", MonopolyPlayer.formatStanding(2));
+        assertEquals("4th", MonopolyPlayer.formatStanding(3));
+
+        assertEquals("-", MonopolyPlayer.formatStanding(30));
     }
 }
