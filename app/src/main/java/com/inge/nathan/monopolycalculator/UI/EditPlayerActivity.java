@@ -35,7 +35,7 @@ public class EditPlayerActivity extends AppCompatActivity {
         // Get player
         Intent i = getIntent();
         int pos = i.getIntExtra("playerIndex", 0);
-        player = MonopolyGame.getInstance().getPlayers().get(pos);
+        player = MonopolyGame.getCurrentGame().getPlayers().get(pos);
 
         // Set up UI with player info
         TextView title = findViewById(R.id.activity_title);

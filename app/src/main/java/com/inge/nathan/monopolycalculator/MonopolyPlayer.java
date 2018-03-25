@@ -32,6 +32,36 @@ public class MonopolyPlayer {
         }
     }
 
+    /// MARK - Overrides
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (!MonopolyPlayer.class.isAssignableFrom(obj.getClass())) {
+            return false;
+        }
+        final MonopolyPlayer other = (MonopolyPlayer) obj;
+
+        if (this.name != other.name) {
+            return false;
+        }
+
+        if (this.totalValue != other.totalValue) {
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result += totalValue;
+        result = result / 5;
+        return result;
+    }
+
     /// MARK - Getters + Setters
     public String getName() {
         return this.name;

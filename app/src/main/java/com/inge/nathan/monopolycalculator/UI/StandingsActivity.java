@@ -10,8 +10,6 @@ import com.inge.nathan.monopolycalculator.R;
 import com.inge.nathan.monopolycalculator.Utilities.Constants;
 import com.inge.nathan.monopolycalculator.Utilities.StandingsListAdapter;
 
-import java.util.Collections;
-
 public class StandingsActivity extends AppCompatActivity {
 
     // Private UI
@@ -28,7 +26,7 @@ public class StandingsActivity extends AppCompatActivity {
         playerStandingsList = findViewById(R.id.standings_list);
 
         // Get current game
-        currentGame = MonopolyGame.getInstance();
+        currentGame = MonopolyGame.getCurrentGame();
         currentGame.sortStandings();
 
         // Set up list adapter

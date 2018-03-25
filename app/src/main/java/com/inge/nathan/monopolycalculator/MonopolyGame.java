@@ -17,7 +17,7 @@ public class MonopolyGame {
 
     private MonopolyGame() { }
 
-    public static synchronized MonopolyGame getInstance() {
+    public static synchronized MonopolyGame getCurrentGame() {
         if(currentGame == null) {
             currentGame = new MonopolyGame();
         }
@@ -38,7 +38,7 @@ public class MonopolyGame {
     }
 
     private void resetGame() {
-        this.players = null;
+        currentGame = null;
     }
 
     public int numPlayers() {

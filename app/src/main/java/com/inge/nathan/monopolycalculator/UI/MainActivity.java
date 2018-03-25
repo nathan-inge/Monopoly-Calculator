@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
      * @param playerNames ArrayList<String> of player names
      */
     private void createGame(ArrayList<String> playerNames) {
-        MonopolyGame game = MonopolyGame.getInstance();
+        MonopolyGame game = MonopolyGame.getCurrentGame();
         game.setupNewGame(playerNames);
     }
 }

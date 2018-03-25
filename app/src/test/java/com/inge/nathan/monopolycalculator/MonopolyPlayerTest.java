@@ -22,12 +22,31 @@ public class MonopolyPlayerTest {
     }
 
     @Test
-    public void test_formartStanding() {
+    public void test_formatStanding() {
         assertEquals("1st", MonopolyPlayer.formatStanding(0));
         assertEquals("2nd", MonopolyPlayer.formatStanding(1));
         assertEquals("3rd", MonopolyPlayer.formatStanding(2));
         assertEquals("4th", MonopolyPlayer.formatStanding(3));
 
         assertEquals("-", MonopolyPlayer.formatStanding(30));
+    }
+
+    @Test
+    public void test_equals() {
+        assertTrue(new MonopolyPlayer("Nate").equals(new MonopolyPlayer("Nate")));
+        assertFalse(new MonopolyPlayer("Jeff").equals(new MonopolyPlayer("Mike")));
+
+        MonopolyPlayer p1 = new MonopolyPlayer("Colin");
+        p1.setCashValue(50);
+        MonopolyPlayer p2 = new MonopolyPlayer("Colin");
+        p2.setCashValue(50);
+
+        assertTrue(p1.equals(p2));
+
+        p2.setCashValue(100);
+        assertFalse(p1.equals(p2));
+
+        p1.setPropertyValue(50);
+        assertTrue(p1.equals(p2));
     }
 }
