@@ -33,26 +33,26 @@ public class StandingsListAdapter extends ArrayAdapter<MonopolyPlayer> {
         if (v == null) {
             LayoutInflater vi;
             vi = LayoutInflater.from(getContext());
-            v = vi.inflate(R.layout.itemlistrow, null);
+            v = vi.inflate(R.layout.list_row_standings, null);
         }
 
         MonopolyPlayer player = getItem(position);
 
-        if (p != null) {
-            TextView tt1 = (TextView) v.findViewById(R.id.id);
-            TextView tt2 = (TextView) v.findViewById(R.id.categoryId);
-            TextView tt3 = (TextView) v.findViewById(R.id.description);
+        if (player != null) {
+            TextView name = v.findViewById(R.id.name_view);
+            TextView ranking = v.findViewById(R.id.ranking_view);
+            TextView total = v.findViewById(R.id.total_view);
 
-            if (tt1 != null) {
-                tt1.setText(p.getId());
+            if (name != null) {
+                name.setText(player.getName());
             }
 
-            if (tt2 != null) {
-                tt2.setText(p.getCategory().getId());
+            if (ranking != null) {
+                ranking.setText("1st");
             }
 
-            if (tt3 != null) {
-                tt3.setText(p.getDescription());
+            if (total != null) {
+                total.setText("$1000");
             }
         }
 
