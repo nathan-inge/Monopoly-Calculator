@@ -1,20 +1,16 @@
 package com.inge.nathan.monopolycalculator.UI;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.inge.nathan.monopolycalculator.MonopolyGame;
 import com.inge.nathan.monopolycalculator.R;
 import com.inge.nathan.monopolycalculator.Utilities.Constants;
 import com.inge.nathan.monopolycalculator.Utilities.StandingsListAdapter;
+
+import java.util.Collections;
 
 public class StandingsActivity extends AppCompatActivity {
 
@@ -23,7 +19,6 @@ public class StandingsActivity extends AppCompatActivity {
 
     private MonopolyGame currentGame;
 
-    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +29,9 @@ public class StandingsActivity extends AppCompatActivity {
 
         // Get current game
         currentGame = MonopolyGame.getInstance();
-        currentGame.getPlayers().sort((p1, p2) -> Long.compare(p1.getTotalValue(), p2.getTotalValue()));
+        Collections.sort(
+            currentGame.getPlayers(),
+            (p1, p2) -> Long.compare(p1.getTotalValue(), p2.getTotalValue()));
 
         // Set up list adapter
         StandingsListAdapter adapter = new StandingsListAdapter(
