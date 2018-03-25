@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.inge.nathan.monopolycalculator.MonopolyPlayer;
 import com.inge.nathan.monopolycalculator.R;
+import com.inge.nathan.monopolycalculator.UI.EditPlayerActivity;
 
 import java.util.ArrayList;
 
@@ -28,7 +29,7 @@ public class StandingsListAdapter extends ArrayAdapter<MonopolyPlayer> {
     }
 
     @Override
-    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, final View convertView, @NonNull ViewGroup parent) {
 
         View rankingsView = convertView;
 
@@ -56,7 +57,9 @@ public class StandingsListAdapter extends ArrayAdapter<MonopolyPlayer> {
                 editButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        Intent i = new Intent(getContext(), EditPlayerActivity.class);
+                        i.putExtra("playerIndex", position);
+                        getContext().startActivity(i);
                     }
                 });
             }

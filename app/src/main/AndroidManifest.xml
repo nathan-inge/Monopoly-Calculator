@@ -21,6 +21,8 @@
             android:label="@string/title_activity_standings"
             android:theme="@style/AppTheme">
         </activity>
+        <activity android:name=".UI.EditPlayerActivity">
+        </activity>
     </application>
 
 </manifest>
