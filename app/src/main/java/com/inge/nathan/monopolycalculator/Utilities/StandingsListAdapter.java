@@ -17,6 +17,8 @@ import com.inge.nathan.monopolycalculator.R;
 import com.inge.nathan.monopolycalculator.UI.EditPlayerActivity;
 import com.inge.nathan.monopolycalculator.UI.StandingsActivity;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class StandingsListAdapter extends ArrayAdapter<MonopolyPlayer> {
@@ -46,24 +48,26 @@ public class StandingsListAdapter extends ArrayAdapter<MonopolyPlayer> {
             TextView nameView = rankingsView.findViewById(R.id.name_view);
             TextView rankingView = rankingsView.findViewById(R.id.ranking_view);
             TextView totalView = rankingsView.findViewById(R.id.total_view);
+            TextView propertyView = rankingsView.findViewById(R.id.property_view);
+            TextView cashView = rankingsView.findViewById(R.id.cash_view);
             Button editButton = rankingsView.findViewById(R.id.edit_player_button);
 
-            if (nameView != null) nameView.setText(player.getName());
+            nameView.setText(player.getName());
 
-            if (rankingView != null) rankingView.setText("1st");
+            rankingView.setText("1st");
+            totalView.setText(MonopolyPlayer.formatMoney(player.getTotalValue()));
 
-            if (totalView != null) totalView.setText("$1000");
+            cashView.setText(MonopolyPlayer.formatMoney(player.getCashValue()));
+            propertyView.setText(MonopolyPlayer.formatMoney(player.getPropertyValue()));
 
-            if (editButton != null) {
-                editButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent i = new Intent(getContext(), EditPlayerActivity.class);
-                        i.putExtra("playerIndex", position);
-                        getContext().startActivity(i);
-                    }
-                });
-            }
+            editButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(getContext(), EditPlayerActivity.class);
+                    i.putExtra("playerIndex", position);
+                    getContext().startActivity(i);
+                }
+            });
         }
 
         return rankingsView;

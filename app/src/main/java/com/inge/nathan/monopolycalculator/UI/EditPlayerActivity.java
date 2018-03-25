@@ -39,7 +39,7 @@ public class EditPlayerActivity extends AppCompatActivity {
         // Set up UI with player info
         TextView title = findViewById(R.id.activity_title);
         title.setText(player.getName());
-        cashEdit.setHint(MonopolyPlayer.formatMoney(player.getCash()));
+        cashEdit.setHint(MonopolyPlayer.formatMoney(player.getCashValue()));
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override

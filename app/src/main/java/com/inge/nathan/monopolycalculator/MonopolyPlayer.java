@@ -6,28 +6,40 @@ import java.text.DecimalFormat;
 public class MonopolyPlayer {
 
     private String name;
-    private long cash;
+    private long totalValue;
+    private long cashValue;
+    private long propertyValue;
 
 
     public MonopolyPlayer(String name) {
         this.name = name;
-        this.cash = 0;
     }
 
-    public static String formatMoney(long money) {
+    public static String formatMoney(long amount) {
         DecimalFormat currencyFormat = new DecimalFormat("'$',###.##");
-        return currencyFormat.format(money);
+        return currencyFormat.format(amount);
     }
 
     /// MARK - Getters + Setters
     public String getName() {
         return this.name;
     }
-    public long getCash() { return this.cash; }
+    public long getTotalValue() { return this.totalValue; }
+    public long getCashValue() { return this.cashValue; }
+    public long getPropertyValue() { return this.propertyValue; }
 
     public void setName(String name) {
         this.name = name;
     }
-    public void setCash(long cash) { this.cash = cash; }
+
+    public void setCashValue(long cashValue) {
+        this.cashValue = cashValue;
+        this.totalValue = this.cashValue + this.propertyValue;
+    }
+
+    public void setPropertyValue(long propertyValue) {
+        this.propertyValue = propertyValue;
+        this.totalValue = this.cashValue + this.propertyValue;
+    }
 
 }
