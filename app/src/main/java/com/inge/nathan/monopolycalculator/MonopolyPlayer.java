@@ -1,6 +1,4 @@
 package com.inge.nathan.monopolycalculator;
-
-
 import java.text.DecimalFormat;
 
 public class MonopolyPlayer {
@@ -9,7 +7,6 @@ public class MonopolyPlayer {
     private long totalValue;
     private long cashValue;
     private long propertyValue;
-
 
     public MonopolyPlayer(String name) {
         this.name = name;
@@ -56,5 +53,4 @@ public class MonopolyPlayer {
         this.propertyValue = propertyValue;
         this.totalValue = this.cashValue + this.propertyValue;
     }
-
 }

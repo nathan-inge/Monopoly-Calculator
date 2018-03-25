@@ -1,5 +1,6 @@
 package com.inge.nathan.monopolycalculator.UI;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -22,6 +23,7 @@ public class StandingsActivity extends AppCompatActivity {
 
     private MonopolyGame currentGame;
 
+    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,7 @@ public class StandingsActivity extends AppCompatActivity {
 
         // Get current game
         currentGame = MonopolyGame.getInstance();
+        currentGame.getPlayers().sort((p1, p2) -> Long.compare(p1.getTotalValue(), p2.getTotalValue()));
 
         // Set up list adapter
         StandingsListAdapter adapter = new StandingsListAdapter(
