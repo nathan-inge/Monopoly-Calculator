@@ -29,9 +29,7 @@ public class StandingsActivity extends AppCompatActivity {
 
         // Get current game
         currentGame = MonopolyGame.getInstance();
-        Collections.sort(
-            currentGame.getPlayers(),
-            (p1, p2) -> Long.compare(p1.getTotalValue(), p2.getTotalValue()));
+        currentGame.sortStandings();
 
         // Set up list adapter
         StandingsListAdapter adapter = new StandingsListAdapter(

@@ -2,6 +2,7 @@ package com.inge.nathan.monopolycalculator;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Singleton class containing current Monopoly Game
@@ -42,6 +43,11 @@ public class MonopolyGame {
 
     public int numPlayers() {
         return players.size();
+    }
+
+    public void sortStandings() {
+        Collections.sort(players, (p1, p2) -> Long.compare(p1.getTotalValue(), p2.getTotalValue()));
+        Collections.reverse(players);
     }
 
     /// MARK - Getters + Setters
