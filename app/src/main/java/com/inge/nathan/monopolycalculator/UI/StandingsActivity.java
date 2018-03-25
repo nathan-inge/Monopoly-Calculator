@@ -7,7 +7,7 @@ import android.widget.ListView;
 
 import com.inge.nathan.monopolycalculator.MonopolyGame;
 import com.inge.nathan.monopolycalculator.R;
-import com.inge.nathan.monopolycalculator.Utilities.Constants;
+import com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants;
 import com.inge.nathan.monopolycalculator.Utilities.StandingsListAdapter;
 
 public class StandingsActivity extends AppCompatActivity {
@@ -40,7 +40,7 @@ public class StandingsActivity extends AppCompatActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if((requestCode == Constants.REQUEST_EDIT_PLAYER) && (resultCode == Constants.PLAYER_EDITTED)) {
+        if((requestCode == MonopolyConstants.REQUEST_EDIT_PLAYER) && (resultCode == MonopolyConstants.PLAYER_EDITTED)) {
             // Refresh info
             finish();
             overridePendingTransition(0, 0);

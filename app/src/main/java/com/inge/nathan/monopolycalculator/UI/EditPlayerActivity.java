@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.inge.nathan.monopolycalculator.MonopolyGame;
 import com.inge.nathan.monopolycalculator.MonopolyPlayer;
 import com.inge.nathan.monopolycalculator.R;
-import com.inge.nathan.monopolycalculator.Utilities.Constants;
+import com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants;
 import com.inge.nathan.monopolycalculator.Utilities.MoneyTextWatcher;
 
 public class EditPlayerActivity extends AppCompatActivity {
@@ -58,7 +58,7 @@ public class EditPlayerActivity extends AppCompatActivity {
         } else {
             String cleanString = cashInput.replaceAll("[$+,+.+]", "");
             player.setCashValue(Long.parseLong(cleanString));
-            setResult(Constants.PLAYER_EDITTED);
+            setResult(MonopolyConstants.PLAYER_EDITTED);
             finish();
         }
 
