@@ -1,5 +1,8 @@
 package com.inge.nathan.monopolycalculator;
+import android.widget.ArrayAdapter;
+
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class MonopolyPlayer {
 
@@ -7,6 +10,7 @@ public class MonopolyPlayer {
     private long totalValue;
     private long cashValue;
     private long propertyValue;
+    private ArrayList<MonopolyProperty> properties;
 
     public MonopolyPlayer(String name) {
         this.name = name;
