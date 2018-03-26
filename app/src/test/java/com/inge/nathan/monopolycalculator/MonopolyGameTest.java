@@ -1,5 +1,7 @@
 package com.inge.nathan.monopolycalculator;
 
+import com.inge.nathan.monopolycalculator.Utilities.NoCurrentGameException;
+
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -9,8 +11,12 @@ import static org.junit.Assert.*;
 public class MonopolyGameTest {
     @Test
     public void test_getInstance() {
-        MonopolyGame game = MonopolyGame.getCurrentGame();
-        assertNotNull(game);
+        try {
+            MonopolyGame currentGame = MonopolyGame.getCurrentGame();
+            assertTrue(false);
+        } catch (NoCurrentGameException ex) {
+            assertTrue(true);
+        }
     }
 
     @Test
@@ -19,8 +25,7 @@ public class MonopolyGameTest {
         playerNames.add("Jim");
         playerNames.add("Sally");
 
-        MonopolyGame game = MonopolyGame.getCurrentGame();
-        game.setupNewGame(playerNames);
+        MonopolyGame game = MonopolyGame.setupNewGame(playerNames);
 
         assertEquals(2, game.numPlayers());
         assertEquals("Jim", game.getPlayers().get(0).getName());
@@ -31,7 +36,7 @@ public class MonopolyGameTest {
         newPlayerNames.add("Ali");
         newPlayerNames.add("Geoff");
 
-        game.setupNewGame(newPlayerNames);
+        game = MonopolyGame.setupNewGame(newPlayerNames);
 
         assertEquals(3, game.numPlayers());
         assertEquals("John", game.getPlayers().get(0).getName());
@@ -46,8 +51,7 @@ public class MonopolyGameTest {
         playerNames.add("Shannon");
         playerNames.add("Mike");
 
-        MonopolyGame game = MonopolyGame.getCurrentGame();
-        game.setupNewGame(playerNames);
+        MonopolyGame game = MonopolyGame.setupNewGame(playerNames);
 
         // Default standings
         MonopolyPlayer p1 = game.getPlayers().get(0);

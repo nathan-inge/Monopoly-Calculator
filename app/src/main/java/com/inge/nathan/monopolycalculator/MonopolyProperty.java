@@ -8,7 +8,7 @@ public class MonopolyProperty {
     private String name;
     private int numHouses;
     private int numHotels;
-    private boolean mortgaged = false;
+    private boolean isMortgaged = false;
 
     public MonopolyProperty(int id) {
         this.id = id;
@@ -23,11 +23,11 @@ public class MonopolyProperty {
 
     public int getNumHouses() { return this.numHouses; }
     public int getNumHotels() { return this.numHotels; }
-    public boolean isMortgaged() { return this.mortgaged; }
+    public boolean isMortgaged() { return this.isMortgaged; }
 
     public int getTotalValue() {
         int value = MonopolyConstants.propertyValue(id);
-        int totalValue = (mortgaged) ? value/2 : value;
+        int totalValue = (isMortgaged) ? value/2 : value;
 
         int houseValue = MonopolyConstants.propertyHouseCost(id);
 
@@ -37,5 +37,16 @@ public class MonopolyProperty {
         return totalValue;
     }
 
+    public void setNumHouses(int numHouses) {
+        this.numHouses = numHouses;
+    }
+
+    public void setNumHotels(int numHotels) {
+        this.numHotels = numHotels;
+    }
+
+    public void setIsMortgaged(boolean isMortgaged) {
+        this.isMortgaged = isMortgaged;
+    }
 
 }

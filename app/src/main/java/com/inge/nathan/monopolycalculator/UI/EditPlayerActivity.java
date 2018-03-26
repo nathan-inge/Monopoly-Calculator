@@ -13,10 +13,12 @@ import com.inge.nathan.monopolycalculator.MonopolyPlayer;
 import com.inge.nathan.monopolycalculator.R;
 import com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants;
 import com.inge.nathan.monopolycalculator.Utilities.MoneyTextWatcher;
+import com.inge.nathan.monopolycalculator.Utilities.NoCurrentGameException;
 
 public class EditPlayerActivity extends AppCompatActivity {
 
     private MonopolyPlayer player;
+
 
     // Private UI
     private EditText cashEdit;
@@ -35,7 +37,14 @@ public class EditPlayerActivity extends AppCompatActivity {
         // Get player
         Intent i = getIntent();
         int pos = i.getIntExtra("playerIndex", 0);
-        player = MonopolyGame.getCurrentGame().getPlayers().get(pos);
+
+        try {
+            player = MonopolyGame.getCurrentGame().getPlayers().get(pos);
+        } catch(NoCurrentGameException e) {
+            NoCurrentGameException.showToast(getApplicationContext());
+            finish();
+        }
+
 
         // Set up UI with player info
         TextView title = findViewById(R.id.activity_title);

@@ -8,6 +8,7 @@ import android.widget.ListView;
 import com.inge.nathan.monopolycalculator.MonopolyGame;
 import com.inge.nathan.monopolycalculator.R;
 import com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants;
+import com.inge.nathan.monopolycalculator.Utilities.NoCurrentGameException;
 import com.inge.nathan.monopolycalculator.Utilities.StandingsListAdapter;
 
 public class StandingsActivity extends AppCompatActivity {
@@ -26,7 +27,13 @@ public class StandingsActivity extends AppCompatActivity {
         playerStandingsList = findViewById(R.id.standings_list);
 
         // Get current game
-        currentGame = MonopolyGame.getCurrentGame();
+        try {
+            currentGame = MonopolyGame.getCurrentGame();
+        } catch(NoCurrentGameException ex) {
+            NoCurrentGameException.showToast(getApplicationContext());
+            finish();
+        }
+
         currentGame.sortStandings();
 
         // Set up list adapter

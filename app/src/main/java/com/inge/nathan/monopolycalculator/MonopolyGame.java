@@ -1,6 +1,10 @@
 package com.inge.nathan.monopolycalculator;
 
 
+import android.widget.ArrayAdapter;
+
+import com.inge.nathan.monopolycalculator.Utilities.NoCurrentGameException;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -15,30 +19,29 @@ public class MonopolyGame {
     // Instance variables
     private ArrayList<MonopolyPlayer> players;
 
+    private ArrayList<MonopolyProperty> availableProperty;
+
     private MonopolyGame() { }
 
-    public static synchronized MonopolyGame getCurrentGame() {
+    public static synchronized MonopolyGame getCurrentGame() throws NoCurrentGameException {
         if(currentGame == null) {
-            currentGame = new MonopolyGame();
+            throw new NoCurrentGameException();
         }
 
         return currentGame;
     }
 
-    public void setupNewGame(ArrayList<String> playerNames) {
-        // Reset current game
-        resetGame();
+    public static MonopolyGame setupNewGame(ArrayList<String> playerNames) {
+        currentGame = new MonopolyGame();
 
-        // Set-up new game
-        this.players = new ArrayList<>();
+        currentGame.players = new ArrayList<>();
+        currentGame.availableProperty = new ArrayList<>();
 
         for(String name : playerNames) {
-            players.add(new MonopolyPlayer(name));
+            currentGame.players.add(new MonopolyPlayer(name));
         }
-    }
 
-    private void resetGame() {
-        currentGame = null;
+        return currentGame;
     }
 
     public int numPlayers() {
