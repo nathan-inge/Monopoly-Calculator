@@ -1,8 +1,6 @@
 package com.inge.nathan.monopolycalculator;
 
-
-import android.widget.ArrayAdapter;
-
+import com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants;
 import com.inge.nathan.monopolycalculator.Utilities.NoCurrentGameException;
 
 import java.util.ArrayList;
@@ -39,6 +37,10 @@ public class MonopolyGame {
 
         for(String name : playerNames) {
             currentGame.players.add(new MonopolyPlayer(name));
+        }
+
+        for(int id : MonopolyConstants.allProperties()) {
+            currentGame.availableProperty.add(new MonopolyProperty(id));
         }
 
         return currentGame;

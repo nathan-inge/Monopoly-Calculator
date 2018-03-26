@@ -2,6 +2,9 @@ package com.inge.nathan.monopolycalculator.Utilities;
 
 import android.view.WindowManager;
 
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public final class MonopolyConstants {
 
     private MonopolyConstants() { }
@@ -50,6 +53,50 @@ public final class MonopolyConstants {
 
     public static final int ELECTIC = 0;
     public static final int WATER = 1;
+
+    public static ArrayList<Integer> allProperties() {
+        ArrayList<Integer> allProperties = new ArrayList<>();
+
+        allProperties.add(MED_AVE);
+        allProperties.add(BALTIC_AVE);
+
+        allProperties.add(ORIENTAL_AVE);
+        allProperties.add(VERMONT_AVE);
+        allProperties.add(CONN_AVE);
+
+        allProperties.add(ST_CHARLES_PLACE);
+        allProperties.add(STATES_AVE);
+        allProperties.add(VIRGINIA_AVE);
+
+        allProperties.add(ST_JAMES_PLACE);
+        allProperties.add(TENN_AVE);
+        allProperties.add(NY_AVE);
+
+        allProperties.add(KENTUCKY_AVE);
+        allProperties.add(INDIANA_AVE);
+        allProperties.add(ILLINOIS_AVE);
+
+        allProperties.add(ATLANTIC_AVE);
+        allProperties.add(VENTNOR_AVE);
+        allProperties.add(MARVIN_GARDENS);
+
+        allProperties.add(PACIFIC_AVE);
+        allProperties.add(NC_AVE);
+        allProperties.add(PENN_AVE);
+
+        allProperties.add(PARK_PLACE);
+        allProperties.add(BOARDWALK);
+
+        allProperties.add(READING_RR);
+        allProperties.add(PENN_RR);
+        allProperties.add(BO_RR);
+        allProperties.add(SHORT_RR);
+
+        allProperties.add(WATER);
+        allProperties.add(ELECTIC);
+
+        return allProperties;
+    }
 
     // Property Names
     public static String propertyName(int id) {

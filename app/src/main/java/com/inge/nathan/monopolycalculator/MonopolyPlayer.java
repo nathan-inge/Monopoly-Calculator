@@ -74,6 +74,8 @@ public class MonopolyPlayer {
     public long getCashValue() { return this.cashValue; }
     public long getPropertyValue() { return this.propertyValue; }
 
+    public ArrayList<MonopolyProperty> getProperties() { return this.properties; }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -86,5 +88,10 @@ public class MonopolyPlayer {
     public void setPropertyValue(long propertyValue) {
         this.propertyValue = propertyValue;
         this.totalValue = this.cashValue + this.propertyValue;
+    }
+
+    public void addProperty(MonopolyProperty property) {
+        this.properties.add(property);
+        this.setPropertyValue(property.getTotalValue());
     }
 }
