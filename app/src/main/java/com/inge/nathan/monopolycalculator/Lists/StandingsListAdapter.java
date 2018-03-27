@@ -1,4 +1,4 @@
-package com.inge.nathan.monopolycalculator.Utilities;
+package com.inge.nathan.monopolycalculator.Lists;
 
 
 import android.app.Activity;
@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.inge.nathan.monopolycalculator.MonopolyPlayer;
 import com.inge.nathan.monopolycalculator.R;
 import com.inge.nathan.monopolycalculator.UI.EditPlayerActivity;
+import com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants;
 
 import java.util.ArrayList;
 

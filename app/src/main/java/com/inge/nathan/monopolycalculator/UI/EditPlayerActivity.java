@@ -14,15 +14,19 @@ import com.inge.nathan.monopolycalculator.R;
 import com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants;
 import com.inge.nathan.monopolycalculator.Utilities.MoneyTextWatcher;
 import com.inge.nathan.monopolycalculator.Utilities.NoCurrentGameException;
+import com.inge.nathan.monopolycalculator.Lists.NonScrollListView;
+import com.inge.nathan.monopolycalculator.Lists.PropertiesListAdapter;
 
 public class EditPlayerActivity extends AppCompatActivity {
 
     private MonopolyPlayer player;
+    private MonopolyGame currentGame;
 
 
     // Private UI
     private EditText cashEdit;
     private Button saveButton;
+    private NonScrollListView propertiesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,18 +37,21 @@ public class EditPlayerActivity extends AppCompatActivity {
         cashEdit = findViewById(R.id.cash_edit);
         cashEdit.addTextChangedListener(new MoneyTextWatcher(cashEdit));
         saveButton = findViewById(R.id.save_button);
+        propertiesList = findViewById(R.id.properties_list);
 
         // Get player
         Intent i = getIntent();
         int pos = i.getIntExtra("playerIndex", 0);
 
         try {
-            player = MonopolyGame.getCurrentGame().getPlayers().get(pos);
+            currentGame = MonopolyGame.getCurrentGame();
         } catch(NoCurrentGameException e) {
             NoCurrentGameException.showToast(getApplicationContext());
             finish();
+            return;
         }
 
+        player = currentGame.getPlayers().get(pos);
 
         // Set up UI with player info
         TextView title = findViewById(R.id.activity_title);
@@ -57,6 +64,14 @@ public class EditPlayerActivity extends AppCompatActivity {
                 verifyEdits();
             }
         });
+
+        // Set up list adapter
+        PropertiesListAdapter adapter = new PropertiesListAdapter(
+            this,
+            R.layout.list_row_properties,
+            currentGame.getAvailableProperties());
+
+        propertiesList.setAdapter(adapter);
     }
 
     private void verifyEdits() {

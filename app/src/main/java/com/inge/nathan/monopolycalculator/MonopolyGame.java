@@ -17,7 +17,7 @@ public class MonopolyGame {
     // Instance variables
     private ArrayList<MonopolyPlayer> players;
 
-    private ArrayList<MonopolyProperty> availableProperty;
+    private ArrayList<MonopolyProperty> availableProperties;
 
     private MonopolyGame() { }
 
@@ -33,14 +33,14 @@ public class MonopolyGame {
         currentGame = new MonopolyGame();
 
         currentGame.players = new ArrayList<>();
-        currentGame.availableProperty = new ArrayList<>();
+        currentGame.availableProperties = new ArrayList<>();
 
         for(String name : playerNames) {
             currentGame.players.add(new MonopolyPlayer(name));
         }
 
         for(int id : MonopolyConstants.allProperties()) {
-            currentGame.availableProperty.add(new MonopolyProperty(id));
+            currentGame.availableProperties.add(new MonopolyProperty(id));
         }
 
         return currentGame;
@@ -60,4 +60,6 @@ public class MonopolyGame {
     public ArrayList<MonopolyPlayer> getPlayers() {
         return this.players;
     }
+
+    public ArrayList<MonopolyProperty> getAvailableProperties() { return this.availableProperties; }
 }

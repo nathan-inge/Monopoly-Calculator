@@ -9,7 +9,7 @@ import com.inge.nathan.monopolycalculator.MonopolyGame;
 import com.inge.nathan.monopolycalculator.R;
 import com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants;
 import com.inge.nathan.monopolycalculator.Utilities.NoCurrentGameException;
-import com.inge.nathan.monopolycalculator.Utilities.StandingsListAdapter;
+import com.inge.nathan.monopolycalculator.Lists.StandingsListAdapter;
 
 public class StandingsActivity extends AppCompatActivity {
 
