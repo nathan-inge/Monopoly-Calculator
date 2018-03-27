@@ -249,23 +249,39 @@ public final class MonopolyConstants {
 
     // Property colors
     public static int propertyColor(int id) {
-        if (id >= MED_AVE && id <= CONN_AVE) {
+        if (id >= MED_AVE && id <= BALTIC_AVE) {
             return R.color.colorBrown;
         }
 
-        if (id >= ST_CHARLES_PLACE && id <= NY_AVE) {
+        if (id >= ORIENTAL_AVE && id <= CONN_AVE) {
+            return R.color.colorLightBlue;
+        }
+
+        if (id >= ST_CHARLES_PLACE && id <= VIRGINIA_AVE) {
             return R.color.colorPurple;
         }
 
-        if (id >= KENTUCKY_AVE && id <= MARVIN_GARDENS) {
+        if (id >= ST_JAMES_PLACE && id <= NY_AVE) {
+            return R.color.colorOrange;
+        }
+
+        if (id >= KENTUCKY_AVE && id <= ILLINOIS_AVE) {
             return R.color.colorRed;
         }
 
-        if (id >= PACIFIC_AVE && id <= BOARDWALK) {
+        if (id >= ATLANTIC_AVE && id <= MARVIN_GARDENS) {
+            return R.color.colorYellow;
+        }
+
+        if (id >= PACIFIC_AVE && id <= PENN_AVE) {
+            return R.color.colorGreen;
+        }
+
+        if (id >= PARK_PLACE && id <= BOARDWALK) {
             return R.color.colorBlue;
         }
 
-        return R.color.colorCash;
+        return R.color.colorGray;
     }
 
     // Property house costs
