@@ -21,6 +21,8 @@ public class MonopolyProperty {
         return MonopolyConstants.propertyName(this.id);
     }
 
+    public int getColor() { return MonopolyConstants.propertyColor(this.id); }
+
     public int getNumHouses() { return this.numHouses; }
     public int getNumHotels() { return this.numHotels; }
     public boolean isMortgaged() { return this.isMortgaged; }

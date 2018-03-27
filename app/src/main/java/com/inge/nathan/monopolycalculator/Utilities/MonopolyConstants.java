@@ -2,6 +2,8 @@ package com.inge.nathan.monopolycalculator.Utilities;
 
 import android.view.WindowManager;
 
+import com.inge.nathan.monopolycalculator.R;
+
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -243,6 +245,27 @@ public final class MonopolyConstants {
         }
 
         return 0;
+    }
+
+    // Property colors
+    public static int propertyColor(int id) {
+        if (id >= MED_AVE && id <= CONN_AVE) {
+            return R.color.colorBrown;
+        }
+
+        if (id >= ST_CHARLES_PLACE && id <= NY_AVE) {
+            return R.color.colorPurple;
+        }
+
+        if (id >= KENTUCKY_AVE && id <= MARVIN_GARDENS) {
+            return R.color.colorRed;
+        }
+
+        if (id >= PACIFIC_AVE && id <= BOARDWALK) {
+            return R.color.colorBlue;
+        }
+
+        return R.color.colorCash;
     }
 
     // Property house costs

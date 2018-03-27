@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,8 +45,10 @@ public class PropertiesListAdapter extends ArrayAdapter<MonopolyProperty> {
 
         if (property != null) {
             TextView nameView = propertiesView.findViewById(R.id.property_name_view);
-
             nameView.setText(property.getName());
+
+            CardView cardView = propertiesView.findViewById(R.id.property_card_view);
+            cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(), property.getColor()));
         }
 
         return propertiesView;
