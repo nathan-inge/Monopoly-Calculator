@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
+import static com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants.*;
 
 public class MonopolyGameTest {
     @Test
@@ -81,5 +82,79 @@ public class MonopolyGameTest {
         assertEquals(p3, game.getPlayers().get(0));
         assertEquals(p1, game.getPlayers().get(1));
         assertEquals(p2, game.getPlayers().get(2));
+    }
+
+    @Test
+    public void test_addProperty() {
+        ArrayList<String> playerNames = new ArrayList<>();
+        playerNames.add("Jane");
+        playerNames.add("Shannon");
+        playerNames.add("Mike");
+
+        MonopolyPlayer invalidPlayer = new MonopolyPlayer("Geoff");
+
+        MonopolyGame game = MonopolyGame.setupNewGame(playerNames);
+        assertEquals(28, game.getAvailableProperties().size());
+
+        // Add property to player not in game
+        game.addProperty(invalidPlayer, new MonopolyProperty(BOARDWALK));
+        assertEquals(28, game.getAvailableProperties().size());
+        assertEquals(0, invalidPlayer.getProperties().size());
+
+        // Add property to valid player
+        game.addProperty(game.getPlayers().get(0), new MonopolyProperty(PARK_PLACE));
+        assertEquals(27, game.getAvailableProperties().size());
+        assertEquals(1, game.getPlayers().get(0).getProperties().size());
+        assertEquals(new MonopolyProperty(PARK_PLACE), game.getPlayers().get(0).getProperties().get(0));
+
+        // Add same property to same player
+        game.addProperty(game.getPlayers().get(0), new MonopolyProperty(PARK_PLACE));
+        assertEquals(27, game.getAvailableProperties().size());
+        assertEquals(1, game.getPlayers().get(0).getProperties().size());
+    }
+
+    @Test
+    public void test_removeProperty() {
+        ArrayList<String> playerNames = new ArrayList<>();
+        playerNames.add("Jane");
+        playerNames.add("Shannon");
+        playerNames.add("Mike");
+
+        MonopolyPlayer invalidPlayer = new MonopolyPlayer("Geoff");
+
+        MonopolyGame game = MonopolyGame.setupNewGame(playerNames);
+        assertEquals(28, game.getAvailableProperties().size());
+
+        // Remove property from player not in game
+        invalidPlayer.addProperty(new MonopolyProperty(BOARDWALK));
+        game.removeProperty(invalidPlayer, new MonopolyProperty(BOARDWALK));
+        assertEquals(28, game.getAvailableProperties().size());
+        assertEquals(1, invalidPlayer.getProperties().size());
+
+        // Remove property from player with no properties
+        game.removeProperty(game.getPlayers().get(1), new MonopolyProperty(KENTUCKY_AVE));
+        assertEquals(28, game.getAvailableProperties().size());
+        assertEquals(0, game.getPlayers().get(1).getProperties().size());
+
+        // Remove property from player with valid property
+        game.addProperty(game.getPlayers().get(2), new MonopolyProperty(BALTIC_AVE));
+        assertEquals(27, game.getAvailableProperties().size());
+        assertEquals(1, game.getPlayers().get(2).getProperties().size());
+
+        game.removeProperty(game.getPlayers().get(2), new MonopolyProperty(BALTIC_AVE));
+        assertEquals(28, game.getAvailableProperties().size());
+        assertEquals(0, game.getPlayers().get(2).getProperties().size());
+
+        // Remove property from player with modified property
+        game.addProperty(game.getPlayers().get(0), new MonopolyProperty(CONN_AVE));
+        assertEquals(new MonopolyProperty(CONN_AVE), game.getPlayers().get(0).getProperties().get(0));
+        game.getPlayers().get(0).getProperties().get(0).setNumHouses(3);
+
+        game.removeProperty(game.getPlayers().get(0), new MonopolyProperty(CONN_AVE));
+        assertEquals(28, game.getAvailableProperties().size());
+        assertEquals(0, game.getPlayers().get(0).getProperties().size());
+
+        int indexOfConn = game.getAvailableProperties().indexOf(new MonopolyProperty(CONN_AVE));
+        assertEquals(0, game.getAvailableProperties().get(indexOfConn).getNumHouses());
     }
 }

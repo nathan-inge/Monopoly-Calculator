@@ -14,6 +14,7 @@ public class MonopolyPlayer {
 
     public MonopolyPlayer(String name) {
         this.name = name;
+        this.properties = new ArrayList<>();
     }
 
     public static String formatMoney(long amount) {
@@ -92,6 +93,9 @@ public class MonopolyPlayer {
 
     public void addProperty(MonopolyProperty property) {
         this.properties.add(property);
-        this.setPropertyValue(property.getTotalValue());
+    }
+
+    public void removeProperty(MonopolyProperty property) {
+        this.properties.remove(property);
     }
 }

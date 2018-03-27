@@ -55,6 +55,20 @@ public class MonopolyGame {
         Collections.reverse(players);
     }
 
+    public void removeProperty(MonopolyPlayer player, MonopolyProperty property) {
+        if (this.players.contains(player) && player.getProperties().contains(property)) {
+            player.removeProperty(property);
+            this.availableProperties.add(new MonopolyProperty(property.getId()));
+        }
+    }
+
+    public void addProperty(MonopolyPlayer player, MonopolyProperty property) {
+        if (this.players.contains(player) && !(player.getProperties().contains(property))) {
+            player.addProperty(property);
+            this.availableProperties.remove(property);
+        }
+    }
+
     /// MARK - Getters + Setters
 
     public ArrayList<MonopolyPlayer> getPlayers() {
@@ -62,4 +76,5 @@ public class MonopolyGame {
     }
 
     public ArrayList<MonopolyProperty> getAvailableProperties() { return this.availableProperties; }
+
 }
