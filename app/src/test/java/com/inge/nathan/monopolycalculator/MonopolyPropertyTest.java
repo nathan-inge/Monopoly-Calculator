@@ -16,4 +16,18 @@ public class MonopolyPropertyTest {
         assertEquals("B. & O. Railroad", new MonopolyProperty(BO_RR).getName());
         assertEquals("Water Works", new MonopolyProperty(WATER).getName());
     }
+
+    @Test
+    public void test_equals() {
+        assertEquals(new MonopolyProperty(PARK_PLACE), new MonopolyProperty(PARK_PLACE));
+        assertNotEquals(new MonopolyProperty(ILLINOIS_AVE), new MonopolyProperty(MARVIN_GARDENS));
+
+        MonopolyProperty mp1 = new MonopolyProperty(ST_CHARLES_PLACE);
+        mp1.setNumHotels(5);
+
+        MonopolyProperty mp2 = new MonopolyProperty(ST_CHARLES_PLACE);
+        mp2.setNumHotels(2);
+
+        assertEquals(mp1, mp2);
+    }
 }

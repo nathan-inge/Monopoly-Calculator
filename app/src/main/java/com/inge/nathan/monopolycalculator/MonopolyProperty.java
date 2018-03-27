@@ -14,6 +14,29 @@ public class MonopolyProperty {
         this.id = id;
     }
 
+    // MARK - Equality
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (!MonopolyProperty.class.isAssignableFrom(obj.getClass())) {
+            return false;
+        }
+        final MonopolyProperty other = (MonopolyProperty) obj;
+
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return (id * 100) / 5;
+    }
+
+
     // MARK - Getters + Setters
     public int getId() { return this.id; }
 
