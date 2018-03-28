@@ -12,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
+import com.inge.nathan.monopolycalculator.MonopolyPlayer;
 import com.inge.nathan.monopolycalculator.MonopolyProperty;
 import com.inge.nathan.monopolycalculator.R;
 
@@ -51,14 +52,20 @@ public class PropertiesListAdapter extends ArrayAdapter<MonopolyProperty> {
             CardView cardView = propertiesView.findViewById(R.id.property_card_view);
             cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(), property.getColor()));
 
+            TextView valueView = propertiesView.findViewById(R.id.property_value_view);
+            valueView.setText(MonopolyPlayer.formatMoney(property.getTotalValue()));
+            valueView.setVisibility(View.INVISIBLE);
+
             CheckBox ownedCheck = propertiesView.findViewById(R.id.owned_check);
             ownedCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if (isChecked && !selectedProperties.contains(property)) {
                         selectedProperties.add(property);
+                        valueView.setVisibility(View.VISIBLE);
                     } else if (!isChecked && selectedProperties.contains(property)) {
                         selectedProperties.remove(property);
+                        valueView.setVisibility(View.INVISIBLE);
                     }
                 }
             });

@@ -52,14 +52,8 @@ public class MonopolyProperty {
 
     public int getTotalValue() {
         int value = MonopolyConstants.propertyValue(id);
-        int totalValue = (isMortgaged) ? value/2 : value;
 
-        int houseValue = MonopolyConstants.propertyHouseCost(id);
-
-        totalValue += numHouses * houseValue;
-        totalValue += (numHotels * houseValue) + (4 * houseValue);
-
-        return totalValue;
+        return value;
     }
 
     public void setNumHouses(int numHouses) {
