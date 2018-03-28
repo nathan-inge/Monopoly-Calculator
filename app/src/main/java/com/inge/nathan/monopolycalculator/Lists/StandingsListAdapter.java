@@ -52,11 +52,13 @@ public class StandingsListAdapter extends ArrayAdapter<MonopolyPlayer> {
 
             nameView.setText(player.getName());
 
+            propertyView.setText(String.valueOf(player.getProperties().size()));
+
             rankingView.setText(MonopolyPlayer.formatStanding(position));
             totalView.setText(MonopolyPlayer.formatMoney(player.getTotalValue()));
 
             cashView.setText(MonopolyPlayer.formatMoney(player.getCashValue()));
-            propertyView.setText(MonopolyPlayer.formatMoney(player.getPropertyValue()));
+            //propertyView.setText(MonopolyPlayer.formatMoney(player.getPropertyValue()));
 
             editButton.setOnClickListener(new View.OnClickListener() {
                 @Override

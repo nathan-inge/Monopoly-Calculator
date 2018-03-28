@@ -1,8 +1,6 @@
 package com.inge.nathan.monopolycalculator.Lists;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
@@ -10,24 +8,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
-import com.inge.nathan.monopolycalculator.MonopolyPlayer;
 import com.inge.nathan.monopolycalculator.MonopolyProperty;
 import com.inge.nathan.monopolycalculator.R;
-import com.inge.nathan.monopolycalculator.UI.EditPlayerActivity;
 
 import java.util.ArrayList;
 
 public class PropertiesListAdapter extends ArrayAdapter<MonopolyProperty> {
 
+    public ArrayList<MonopolyProperty> selectedProperties;
+
     public PropertiesListAdapter(Context context, int textViewResourceId) {
         super(context, textViewResourceId);
+        selectedProperties = new ArrayList<>();
     }
 
     public PropertiesListAdapter(Context context, int resource, ArrayList<MonopolyProperty> items) {
         super(context, resource, items);
+        selectedProperties = new ArrayList<>();
     }
 
     @Override
@@ -49,6 +50,18 @@ public class PropertiesListAdapter extends ArrayAdapter<MonopolyProperty> {
 
             CardView cardView = propertiesView.findViewById(R.id.property_card_view);
             cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(), property.getColor()));
+
+            CheckBox ownedCheck = propertiesView.findViewById(R.id.owned_check);
+            ownedCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked && !selectedProperties.contains(property)) {
+                        selectedProperties.add(property);
+                    } else if (!isChecked && selectedProperties.contains(property)) {
+                        selectedProperties.remove(property);
+                    }
+                }
+            });
         }
 
         return propertiesView;
