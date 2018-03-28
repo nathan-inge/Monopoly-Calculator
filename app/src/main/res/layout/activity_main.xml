@@ -1,51 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context="com.inge.nathan.monopolycalculator.UI.MainActivity">
+    android:background="@color/colorPrimary">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center_horizontal" >
+    <include
+        layout="@layout/toolbar_custom_home" />
 
-        <EditText
-            android:id="@+id/p1_name_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/player_1" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/p2_name_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/player_2" />
-
-        <EditText
-            android:id="@+id/p3_name_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/player_3" />
-
-        <EditText
-            android:id="@+id/p4_name_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/player_4" />
-
-        <Button
-            android:id="@+id/next_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/next" />
-
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
+            <android.support.v7.widget.CardView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                app:cardCornerRadius="12dp"
+                app:cardBackgroundColor="@android:color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="20dp">
+
+
+                    <EditText
+                        android:id="@+id/p1_name_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/player_1"
+                        android:layout_gravity="center"/>
+
+                    <EditText
+                        android:id="@+id/p2_name_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/player_2"
+                        android:layout_gravity="center"/>
+
+                    <EditText
+                        android:id="@+id/p3_name_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/player_3"
+                        android:layout_gravity="center" />
+
+                    <EditText
+                        android:id="@+id/p4_name_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/player_4"
+                        android:layout_gravity="center" />
+
+                    <Button
+                        android:id="@+id/next_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/next"
+                        android:background="@drawable/button_background"
+                        android:textColor="@android:color/white"
+                        android:fontFamily="@font/kabel_bold"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

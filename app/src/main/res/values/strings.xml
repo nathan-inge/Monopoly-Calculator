@@ -5,4 +5,15 @@
     <string name="player_3">Player 3</string>
     <string name="player_4">Player 4</string>
     <string name="next">Next</string>
+    <string name="main_activity">Monopoly Calculator</string>
+    <string name="title_activity_standings">Monopoly Calculator</string>
+    <string name="ranking_placeholder">-</string>
+    <string name="player_name_placeholder">Player</string>
+    <string name="total_placeholder">$---</string>
+    <string name="edit">Edit</string>
+    <string name="cash">Cash:</string>
+    <string name="property">Property:</string>
+    <string name="save">Save</string>
+    <string name="property_name_placeholder">Property</string>
+
 </resources>
