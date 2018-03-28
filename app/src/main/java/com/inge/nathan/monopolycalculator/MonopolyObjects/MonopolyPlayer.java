@@ -1,5 +1,4 @@
-package com.inge.nathan.monopolycalculator;
-import android.widget.ArrayAdapter;
+package com.inge.nathan.monopolycalculator.MonopolyObjects;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;

@@ -1,6 +1,8 @@
 package com.inge.nathan.monopolycalculator;
 
 
+import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyProperty;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants.*;

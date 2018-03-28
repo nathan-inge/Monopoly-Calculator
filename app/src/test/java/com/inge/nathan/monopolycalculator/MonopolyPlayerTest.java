@@ -1,5 +1,7 @@
 package com.inge.nathan.monopolycalculator;
 
+import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyPlayer;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;

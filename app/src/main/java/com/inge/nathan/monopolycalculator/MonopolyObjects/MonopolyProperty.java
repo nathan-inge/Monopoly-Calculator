@@ -1,4 +1,4 @@
-package com.inge.nathan.monopolycalculator;
+package com.inge.nathan.monopolycalculator.MonopolyObjects;
 
 import com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants;
 

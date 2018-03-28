@@ -1,11 +1,10 @@
-package com.inge.nathan.monopolycalculator;
+package com.inge.nathan.monopolycalculator.MonopolyObjects;
 
 import com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants;
 import com.inge.nathan.monopolycalculator.Utilities.NoCurrentGameException;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 
 /**
  * Singleton class containing current Monopoly Game

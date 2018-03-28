@@ -12,7 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.inge.nathan.monopolycalculator.MonopolyPlayer;
+import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyPlayer;
 import com.inge.nathan.monopolycalculator.R;
 import com.inge.nathan.monopolycalculator.UI.EditPlayerActivity;
 import com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants;

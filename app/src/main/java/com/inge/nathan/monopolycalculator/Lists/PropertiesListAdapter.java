@@ -12,8 +12,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
-import com.inge.nathan.monopolycalculator.MonopolyPlayer;
-import com.inge.nathan.monopolycalculator.MonopolyProperty;
+import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyPlayer;
+import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyProperty;
 import com.inge.nathan.monopolycalculator.R;
 
 import java.util.ArrayList;

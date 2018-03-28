@@ -1,5 +1,8 @@
 package com.inge.nathan.monopolycalculator;
 
+import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyGame;
+import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyPlayer;
+import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyProperty;
 import com.inge.nathan.monopolycalculator.Utilities.NoCurrentGameException;
 
 import org.junit.Test;
