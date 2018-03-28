@@ -18,6 +18,9 @@ import com.inge.nathan.monopolycalculator.Utilities.NoCurrentGameException;
 import com.inge.nathan.monopolycalculator.Lists.NonScrollListView;
 import com.inge.nathan.monopolycalculator.Lists.PropertiesListAdapter;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class EditPlayerActivity extends AppCompatActivity {
 
     private MonopolyPlayer player;
@@ -68,10 +71,15 @@ public class EditPlayerActivity extends AppCompatActivity {
         });
 
         // Set up list adapter
+        ArrayList<MonopolyProperty> allProperties = new ArrayList<>();
+        allProperties.addAll(player.getProperties());
+        allProperties.addAll(currentGame.getAvailableProperties());
+        Collections.sort(allProperties, (p1, p2) -> Integer.compare(p1.getId(), p2.getId()));
         propertiesListAdapter = new PropertiesListAdapter(
             this,
             R.layout.list_row_properties,
-            currentGame.getAvailableProperties());
+            allProperties,
+            player.getProperties());
 
         propertiesList.setAdapter(propertiesListAdapter);
     }
