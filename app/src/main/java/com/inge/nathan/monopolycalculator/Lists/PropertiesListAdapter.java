@@ -58,6 +58,14 @@ public class PropertiesListAdapter extends ArrayAdapter<MonopolyProperty> {
 
             CheckBox ownedCheck = propertiesView.findViewById(R.id.owned_check);
 
+            if (property.isOwned()) {
+                ownedCheck.setChecked(true);
+                valueView.setVisibility(View.VISIBLE);
+                if (!selectedProperties.contains(property)) {
+                    selectedProperties.add(property);
+                }
+            }
+
             ownedCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -73,5 +81,17 @@ public class PropertiesListAdapter extends ArrayAdapter<MonopolyProperty> {
         }
 
         return propertiesView;
+    }
+
+    @Override
+    public int getViewTypeCount() {
+
+        return getCount();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+
+        return position;
     }
 }

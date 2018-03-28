@@ -5,6 +5,7 @@ import com.inge.nathan.monopolycalculator.Utilities.NoCurrentGameException;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 
 /**
  * Singleton class containing current Monopoly Game
@@ -70,10 +71,11 @@ public class MonopolyGame {
         }
     }
 
-    public void setPlayerProperties(MonopolyPlayer player, ArrayList<MonopolyProperty> properties) {
+    public void updatePlayerProperties(MonopolyPlayer player, ArrayList<MonopolyProperty> properties) {
         for(MonopolyProperty oldProperty : player.getProperties()) {
-            removeProperty(player, oldProperty);
+            this.availableProperties.add(new MonopolyProperty(oldProperty.getId()));
         }
+        player.getProperties().clear();
 
         for(MonopolyProperty newProperty : properties) {
             addProperty(player, newProperty);

@@ -93,7 +93,16 @@ public class EditPlayerActivity extends AppCompatActivity {
         if (cashInput.isEmpty() && propertiesListAdapter.selectedProperties.size() == 0) {
             finish();
         } else {
-            currentGame.setPlayerProperties(player, propertiesListAdapter.selectedProperties);
+            String mesg = "";
+//            for(MonopolyProperty property : propertiesListAdapter.selectedProperties) {
+//                currentGame.updatePlayerProperties(player);
+//                mesg += property.getName() + "\n";
+//
+//            }
+
+            currentGame.updatePlayerProperties(player, propertiesListAdapter.selectedProperties);
+
+            Toast.makeText(getApplicationContext(), mesg, Toast.LENGTH_LONG).show();
 
             String cleanString = cashInput.replaceAll("[$+,+.+]", "");
             player.setCashValue(Long.parseLong(cleanString));
