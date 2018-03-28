@@ -72,20 +72,11 @@ public class MainActivity extends AppCompatActivity {
 
         } else {
             // Create new game
-            createGame(playerNames);
+            MonopolyGame.setupNewGame(playerNames);
 
             // Go to standings activity
             Intent i = new Intent(this, StandingsActivity.class);
             startActivity(i);
         }
-    }
-
-    /**
-     *
-     * @param playerNames ArrayList<String> of player names
-     */
-    private void createGame(ArrayList<String> playerNames) {
-        MonopolyGame game = MonopolyGame.getInstance();
-        game.setupNewGame(playerNames);
     }
 }

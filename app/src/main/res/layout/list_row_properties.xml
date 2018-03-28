@@ -6,6 +6,7 @@
               android:orientation="vertical">
 
     <android.support.v7.widget.CardView
+        android:id="@+id/property_card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="12dp"
@@ -28,38 +29,38 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp">
 
-                <TextView
-                    android:id="@+id/ranking_view"
+                <CheckBox
+                    android:id="@+id/owned_check"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"/>
+
+                <TextView
+                    android:id="@+id/property_name_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_toRightOf="@id/owned_check"
+                    android:layout_toEndOf="@id/owned_check"
+                    android:fontFamily="@font/kabel_bold"
+                    android:layout_marginLeft="12dp"
                     android:layout_marginStart="12dp"
-                    android:fontFamily="@font/kabel_bold"
-                    android:text="@string/ranking_placeholder"
+                    android:text="@string/property_name_placeholder"
                     android:textSize="16sp"/>
 
                 <TextView
-                    android:id="@+id/name_view"
+                    android:id="@+id/property_value_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:fontFamily="@font/kabel_bold"
-                    android:text="@string/player_name_placeholder"
-                    android:textSize="16sp"/>
-
-                <TextView
-                    android:id="@+id/total_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginEnd="12dp"
                     android:layout_marginRight="12dp"
+                    android:layout_marginEnd="12dp"
                     android:fontFamily="@font/kabel_bold"
                     android:text="@string/total_placeholder"
                     android:textSize="16sp"/>
@@ -73,36 +74,7 @@
                 android:layout_marginBottom="5dp">
 
                 <TextView
-                    android:id="@+id/label_cash_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginStart="30dp"
-                    android:text="@string/cash"/>
-
-                <TextView
-                    android:id="@+id/cash_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@id/label_cash_view"
-                    android:layout_toRightOf="@id/label_cash_view"
-                    android:layout_toEndOf="@id/label_cash_view"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
-
-                <TextView
-                    android:id="@+id/label_property_view"
+                    android:id="@+id/label_house_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -116,39 +88,16 @@
                     android:id="@+id/property_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@id/label_property_view"
-                    android:layout_toRightOf="@id/label_property_view"
-                    android:layout_toEndOf="@id/label_property_view"
+                    android:layout_alignBottom="@id/label_house_view"
+                    android:layout_toRightOf="@id/label_house_view"
+                    android:layout_toEndOf="@id/label_house_view"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"/>
 
             </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="end"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
-
-                <Button
-                    android:id="@+id/edit_player_button"
-                    android:layout_width="60dp"
-                    android:layout_height="40dp"
-                    android:layout_marginEnd="12dp"
-                    android:layout_marginRight="12dp"
-                    android:background="@drawable/button_background"
-                    android:text="@string/edit"
-                    android:fontFamily="@font/kabel_bold"
-                    android:textColor="@android:color/white"
-                    android:textSize="14sp"/>
-
-            </LinearLayout>
 
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
 
 </LinearLayout>
-

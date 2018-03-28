@@ -1,7 +1,7 @@
-package com.inge.nathan.monopolycalculator.Utilities;
+package com.inge.nathan.monopolycalculator.Lists;
 
 
-import android.content.ClipData;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.inge.nathan.monopolycalculator.MonopolyPlayer;
 import com.inge.nathan.monopolycalculator.R;
+import com.inge.nathan.monopolycalculator.UI.EditPlayerActivity;
+import com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants;
 
 import java.util.ArrayList;
 
@@ -28,7 +30,7 @@ public class StandingsListAdapter extends ArrayAdapter<MonopolyPlayer> {
     }
 
     @Override
-    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, final View convertView, @NonNull ViewGroup parent) {
 
         View rankingsView = convertView;
 
@@ -44,22 +46,26 @@ public class StandingsListAdapter extends ArrayAdapter<MonopolyPlayer> {
             TextView nameView = rankingsView.findViewById(R.id.name_view);
             TextView rankingView = rankingsView.findViewById(R.id.ranking_view);
             TextView totalView = rankingsView.findViewById(R.id.total_view);
+            TextView propertyView = rankingsView.findViewById(R.id.property_view);
+            TextView cashView = rankingsView.findViewById(R.id.cash_view);
             Button editButton = rankingsView.findViewById(R.id.edit_player_button);
 
-            if (nameView != null) nameView.setText(player.getName());
+            nameView.setText(player.getName());
 
-            if (rankingView != null) rankingView.setText("1st");
+            rankingView.setText(MonopolyPlayer.formatStanding(position));
+            totalView.setText(MonopolyPlayer.formatMoney(player.getTotalValue()));
 
-            if (totalView != null) totalView.setText("$1000");
+            cashView.setText(MonopolyPlayer.formatMoney(player.getCashValue()));
+            propertyView.setText(MonopolyPlayer.formatMoney(player.getPropertyValue()));
 
-            if (editButton != null) {
-                editButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                    }
-                });
-            }
+            editButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(getContext(), EditPlayerActivity.class);
+                    i.putExtra("playerIndex", position);
+                    ((Activity) getContext()).startActivityForResult(i, MonopolyConstants.REQUEST_EDIT_PLAYER);
+                }
+            });
         }
 
         return rankingsView;
