@@ -27,10 +27,9 @@ public class PropertiesListAdapter extends ArrayAdapter<MonopolyProperty> {
         selectedProperties = new ArrayList<>();
     }
 
-    public PropertiesListAdapter(Context context, int resource, ArrayList<MonopolyProperty> items, ArrayList<MonopolyProperty> ownedProperties) {
+    public PropertiesListAdapter(Context context, int resource, ArrayList<MonopolyProperty> items) {
         super(context, resource, items);
         selectedProperties = new ArrayList<>();
-        selectedProperties.addAll(ownedProperties);
     }
 
     @Override
@@ -55,17 +54,9 @@ public class PropertiesListAdapter extends ArrayAdapter<MonopolyProperty> {
 
             TextView valueView = propertiesView.findViewById(R.id.property_value_view);
             valueView.setText(MonopolyPlayer.formatMoney(property.getTotalValue()));
+            valueView.setVisibility(View.INVISIBLE);
 
             CheckBox ownedCheck = propertiesView.findViewById(R.id.owned_check);
-
-            // Render already owned properties
-//            if (selectedProperties.contains(property)) {
-//                valueView.setVisibility(View.VISIBLE);
-//                ownedCheck.setChecked(true);
-//            } else {
-//                valueView.setVisibility(View.INVISIBLE);
-//                ownedCheck.setChecked(false);
-//            }
 
             ownedCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override

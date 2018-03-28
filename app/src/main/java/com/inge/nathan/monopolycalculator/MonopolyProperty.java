@@ -9,6 +9,7 @@ public class MonopolyProperty {
     private int numHouses;
     private int numHotels;
     private boolean isMortgaged = false;
+    private boolean isOwned = false;
 
     public MonopolyProperty(int id) {
         this.id = id;
@@ -39,6 +40,8 @@ public class MonopolyProperty {
 
     // MARK - Getters + Setters
     public int getId() { return this.id; }
+
+    public boolean isOwned() { return this.isOwned; }
 
     public String getName() {
         return MonopolyConstants.propertyName(this.id);
@@ -74,5 +77,7 @@ public class MonopolyProperty {
     public void setIsMortgaged(boolean isMortgaged) {
         this.isMortgaged = isMortgaged;
     }
+
+    public void setIsOwned(boolean isOwned) { this.isOwned = isOwned; }
 
 }

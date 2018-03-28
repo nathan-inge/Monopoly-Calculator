@@ -65,7 +65,18 @@ public class MonopolyGame {
     public void addProperty(MonopolyPlayer player, MonopolyProperty property) {
         if (this.players.contains(player) && !(player.getProperties().contains(property))) {
             player.addProperty(property);
+            property.setIsOwned(true);
             this.availableProperties.remove(property);
+        }
+    }
+
+    public void setPlayerProperties(MonopolyPlayer player, ArrayList<MonopolyProperty> properties) {
+        for(MonopolyProperty oldProperty : player.getProperties()) {
+            removeProperty(player, oldProperty);
+        }
+
+        for(MonopolyProperty newProperty : properties) {
+            addProperty(player, newProperty);
         }
     }
 

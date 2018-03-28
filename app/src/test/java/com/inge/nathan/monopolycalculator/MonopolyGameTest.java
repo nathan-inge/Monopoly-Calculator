@@ -106,6 +106,7 @@ public class MonopolyGameTest {
         assertEquals(27, game.getAvailableProperties().size());
         assertEquals(1, game.getPlayers().get(0).getProperties().size());
         assertEquals(new MonopolyProperty(PARK_PLACE), game.getPlayers().get(0).getProperties().get(0));
+        assertTrue(game.getPlayers().get(0).getProperties().get(0).isOwned());
 
         // Add same property to same player
         game.addProperty(game.getPlayers().get(0), new MonopolyProperty(PARK_PLACE));
@@ -140,6 +141,7 @@ public class MonopolyGameTest {
         game.addProperty(game.getPlayers().get(2), new MonopolyProperty(BALTIC_AVE));
         assertEquals(27, game.getAvailableProperties().size());
         assertEquals(1, game.getPlayers().get(2).getProperties().size());
+        assertTrue(game.getPlayers().get(2).getProperties().get(0).isOwned());
 
         game.removeProperty(game.getPlayers().get(2), new MonopolyProperty(BALTIC_AVE));
         assertEquals(28, game.getAvailableProperties().size());
@@ -156,5 +158,6 @@ public class MonopolyGameTest {
 
         int indexOfConn = game.getAvailableProperties().indexOf(new MonopolyProperty(CONN_AVE));
         assertEquals(0, game.getAvailableProperties().get(indexOfConn).getNumHouses());
+        assertFalse(game.getAvailableProperties().get(indexOfConn).isOwned());
     }
 }

@@ -3,10 +3,12 @@ package com.inge.nathan.monopolycalculator.UI;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.inge.nathan.monopolycalculator.MonopolyGame;
 import com.inge.nathan.monopolycalculator.MonopolyPlayer;
@@ -26,6 +28,7 @@ public class EditPlayerActivity extends AppCompatActivity {
     private MonopolyPlayer player;
     private MonopolyGame currentGame;
     private PropertiesListAdapter propertiesListAdapter;
+    private ArrayList<MonopolyProperty> ownedAndAvailableProperties;
 
 
     // Private UI
@@ -71,28 +74,26 @@ public class EditPlayerActivity extends AppCompatActivity {
         });
 
         // Set up list adapter
-        ArrayList<MonopolyProperty> allProperties = new ArrayList<>();
-        allProperties.addAll(player.getProperties());
-        allProperties.addAll(currentGame.getAvailableProperties());
-        Collections.sort(allProperties, (p1, p2) -> Integer.compare(p1.getId(), p2.getId()));
+        ownedAndAvailableProperties = new ArrayList<>();
+        ownedAndAvailableProperties.addAll(player.getProperties());
+        ownedAndAvailableProperties.addAll(currentGame.getAvailableProperties());
+        Collections.sort(ownedAndAvailableProperties, (p1, p2) -> Integer.compare(p1.getId(), p2.getId()));
         propertiesListAdapter = new PropertiesListAdapter(
             this,
             R.layout.list_row_properties,
-            allProperties,
-            player.getProperties());
-
+            ownedAndAvailableProperties);
         propertiesList.setAdapter(propertiesListAdapter);
     }
 
     private void verifyEdits() {
         String cashInput = cashEdit.getText().toString();
 
+        Toast.makeText(getApplicationContext(), String.valueOf(propertiesListAdapter.selectedProperties.size()), Toast.LENGTH_LONG).show();
+
         if (cashInput.isEmpty() && propertiesListAdapter.selectedProperties.size() == 0) {
             finish();
         } else {
-            for(MonopolyProperty property : propertiesListAdapter.selectedProperties) {
-                currentGame.addProperty(player, property);
-            }
+            currentGame.setPlayerProperties(player, propertiesListAdapter.selectedProperties);
 
             String cleanString = cashInput.replaceAll("[$+,+.+]", "");
             player.setCashValue(Long.parseLong(cleanString));
