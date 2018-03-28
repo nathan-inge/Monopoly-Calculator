@@ -30,4 +30,36 @@ public class MonopolyPropertyTest {
 
         assertEquals(mp1, mp2);
     }
+
+    @Test
+    public void test_housesAndHotels() {
+        MonopolyProperty property = new MonopolyProperty(INDIANA_AVE);
+
+        property.setNumHouses(3);
+        assertEquals(3, property.getNumHouses());
+
+        property.setNumHotels(1);
+        assertEquals(1, property.getNumHotels());
+
+        property.setNumHouses(0);
+        assertEquals(0, property.getNumHouses());
+    }
+
+    @Test
+    public void test_getTotalValue() {
+        assertEquals(60, new MonopolyProperty(BALTIC_AVE).getTotalValue());
+        assertEquals(200, new MonopolyProperty(READING_RR).getTotalValue());
+
+        MonopolyProperty property = new MonopolyProperty(KENTUCKY_AVE);
+        assertEquals(220, property.getTotalValue());
+
+        property.setNumHouses(2);
+        assertEquals(520, property.getTotalValue());
+
+        property.setNumHouses(0);
+        assertEquals(220, property.getTotalValue());
+
+        property.setNumHotels(1);
+        assertEquals(220 + (150 * 5), property.getTotalValue());
+    }
 }

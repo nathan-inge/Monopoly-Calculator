@@ -46,7 +46,7 @@ public class MonopolyPlayerTest {
         p2.setCashValue(100);
         assertFalse(p1.equals(p2));
 
-        p1.setPropertyValue(50);
+        p1.setCashValue(50);
         assertTrue(p1.equals(p2));
     }
 }

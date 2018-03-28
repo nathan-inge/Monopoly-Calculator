@@ -74,9 +74,9 @@ public class MonopolyGameTest {
         assertEquals(p1, game.getPlayers().get(2));
 
         // 1)p3 2)p1 3)p2
-        p1.setPropertyValue(200);
-        p2.setPropertyValue(50);
-        p3.setPropertyValue(300);
+        p1.setCashValue(200);
+        p2.setCashValue(50);
+        p3.setCashValue(300);
 
         game.sortStandings();
         assertEquals(p3, game.getPlayers().get(0));

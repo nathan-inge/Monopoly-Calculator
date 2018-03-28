@@ -7,9 +7,7 @@ import java.util.ArrayList;
 public class MonopolyPlayer {
 
     private String name;
-    private long totalValue;
     private long cashValue;
-    private long propertyValue;
     private ArrayList<MonopolyProperty> properties;
 
     public MonopolyPlayer(String name) {
@@ -52,7 +50,7 @@ public class MonopolyPlayer {
             return false;
         }
 
-        if (this.totalValue != other.totalValue) {
+        if (this.cashValue != other.cashValue) {
             return false;
         }
 
@@ -62,7 +60,7 @@ public class MonopolyPlayer {
     @Override
     public int hashCode() {
         int result = name.hashCode();
-        result += totalValue;
+        result += cashValue;
         result = result / 5;
         return result;
     }
@@ -96,12 +94,6 @@ public class MonopolyPlayer {
 
     public void setCashValue(long cashValue) {
         this.cashValue = cashValue;
-        this.totalValue = this.cashValue + this.propertyValue;
-    }
-
-    public void setPropertyValue(long propertyValue) {
-        this.propertyValue = propertyValue;
-        this.totalValue = this.cashValue + this.propertyValue;
     }
 
     public void addProperty(MonopolyProperty property) {

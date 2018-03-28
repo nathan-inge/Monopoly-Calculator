@@ -53,6 +53,13 @@ public class MonopolyProperty {
     public int getTotalValue() {
         int value = MonopolyConstants.propertyValue(id);
 
+        value += numHouses * MonopolyConstants.propertyHouseCost(id);
+
+        if (numHotels > 0) {
+            value += 5 * MonopolyConstants.propertyHouseCost(id);
+        }
+
+
         return value;
     }
 
