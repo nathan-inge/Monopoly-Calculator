@@ -1,13 +1,20 @@
 package com.inge.nathan.monopolycalculator.UI;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.support.v7.widget.Toolbar;
 
 import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyGame;
 import com.inge.nathan.monopolycalculator.R;
@@ -22,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText playerThreeEdit;
     private EditText playerFourEdit;
     private Button nextButton;
+    private Toolbar customToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
         playerThreeEdit = findViewById(R.id.p3_name_edit);
         playerFourEdit = findViewById(R.id.p4_name_edit);
         nextButton = findViewById(R.id.next_button);
+        customToolbar = findViewById(R.id.custom_home_toolbar);
+        setSupportActionBar(customToolbar);
+        customToolbar.setOverflowIcon(ContextCompat.getDrawable(this, R.drawable.toolbar_menu));
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,7 +52,16 @@ public class MainActivity extends AppCompatActivity {
                 verifyPlayers();
             }
         });
+
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_options, menu);
+        return true;
+    }
+
 
     private void verifyPlayers() {
         ArrayList<String> playerNames = new ArrayList<>();

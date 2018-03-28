@@ -17,8 +17,10 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:src="@drawable/toolbar_icon"/>
+            android:layout_gravity="center_vertical|start"
+            android:src="@drawable/toolbar_icon"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"/>
 
         <TextView
             android:id="@+id/activity_title"
@@ -29,14 +31,8 @@
             android:gravity="center"
             android:textColor="@android:color/white"
             android:textSize="20sp"
-            android:fontFamily="@font/kabel_bold"/>
-
-        <ImageButton
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:src="@drawable/toolbar_menu"/>
+            android:fontFamily="@font/kabel_bold"
+            />
 
 
     </LinearLayout>
