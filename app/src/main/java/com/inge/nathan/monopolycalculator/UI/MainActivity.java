@@ -76,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     private void verifyPlayers() {
         ArrayList<String> playerNames = new ArrayList<>();
 
