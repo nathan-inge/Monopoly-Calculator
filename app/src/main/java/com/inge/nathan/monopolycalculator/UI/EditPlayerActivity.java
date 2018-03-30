@@ -1,11 +1,13 @@
 package com.inge.nathan.monopolycalculator.UI;
 
 import android.content.Intent;
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +36,7 @@ public class EditPlayerActivity extends AppCompatActivity {
     private EditText cashEdit;
     private Button saveButton;
     private NonScrollListView propertiesList;
+    private ImageButton saveToolbarButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,7 @@ public class EditPlayerActivity extends AppCompatActivity {
         cashEdit.addTextChangedListener(new MoneyTextWatcher(cashEdit));
         saveButton = findViewById(R.id.save_button);
         propertiesList = findViewById(R.id.properties_list);
+        saveToolbarButton = findViewById(R.id.save_toolbar_button);
 
         // Get player
         Intent i = getIntent();
@@ -65,12 +69,9 @@ public class EditPlayerActivity extends AppCompatActivity {
         title.setText(player.getName());
         cashEdit.setText(MonopolyPlayer.formatMoney(player.getCashValue()));
 
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                verifyEdits();
-            }
-        });
+        saveButton.setOnClickListener(v -> verifyEdits());
+
+        saveToolbarButton.setOnClickListener(v -> verifyEdits());
 
         // Set up list adapter
         ownedAndAvailableProperties = new ArrayList<>();
