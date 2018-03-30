@@ -81,7 +81,7 @@
                     android:layout_marginLeft="45dp"
                     android:layout_marginStart="45dp"
                     android:layout_alignParentTop="true"
-                    android:text="Houses"/>
+                    android:text="@string/houses"/>
 
                 <ImageButton
                     android:id="@+id/minus_house_button"
@@ -105,7 +105,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:textSize="18sp"
-                    android:text="@string/ranking_placeholder"/>
+                    android:text="@string/zero"/>
 
                 <ImageButton
                     android:id="@+id/house_add_button"

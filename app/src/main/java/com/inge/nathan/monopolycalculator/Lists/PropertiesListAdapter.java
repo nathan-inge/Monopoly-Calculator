@@ -113,6 +113,28 @@ public class PropertiesListAdapter extends ArrayAdapter<MonopolyProperty> {
                     updateDetails(property, numHouses, hotelCheck, mortgagedCheck, valueView);
                 }
             });
+
+            subHouse.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int currentNumHouses = property.getNumHouses();
+                    if(currentNumHouses > 0) {
+                        property.setNumHouses(currentNumHouses - 1);
+                        updateDetails(property, numHouses, hotelCheck, mortgagedCheck, valueView);
+                    }
+                }
+            });
+
+            addHouse.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int currentNumHouses = property.getNumHouses();
+                    if(currentNumHouses < 4) {
+                        property.setNumHouses(currentNumHouses + 1);
+                        updateDetails(property, numHouses, hotelCheck, mortgagedCheck, valueView);
+                    }
+                }
+            });
         }
 
         return propertiesView;

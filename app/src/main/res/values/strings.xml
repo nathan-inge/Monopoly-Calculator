@@ -17,5 +17,7 @@
     <string name="property_name_placeholder">Property</string>
     <string name="hotel_label">Hotel</string>
     <string name="mortgaged_view">Mortgaged</string>
+    <string name="houses">Houses</string>
+    <string name="zero">0</string>
 
 </resources>
