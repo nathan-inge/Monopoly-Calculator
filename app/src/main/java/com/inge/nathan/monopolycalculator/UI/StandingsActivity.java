@@ -2,8 +2,14 @@ package com.inge.nathan.monopolycalculator.UI;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyGame;
 import com.inge.nathan.monopolycalculator.R;
@@ -15,6 +21,7 @@ public class StandingsActivity extends AppCompatActivity {
 
     // Private UI
     private ListView playerStandingsList;
+    private Toolbar customToolbar;
 
     private MonopolyGame currentGame;
 
@@ -25,6 +32,9 @@ public class StandingsActivity extends AppCompatActivity {
 
         // Initialize UI
         playerStandingsList = findViewById(R.id.standings_list);
+        customToolbar = findViewById(R.id.custom_home_toolbar);
+        setSupportActionBar(customToolbar);
+        customToolbar.setOverflowIcon(ContextCompat.getDrawable(this, R.drawable.toolbar_menu));
 
         // Get current game
         try {
@@ -43,6 +53,25 @@ public class StandingsActivity extends AppCompatActivity {
             currentGame.getPlayers());
 
         playerStandingsList.setAdapter(adapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_options, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.about_menu_item:
+                Toast.makeText(this, "Developed by Nathan Inge", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
