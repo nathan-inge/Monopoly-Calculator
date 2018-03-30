@@ -71,28 +71,32 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="@string/player_1"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:maxLength="12"/>
 
                     <EditText
                         android:id="@+id/p2_name_edit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="@string/player_2"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:maxLength="12"/>
 
                     <EditText
                         android:id="@+id/p3_name_edit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="@string/player_3"
-                        android:layout_gravity="center" />
+                        android:layout_gravity="center"
+                        android:maxLength="12" />
 
                     <EditText
                         android:id="@+id/p4_name_edit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="@string/player_4"
-                        android:layout_gravity="center" />
+                        android:layout_gravity="center"
+                        android:maxLength="12"/>
 
                     <Button
                         android:id="@+id/next_button"

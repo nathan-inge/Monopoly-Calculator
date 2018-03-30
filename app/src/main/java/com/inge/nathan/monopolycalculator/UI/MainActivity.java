@@ -92,10 +92,10 @@ public class MainActivity extends AppCompatActivity {
     private void verifyPlayers() {
         ArrayList<String> playerNames = new ArrayList<>();
 
-        String p1Name = playerOneEdit.getText().toString();
-        String p2Name = playerTwoEdit.getText().toString();
-        String p3Name = playerThreeEdit.getText().toString();
-        String p4Name = playerFourEdit.getText().toString();
+        String p1Name = playerOneEdit.getText().toString().trim();
+        String p2Name = playerTwoEdit.getText().toString().trim();
+        String p3Name = playerThreeEdit.getText().toString().trim();
+        String p4Name = playerFourEdit.getText().toString().trim();
 
         if (!p1Name.isEmpty()) { playerNames.add(p1Name); }
         if (!p2Name.isEmpty()) { playerNames.add(p2Name); }
