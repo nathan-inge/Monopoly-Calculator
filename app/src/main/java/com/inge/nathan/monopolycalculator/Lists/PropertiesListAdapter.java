@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyPlayer;
 import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyProperty;
 import com.inge.nathan.monopolycalculator.R;
+import com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants;
 
 import java.util.ArrayList;
 
@@ -74,6 +75,7 @@ public class PropertiesListAdapter extends ArrayAdapter<MonopolyProperty> {
             if (property.isOwned()) {
                 ownedCheck.setChecked(true);
                 valueView.setVisibility(View.VISIBLE);
+
                 propertyDetailView.setVisibility(View.VISIBLE);
 
                 updateDetails(property, numHouses, hotelCheck, mortgagedCheck, valueView);
@@ -83,17 +85,28 @@ public class PropertiesListAdapter extends ArrayAdapter<MonopolyProperty> {
                 }
             }
 
+            if(property.getId() >= MonopolyConstants.READING_RR) {
+                propertyDetailView.setVisibility(View.GONE);
+            }
+
             ownedCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if (isChecked && !selectedProperties.contains(property)) {
                         selectedProperties.add(property);
                         valueView.setVisibility(View.VISIBLE);
-                        propertyDetailView.setVisibility(View.VISIBLE);
+
+                        if(property.getId() < MonopolyConstants.READING_RR) {
+                            propertyDetailView.setVisibility(View.VISIBLE);
+                        }
+
                     } else if (!isChecked && selectedProperties.contains(property)) {
                         selectedProperties.remove(property);
                         valueView.setVisibility(View.INVISIBLE);
-                        propertyDetailView.setVisibility(View.INVISIBLE);
+
+                        if(property.getId() < MonopolyConstants.READING_RR) {
+                            propertyDetailView.setVisibility(View.INVISIBLE);
+                        }
                     }
                 }
             });
