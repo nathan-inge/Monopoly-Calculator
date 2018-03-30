@@ -1,9 +1,11 @@
 package com.inge.nathan.monopolycalculator.UI;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -55,10 +57,17 @@ public class StandingsActivity extends AppCompatActivity {
         playerStandingsList.setAdapter(adapter);
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_options, menu);
+        inflater.inflate(R.menu.menu_standings_options, menu);
+
+        if(menu instanceof MenuBuilder){
+            MenuBuilder m = (MenuBuilder) menu;
+            m.setOptionalIconsVisible(true);
+        }
+
         return true;
     }
 
@@ -68,6 +77,10 @@ public class StandingsActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.about_menu_item:
                 Toast.makeText(this, "Developed by Nathan Inge", Toast.LENGTH_SHORT).show();
+                return true;
+
+            case R.id.restart_menu_item:
+                restart();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -83,6 +96,10 @@ public class StandingsActivity extends AppCompatActivity {
             startActivity(getIntent());
             overridePendingTransition(0,0);
         }
+    }
+
+    public void restart() {
+
     }
 
 }
