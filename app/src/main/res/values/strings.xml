@@ -15,5 +15,7 @@
     <string name="property">Property:</string>
     <string name="save">Save</string>
     <string name="property_name_placeholder">Property</string>
+    <string name="hotel_label">Hotel</string>
+    <string name="mortgaged_view">Mortgaged</string>
 
 </resources>

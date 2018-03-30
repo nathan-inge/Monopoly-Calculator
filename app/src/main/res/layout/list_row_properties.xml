@@ -24,6 +24,7 @@
             android:layout_marginTop="5dp">
 
             <RelativeLayout
+                android:id="@+id/property_detail_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -104,7 +105,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:textSize="18sp"
-                    android:text="0"/>
+                    android:text="@string/ranking_placeholder"/>
 
                 <ImageButton
                     android:id="@+id/house_add_button"
@@ -116,7 +117,49 @@
                     android:background="@drawable/add_button"
                     android:gravity="center_vertical|center"/>
 
+                <TextView
+                    android:id="@+id/hotel_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/hotel_label"/>
 
+                <CheckBox
+                    android:id="@+id/hotel_check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/hotel_view"
+                    android:foregroundGravity="center"/>
+
+                <TextView
+                    android:id="@+id/mortgaged_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:text="@string/mortgaged_view"/>
+
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/mortgaged_view"
+                    android:layout_alignLeft="@+id/mortgaged_view"
+                    android:layout_alignStart="@+id/mortgaged_view"
+                    android:layout_alignRight="@+id/mortgaged_view"
+                    android:layout_alignEnd="@+id/mortgaged_view">
+
+                    <CheckBox
+                        android:id="@+id/mortgaged_check"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
 
             </RelativeLayout>
 
