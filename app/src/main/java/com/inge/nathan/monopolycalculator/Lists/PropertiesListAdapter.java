@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyPlayer;
@@ -58,9 +59,13 @@ public class PropertiesListAdapter extends ArrayAdapter<MonopolyProperty> {
 
             CheckBox ownedCheck = propertiesView.findViewById(R.id.owned_check);
 
+            RelativeLayout propertyDetailView = propertiesView.findViewById(R.id.property_detail_view);
+            propertyDetailView.setVisibility(View.INVISIBLE);
+
             if (property.isOwned()) {
                 ownedCheck.setChecked(true);
                 valueView.setVisibility(View.VISIBLE);
+                propertyDetailView.setVisibility(View.VISIBLE);
                 if (!selectedProperties.contains(property)) {
                     selectedProperties.add(property);
                 }
@@ -72,9 +77,11 @@ public class PropertiesListAdapter extends ArrayAdapter<MonopolyProperty> {
                     if (isChecked && !selectedProperties.contains(property)) {
                         selectedProperties.add(property);
                         valueView.setVisibility(View.VISIBLE);
+                        propertyDetailView.setVisibility(View.VISIBLE);
                     } else if (!isChecked && selectedProperties.contains(property)) {
                         selectedProperties.remove(property);
                         valueView.setVisibility(View.INVISIBLE);
+                        propertyDetailView.setVisibility(View.INVISIBLE);
                     }
                 }
             });
