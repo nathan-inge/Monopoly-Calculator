@@ -1,9 +1,11 @@
 package com.inge.nathan.monopolycalculator.UI;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.widget.Toolbar;
@@ -99,7 +101,23 @@ public class StandingsActivity extends AppCompatActivity {
     }
 
     public void restart() {
-
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Restart calculations?")
+            .setMessage(("All entered information for this game will be lost."))
+            .setPositiveButton("Restart", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                }
+            })
+            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    // do nothing
+                }
+            })
+            .show();
     }
 
 }
