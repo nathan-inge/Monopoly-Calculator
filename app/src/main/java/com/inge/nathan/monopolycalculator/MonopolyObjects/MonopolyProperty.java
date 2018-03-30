@@ -58,12 +58,15 @@ public class MonopolyProperty {
     public int getTotalValue() {
         int value = MonopolyConstants.propertyValue(id);
 
-        value += numHouses * MonopolyConstants.propertyHouseCost(id);
-
-        if (hasHotel) {
-            value += 5 * MonopolyConstants.propertyHouseCost(id);
+        if(isMortgaged) {
+            return value/2;
         }
 
+        if(hasHotel) {
+            return value + 5 * MonopolyConstants.propertyHouseCost(id);
+        }
+
+        value += numHouses * MonopolyConstants.propertyHouseCost(id);
 
         return value;
     }
@@ -71,17 +74,26 @@ public class MonopolyProperty {
     public void setNumHouses(int numHouses) {
         if (numHouses > 0) {
             this.hasHotel = false;
+            this.isMortgaged = false;
         }
 
         this.numHouses = numHouses;
     }
 
     public void setHasHotel(boolean hasHotel) {
-        this.numHouses = 0;
+        if(hasHotel) {
+            this.numHouses = 0;
+            this.isMortgaged = false;
+        }
+
         this.hasHotel = hasHotel;
     }
 
     public void setIsMortgaged(boolean isMortgaged) {
+        if(isMortgaged) {
+            this.numHouses = 0;
+            this.hasHotel = false;
+        }
         this.isMortgaged = isMortgaged;
     }
 

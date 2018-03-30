@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -59,13 +60,24 @@ public class PropertiesListAdapter extends ArrayAdapter<MonopolyProperty> {
 
             CheckBox ownedCheck = propertiesView.findViewById(R.id.owned_check);
 
+            // Property Detail UI
             RelativeLayout propertyDetailView = propertiesView.findViewById(R.id.property_detail_view);
             propertyDetailView.setVisibility(View.INVISIBLE);
+
+            TextView numHouses = propertyDetailView.findViewById(R.id.house_count);
+            ImageButton subHouse = propertyDetailView.findViewById(R.id.minus_house_button);
+            ImageButton addHouse = propertyDetailView.findViewById(R.id.house_add_button);
+            CheckBox hotelCheck = propertyDetailView.findViewById(R.id.hotel_check);
+            CheckBox mortgagedCheck = propertyDetailView.findViewById(R.id.mortgaged_check);
+
 
             if (property.isOwned()) {
                 ownedCheck.setChecked(true);
                 valueView.setVisibility(View.VISIBLE);
                 propertyDetailView.setVisibility(View.VISIBLE);
+
+                updateDetails(property, numHouses, hotelCheck, mortgagedCheck, valueView);
+
                 if (!selectedProperties.contains(property)) {
                     selectedProperties.add(property);
                 }
@@ -85,6 +97,22 @@ public class PropertiesListAdapter extends ArrayAdapter<MonopolyProperty> {
                     }
                 }
             });
+
+            hotelCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    property.setHasHotel(isChecked);
+                    updateDetails(property, numHouses, hotelCheck, mortgagedCheck, valueView);
+                }
+            });
+
+            mortgagedCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    property.setIsMortgaged(isChecked);
+                    updateDetails(property, numHouses, hotelCheck, mortgagedCheck, valueView);
+                }
+            });
         }
 
         return propertiesView;
@@ -100,5 +128,18 @@ public class PropertiesListAdapter extends ArrayAdapter<MonopolyProperty> {
     public int getItemViewType(int position) {
 
         return position;
+    }
+
+    private void updateDetails(MonopolyProperty property,
+                               TextView numHouses,
+                               CheckBox hotelCheck,
+                               CheckBox mortgagedCheck,
+                               TextView valueView) {
+
+        numHouses.setText(String.valueOf(property.getNumHouses()));
+        hotelCheck.setChecked(property.hasHotel());
+        mortgagedCheck.setChecked(property.isMortgaged());
+        valueView.setText(MonopolyPlayer.formatMoney(property.getTotalValue()));
+
     }
 }

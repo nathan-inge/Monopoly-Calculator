@@ -63,13 +63,21 @@ public class MonopolyPropertyTest {
         MonopolyProperty property = new MonopolyProperty(KENTUCKY_AVE);
         assertEquals(220, property.getTotalValue());
 
+        property.setIsMortgaged(true);
+        assertEquals(110, property.getTotalValue());
+        property.setIsMortgaged(false);
+
         property.setNumHouses(2);
         assertEquals(520, property.getTotalValue());
 
-        property.setNumHouses(0);
-        assertEquals(220, property.getTotalValue());
-
         property.setHasHotel(true);
         assertEquals(220 + (150 * 5), property.getTotalValue());
+
+        property.setIsMortgaged(true);
+        assertEquals(110, property.getTotalValue());
+        property.setIsMortgaged(false);
+
+        property.setNumHouses(3);
+        assertEquals(220+450, property.getTotalValue());
     }
 }
