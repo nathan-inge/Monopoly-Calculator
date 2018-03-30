@@ -39,12 +39,20 @@ public class MonopolyPropertyTest {
 
         property.setNumHouses(3);
         assertEquals(3, property.getNumHouses());
+        assertFalse(property.hasHotel());
 
         property.setHasHotel(true);
         assertTrue(property.hasHotel());
+        assertEquals(0, property.getNumHouses());
+
+        property.setNumHouses(2);
+        assertEquals(2, property.getNumHouses());
+        assertFalse(property.hasHotel());
 
         property.setNumHouses(0);
         assertEquals(0, property.getNumHouses());
+        assertFalse(property.hasHotel());
+
     }
 
     @Test

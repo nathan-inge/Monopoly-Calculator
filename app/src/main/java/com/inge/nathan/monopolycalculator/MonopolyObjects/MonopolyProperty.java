@@ -69,10 +69,15 @@ public class MonopolyProperty {
     }
 
     public void setNumHouses(int numHouses) {
+        if (numHouses > 0) {
+            this.hasHotel = false;
+        }
+
         this.numHouses = numHouses;
     }
 
     public void setHasHotel(boolean hasHotel) {
+        this.numHouses = 0;
         this.hasHotel = hasHotel;
     }
 
