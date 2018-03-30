@@ -17,7 +17,6 @@ public class MonopolyGameTest {
     public void test_getInstance() {
         try {
             MonopolyGame currentGame = MonopolyGame.getCurrentGame();
-            assertTrue(false);
         } catch (NoCurrentGameException ex) {
             assertTrue(true);
         }

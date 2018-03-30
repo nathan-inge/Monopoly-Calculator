@@ -53,8 +53,8 @@ public final class MonopolyConstants {
     public static final int BO_RR = 92;
     public static final int SHORT_RR = 93;
 
-    public static final int ELECTIC = 0;
-    public static final int WATER = 1;
+    public static final int ELECTIC = 95;
+    public static final int WATER = 96;
 
     public static ArrayList<Integer> allProperties() {
         ArrayList<Integer> allProperties = new ArrayList<>();
@@ -286,7 +286,7 @@ public final class MonopolyConstants {
 
     // Property house costs
     public static int propertyHouseCost(int id) {
-        if (id >= BALTIC_AVE && id <= CONN_AVE) {
+        if (id >= MED_AVE && id <= CONN_AVE) {
             return 50;
         }
 
