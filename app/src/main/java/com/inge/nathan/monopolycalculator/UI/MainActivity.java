@@ -23,6 +23,8 @@ import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyGame;
 import com.inge.nathan.monopolycalculator.R;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -106,9 +108,20 @@ public class MainActivity extends AppCompatActivity {
         if(playerNames.size() < 2) {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
             builder.setTitle("Invalid Player Names")
                 .setMessage(("Please enter at least two player names."))
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+                .show();
+
+        } else if(containsDuplicates(playerNames)) {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Invalid Player Names")
+                .setMessage(("Player names must be unique."))
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // do nothing
@@ -124,5 +137,11 @@ public class MainActivity extends AppCompatActivity {
             Intent i = new Intent(this, StandingsActivity.class);
             startActivity(i);
         }
+    }
+
+    private boolean containsDuplicates(ArrayList<String> playerNames) {
+        Set<String> set = new HashSet<>(playerNames);
+
+        return set.size() < playerNames.size();
     }
 }
