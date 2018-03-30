@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.media.Image;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText playerFourEdit;
     private Button nextButton;
     private Toolbar customToolbar;
+    private ImageButton resetButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         playerThreeEdit = findViewById(R.id.p3_name_edit);
         playerFourEdit = findViewById(R.id.p4_name_edit);
         nextButton = findViewById(R.id.next_button);
+        resetButton = findViewById(R.id.reset_button);
         customToolbar = findViewById(R.id.custom_home_toolbar);
         setSupportActionBar(customToolbar);
         customToolbar.setOverflowIcon(ContextCompat.getDrawable(this, R.drawable.toolbar_menu));
@@ -52,6 +55,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 verifyPlayers();
+            }
+        });
+
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                playerOneEdit.setText(null);
+                playerTwoEdit.setText(null);
+                playerThreeEdit.setText(null);
+                playerFourEdit.setText(null);
             }
         });
 

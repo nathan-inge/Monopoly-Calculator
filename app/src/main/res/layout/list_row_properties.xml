@@ -111,9 +111,11 @@
                     android:id="@+id/house_add_button"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:layout_toEndOf="@+id/house_count"
-                    android:layout_toRightOf="@+id/house_count"
+                    android:layout_toEndOf="@+id/minus_house_button"
+                    android:layout_toRightOf="@+id/minus_house_button"
                     android:layout_alignBottom="@id/minus_house_button"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="32dp"
                     android:background="@drawable/add_button"
                     android:gravity="center_vertical|center"/>
 

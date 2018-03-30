@@ -19,5 +19,6 @@
     <string name="mortgaged_view">Mortgaged</string>
     <string name="houses">Houses</string>
     <string name="zero">0</string>
+    <string name="calculate_new_game">Calculate New Game:</string>
 
 </resources>
