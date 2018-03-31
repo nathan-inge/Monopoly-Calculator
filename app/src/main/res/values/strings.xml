@@ -235,5 +235,6 @@ mortgaged property owned, at one-half the price printed on the board;
 price including the value of the three houses turned in.
 The richest player wins!</string>
     <string name="rules_menu">Rules</string>
+    <string name="send_feedback">Send Feedback</string>
 
 </resources>
