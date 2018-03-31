@@ -20,6 +20,8 @@ import android.widget.ImageButton;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyGame;
 import com.inge.nathan.monopolycalculator.R;
@@ -73,6 +75,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         MobileAds.initialize(this, "ca-app-pub-1213633519254149~9428094547");
+
+        AdView adView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
 
     }
 
