@@ -67,8 +67,9 @@ public class StandingsActivity extends AppCompatActivity {
 
         playerStandingsList.setAdapter(adapter);
 
-        MobileAds.initialize(this, "ca-app-pub-1213633519254149~9428094547");
+        
 
+        MobileAds.initialize(this, "ca-app-pub-1213633519254149~9428094547");
         AdView adView = findViewById(R.id.adViewStandings);
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);

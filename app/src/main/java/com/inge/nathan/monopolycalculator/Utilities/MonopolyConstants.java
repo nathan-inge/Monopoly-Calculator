@@ -11,6 +11,8 @@ public final class MonopolyConstants {
 
     private MonopolyConstants() { }
 
+    public static final boolean PRO_VERSION = true;
+
     // Requests
     public static final int REQUEST_EDIT_PLAYER = 1000;
 
