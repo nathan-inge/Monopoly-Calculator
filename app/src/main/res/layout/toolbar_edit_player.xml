@@ -4,7 +4,7 @@
     android:layout_height="?attr/actionBarSize"
     android:layout_width="match_parent"
     android:minHeight="?attr/actionBarSize"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/toolbar_background"
     android:id="@+id/custom_home_toolbar">
 
     <LinearLayout

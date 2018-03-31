@@ -52,12 +52,7 @@ public class EditPlayerActivity extends AppCompatActivity {
         saveToolbarButton = findViewById(R.id.save_toolbar_button);
         backButton = findViewById(R.id.edit_back_button);
 
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        backButton.setOnClickListener(v -> finish());
 
         // Get player
         Intent i = getIntent();
