@@ -13,9 +13,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import static com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants.*;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -67,12 +71,18 @@ public class StandingsActivity extends AppCompatActivity {
 
         playerStandingsList.setAdapter(adapter);
 
-        
+        if(PRO_VERSION) {
+            LinearLayout adLinearLayout = findViewById(R.id.banner_ad_standings);
+            adLinearLayout.setVisibility(View.GONE);
 
-        MobileAds.initialize(this, "ca-app-pub-1213633519254149~9428094547");
-        AdView adView = findViewById(R.id.adViewStandings);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) playerStandingsList.getLayoutParams();
+            params.bottomMargin = 0;
+        } else {
+            MobileAds.initialize(this, "ca-app-pub-1213633519254149~9428094547");
+            AdView adView = findViewById(R.id.adViewStandings);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            adView.loadAd(adRequest);
+        }
     }
 
     @SuppressLint("RestrictedApi")
