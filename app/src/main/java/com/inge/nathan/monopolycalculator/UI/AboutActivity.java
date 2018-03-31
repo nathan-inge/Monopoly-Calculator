@@ -27,12 +27,7 @@ public class AboutActivity extends AppCompatActivity {
         activityTitle.setText("About");
 
         backButton = findViewById(R.id.end_back_button);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        backButton.setOnClickListener(v -> finish());
 
         try {
             PackageInfo pInfo = this.getPackageManager().getPackageInfo(getPackageName(), 0);

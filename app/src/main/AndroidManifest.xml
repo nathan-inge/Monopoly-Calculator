@@ -24,6 +24,8 @@
         </activity>
         <activity android:name=".UI.AboutActivity">
         </activity>
+        <activity android:name=".UI.RulesActivity">
+        </activity>
     </application>
 
 </manifest>

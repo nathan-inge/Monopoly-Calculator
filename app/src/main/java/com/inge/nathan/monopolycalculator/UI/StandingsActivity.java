@@ -91,6 +91,12 @@ public class StandingsActivity extends AppCompatActivity {
             case R.id.restart_menu_item:
                 restart();
                 return true;
+
+            case R.id.rules_menu_item:
+                Intent j = new Intent(this, RulesActivity.class);
+                startActivity(j);
+                return true;
+                
             default:
                 return super.onOptionsItemSelected(item);
         }
