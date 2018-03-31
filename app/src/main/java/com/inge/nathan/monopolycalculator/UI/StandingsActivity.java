@@ -17,6 +17,9 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyGame;
 import com.inge.nathan.monopolycalculator.R;
 import com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants;
@@ -63,6 +66,12 @@ public class StandingsActivity extends AppCompatActivity {
             currentGame.getPlayers());
 
         playerStandingsList.setAdapter(adapter);
+
+        MobileAds.initialize(this, "ca-app-pub-1213633519254149~9428094547");
+
+        AdView adView = findViewById(R.id.adViewStandings);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
     }
 
     @SuppressLint("RestrictedApi")
