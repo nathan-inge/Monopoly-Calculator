@@ -96,7 +96,7 @@ public class StandingsActivity extends AppCompatActivity {
                 Intent j = new Intent(this, RulesActivity.class);
                 startActivity(j);
                 return true;
-                
+
             default:
                 return super.onOptionsItemSelected(item);
         }

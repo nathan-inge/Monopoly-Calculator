@@ -27,7 +27,7 @@
     <string name="NBI_software">Developed by NBI Software</string>
 
 
-    <string name="rules">In 1934, Charles B. Darrow of Germantown, Pennsylvania, presented a
+    <string name="rules_info">In 1934, Charles B. Darrow of Germantown, Pennsylvania, presented a
 game called MONOPOLY to the executives of Parker Brothers. Mr.
 Darrow, like many other Americans, was unemployed at the time and
 often played this game to amuse himself and pass the time. It was the
@@ -41,24 +41,24 @@ Since 1935, when Parker Brothers acquired the rights to the game, it
 has become the leading proprietary game not only in the United States
 but throughout the Western World. As of 1994, the game is published
 under license in 43 countries, and in 26 languages; in addition, the
-U.S. Spanish edition is sold in another 11 countries.
+U.S. Spanish edition is sold in another 11 countries. \n\n
 OBJECT… The object of the game is to become the wealthiest player
-through buying, renting and selling property.
+through buying, renting and selling property.\n\n
 EQUIPMENT… The equipment consists of a board, 2 dice, tokens, 32
 houses and 12 hotels. There are Chance and Community Chest cards,
-a Title Deed card for each property and play money.
+a Title Deed card for each property and play money.\n\n
 PREPARATION… Place the board on a table and put the Chance and
 Community Chest cards face down on their allotted spaces on the
 board. Each player chooses one token to represent him/her while
 traveling around the board.
 Each player is given $1500 divided as follows: 2 each of $500’s,
 $100’s and $50’s; 6 $20’s; 5 each of $10’s, $5’s and $1’s.
-All remaining money and other equipment go to the Bank.
+All remaining money and other equipment go to the Bank.\n\n
 BANKER… Select as Banker a player who will also make a good
 Auctioneer. A Banker who plays in the game must keep his/her
 personal funds separate from those of the Bank. When more than five
 persons play, the Banker may elect to act only as Banker and
-Auctioneer.
+Auctioneer.\n\n
 THE BANK… Besides the Bank’s money, the Bank holds the Title Deed
 cards and houses and hotels prior to purchase and use by the players.
 The Bank pays salaries and bonuses. It sells and auctions properties
@@ -68,7 +68,7 @@ The Bank collects all taxes, fines, loans and interest, and the price of
 all properties which it sells and auctions.
 The Bank never “goes broke.” If the Bank runs out of money, the
 Banker may issue as much more as may be needed by writing on any
-ordinary paper.
+ordinary paper.\n\n
 THE PLAY… Starting with the Banker, each player in turn throws the
 dice. The player with the highest total starts the play: Place your token
 on the corner marked “GO,” throw the dice and move your token in
@@ -84,7 +84,7 @@ If you throw doubles, you move your token as usual, the sum of the
 two dice, and are subject to any privileges or penalties pertaining to
 the space on which you land. Retaini
 The owner may not collect the rent if he/she fails to ask for it before
-the second player following throws the dice.
+the second player following throws the dice.\n\n
 “CHANCE” AND “COMMUNITY CHEST”… When you land on
 either of these spaces, take the top card from the deck indicated,
 follow the instructions and return the card face down to the bottom of
@@ -92,14 +92,14 @@ the deck.
 The “Get Out of Jail Free” card is held until used and then returned
 to the bottom of the deck. If the player who draws it does not wish to
 use it, he/she may sell it, at any time, to another player at a price
-agreeable to both.
+agreeable to both.\n\n
 “INCOME TAX”… If you land here you have two options: You may
 estimate your tax at $200 and pay the Bank, or you may pay 10% of
 your total worth to the Bank. Your total worth is all your cash on
 hand, printed prices of mortgaged and unmortgaged properties and
 cost price of all buildings you own.
 You must decide which option you will take before you add up
-your total worth.
+your total worth.\n\n
 “JAIL”… You land in Jail when… (1) your token lands on the space
 marked “Go to Jail”; (2) you draw a card marked “Go to Jail”; or
 (3) you throw doubles three times in succession.
@@ -121,10 +121,10 @@ If you do not throw doubles by your third turn, you must pay the
 $50 fine. You then get out of Jail and immediately move forward the
 number of spaces shown by your throw.
 Even though you are in Jail, you may buy and sell property, buy
-and sell houses and hotels and collect rents.
+and sell houses and hotels and collect rents.\n\n
 “FREE PARKING”… A player landing on this place does not receive
 any money, property or reward of any kind. This is just a “free”
-resting place.
+resting place.\n\n
 HOUSES… When you own all the properties in a color-group you
 may buy houses from the Bank and erect them on those properties.
 If you buy one house, you may put it on any one of those
@@ -144,19 +144,19 @@ of houses, and so on, up to a limit of four houses to a property. For
 example, you cannot build three houses on one property if you have
 only one house on another property of that group.
 As you build evenly, you must also break down evenly if you sell
-houses back to the Bank (see SELLING PROPERTY).
+houses back to the Bank (see SELLING PROPERTY).\n\n
 HOTELS… When a player has four houses on each property of a
 complete color-group, he/she may buy a hotel from the Bank and
 erect it on any property of the color-group. He/she returns the four
 houses from that property to the Bank and pays the price for the hotel
 as shown on the Title Deed card. Only one hotel may be erected on
-any one property.
+any one property.\n\n
 BUILDING SHORTAGES… When the Bank has no houses to sell,
 players wishing to build must wait for some player to return or sell
 his/her houses to the Bank before building. If there are a limited
 number of houses and hotels available and two or more players wish
 to buy more than the Bank has, the houses or hotels must be sold at
-auction to the highest bidder.
+auction to the highest bidder.\n\n
 SELLING PROPERTY… Unimproved properties, railroads and
 utilities (but not buildings) may be sold to any player as a private
 transaction for any amount the owner can get; however, no property
@@ -169,7 +169,7 @@ All houses on one color-group must be sold one by one, evenly, in
 reverse of the manner in which they were erected.
 All hotels on one color-group may be sold at once, or they may be
 sold one house at a time (one hotel equals five houses), evenly, in
-reverse of the manner in which they were erected.
+reverse of the manner in which they were erected.\n\n
 MORTGAGES… Unimproved properties can be mortgaged through
 the Bank at any time. Before an improved property can be mortgaged,
 all the buildings on all the properties of its color-group must be sold
@@ -189,7 +189,7 @@ mortgage at once if you wish by paying off the mortgage plus 10%
 interest to the Bank. If the mortgage is not lifted at once, you must pay
 the Bank 10% interest when you buy the property and if you lift the
 mortgage later you must pay the Bank an additional 10% interest as
-well as the amount of the mortgage.
+well as the amount of the mortgage.\n\n
 BANKRUPTCY… You are declared bankrupt if you owe more than
 you can pay either to another player or to the Bank. If your debt is to
 another player, you must turn over to that player all that you have of
@@ -209,10 +209,10 @@ can pay (because of taxes or penalties) even by selling off buildings
 and mortgaging property, you must turn over all assets to the Bank. In
 this case, the Bank immediately sells by auction all property so taken,
 except buildings. A bankrupt player must immediately retire from the
-game. The last player left in the game wins.
+game. The last player left in the game wins.\n\n
 MISCELLANEOUS… Money can be loaned to a player only by the
 Bank and then only by mortgaging property. No player may borrow
-from or lend money to another player.
+from or lend money to another player.\n\n
 RULES for a SHORT GAME (60 to 90 minutes)
 There are five changed rules for this first Short Game.
 1. During PREPARATION, the Banker shuffles then deals three Title
