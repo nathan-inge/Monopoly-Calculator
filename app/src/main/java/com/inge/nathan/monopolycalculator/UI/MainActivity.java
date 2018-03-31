@@ -10,6 +10,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.view.menu.MenuBuilder;
+import android.support.v7.widget.CardView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -25,6 +26,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyGame;
 import com.inge.nathan.monopolycalculator.R;
+import static com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -74,12 +76,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        MobileAds.initialize(this, "ca-app-pub-1213633519254149~9428094547");
-
-        AdView adView = findViewById(R.id.adViewMain);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
-
+        if(PRO_VERSION) {
+            CardView adCardView = findViewById(R.id.banner_ad_main);
+            adCardView.setVisibility(View.GONE);
+        } else {
+            MobileAds.initialize(this, "ca-app-pub-1213633519254149~9428094547");
+            AdView adView = findViewById(R.id.adViewMain);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            adView.loadAd(adRequest);
+        }
     }
 
     @SuppressLint("RestrictedApi")
