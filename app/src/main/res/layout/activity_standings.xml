@@ -7,7 +7,7 @@
     android:background="@color/colorPrimary">
 
     <include
-        layout="@layout/toolbar_custom_home" />
+        layout="@layout/toolbar_standings" />
 
     <ListView
         android:id="@+id/standings_list"

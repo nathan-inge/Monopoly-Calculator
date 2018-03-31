@@ -12,6 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -26,6 +28,7 @@ public class StandingsActivity extends AppCompatActivity {
     // Private UI
     private ListView playerStandingsList;
     private Toolbar customToolbar;
+    private ImageButton backButton;
 
     private MonopolyGame currentGame;
 
@@ -36,9 +39,17 @@ public class StandingsActivity extends AppCompatActivity {
 
         // Initialize UI
         playerStandingsList = findViewById(R.id.standings_list);
-        customToolbar = findViewById(R.id.custom_home_toolbar);
+        customToolbar = findViewById(R.id.custom_standings_toolbar);
         setSupportActionBar(customToolbar);
         customToolbar.setOverflowIcon(ContextCompat.getDrawable(this, R.drawable.toolbar_menu));
+        backButton = findViewById(R.id.back_button);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         // Get current game
         try {

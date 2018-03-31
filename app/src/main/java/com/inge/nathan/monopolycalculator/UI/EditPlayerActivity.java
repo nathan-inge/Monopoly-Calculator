@@ -37,6 +37,7 @@ public class EditPlayerActivity extends AppCompatActivity {
     private Button saveButton;
     private NonScrollListView propertiesList;
     private ImageButton saveToolbarButton;
+    private ImageButton backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,14 @@ public class EditPlayerActivity extends AppCompatActivity {
         saveButton = findViewById(R.id.save_button);
         propertiesList = findViewById(R.id.properties_list);
         saveToolbarButton = findViewById(R.id.save_toolbar_button);
+        backButton = findViewById(R.id.edit_back_button);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         // Get player
         Intent i = getIntent();
