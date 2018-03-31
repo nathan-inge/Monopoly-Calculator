@@ -84,7 +84,8 @@ public class StandingsActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.about_menu_item:
-                Toast.makeText(this, "Developed by Nathan Inge", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(this, AboutActivity.class);
+                startActivity(i);
                 return true;
 
             case R.id.restart_menu_item:

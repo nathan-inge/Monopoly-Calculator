@@ -22,5 +22,8 @@
     <string name="calculate_new_game">Calculate New Game:</string>
     <string name="about_menu">About</string>
     <string name="restart">Restart</string>
+    <string name="version">Version</string>
+    <string name="copyright">Monopoly and all related trademarks are owned by Hasbro.</string>
+    <string name="NBI_software">Developed by NBI Software</string>
 
 </resources>
