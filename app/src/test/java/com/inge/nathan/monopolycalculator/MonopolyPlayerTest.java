@@ -40,6 +40,7 @@ public class MonopolyPlayerTest {
 
         MonopolyPlayer p1 = new MonopolyPlayer("Colin");
         p1.setCashValue(50);
+
         MonopolyPlayer p2 = new MonopolyPlayer("Colin");
         p2.setCashValue(50);
 
@@ -48,7 +49,7 @@ public class MonopolyPlayerTest {
         p2.setCashValue(100);
         assertFalse(p1.equals(p2));
 
-        p1.setCashValue(50);
+        p2.setCashValue(50);
         assertTrue(p1.equals(p2));
     }
 }
