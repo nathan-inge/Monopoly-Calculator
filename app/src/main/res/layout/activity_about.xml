@@ -47,13 +47,27 @@
             android:text="@string/NBI_software"/>
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/copyright_view"
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/develop_view"
             android:text="@string/copyright"/>
+
+        <Button
+            android:id="@+id/send_feedback_button"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/copyright_view"
+            android:fontFamily="@font/kabel_bold"
+            android:background="@drawable/button_background"
+            android:textColor="@android:color/white"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="@string/send_feedback"/>
 
     </RelativeLayout>
 
