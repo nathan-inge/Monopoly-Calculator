@@ -6,6 +6,11 @@
           android:icon="@drawable/reset_button">
     </item>
 
+    <item android:id="@+id/rules_menu_item"
+          android:title="@string/rules_menu"
+          android:icon="@drawable/rules_icon">
+    </item>
+
     <item android:id="@+id/about_menu_item"
           android:title="@string/about_menu"
           android:icon="@drawable/info_menu">

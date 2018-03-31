@@ -92,7 +92,12 @@ public class MainActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.about_menu_item:
-                Toast.makeText(this, "Developed by Nathan Inge", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(this, AboutActivity.class);
+                startActivity(i);
+                return true;
+            case R.id.rules_menu_item:
+                Intent j = new Intent(this, RulesActivity.class);
+                startActivity(j);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
