@@ -117,6 +117,11 @@ public class StandingsActivity extends AppCompatActivity {
                 startActivity(j);
                 return true;
 
+            case R.id.pro_menu_item:
+                Intent k = new Intent(this, GoProActivity.class);
+                startActivity(k);
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }

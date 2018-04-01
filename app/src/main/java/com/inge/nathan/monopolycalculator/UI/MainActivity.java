@@ -113,6 +113,12 @@ public class MainActivity extends AppCompatActivity {
                 Intent j = new Intent(this, RulesActivity.class);
                 startActivity(j);
                 return true;
+
+            case R.id.pro_menu_item:
+                Intent k = new Intent(this, GoProActivity.class);
+                startActivity(k);
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
