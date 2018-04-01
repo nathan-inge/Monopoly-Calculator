@@ -39,7 +39,6 @@ public class AboutActivity extends AppCompatActivity {
     private Button sendFeedbackButton;
 
     private IabHelper mHelper;
-
     private IInAppBillingService mService;
     private ServiceConnection mServiceConn;
 
@@ -63,80 +62,6 @@ public class AboutActivity extends AppCompatActivity {
             versionText.setText(version);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
-        }
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                // Insert some method call here.
-                ArrayList<String> skuList = new ArrayList<String> ();
-                skuList.add("pro_mc_version");
-                Bundle querySkus = new Bundle();
-                querySkus.putStringArrayList("ITEM_ID_LIST", skuList);
-
-                Bundle skuDetails = null;
-                try {
-                    skuDetails = mService.getSkuDetails(3,
-                        getPackageName(), "inapp", querySkus);
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                }
-
-                int BILLING_RESPONSE_RESULT_OK = 0;
-                int response = skuDetails.getInt("RESPONSE_CODE");
-                if (response == BILLING_RESPONSE_RESULT_OK) {
-                    ArrayList<String> responseList
-                        = skuDetails.getStringArrayList("DETAILS_LIST");
-
-                    for (String thisResponse : responseList) {
-                        try {
-                            JSONObject object = new JSONObject(thisResponse);
-                            String sku = object.getString("productId");
-                            String price = object.getString("price");
-
-
-                            Handler mainHandler = new Handler(Looper.getMainLooper());
-                            mainHandler.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    versionText.setText(price);
-                                }
-                            });
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-
-            }
-        });
-
-        mServiceConn = new ServiceConnection() {
-            @Override
-            public void onServiceDisconnected(ComponentName name) {
-                mService = null;
-            }
-
-            @Override
-            public void onServiceConnected(ComponentName name,
-                                           IBinder service) {
-                mService = IInAppBillingService.Stub.asInterface(service);
-                t.start();
-            }
-        };
-
-        Intent serviceIntent =
-            new Intent("com.android.vending.billing.InAppBillingService.BIND");
-        serviceIntent.setPackage("com.android.vending");
-        bindService(serviceIntent, mServiceConn, Context.BIND_AUTO_CREATE);
-
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mService != null) {
-            unbindService(mServiceConn);
         }
     }
 

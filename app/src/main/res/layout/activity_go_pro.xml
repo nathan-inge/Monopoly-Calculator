@@ -19,7 +19,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/title_view"
+                android:id="@+id/feature_title_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -27,10 +27,34 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:text="@string/rules_info"/>
+                android:fontFamily="@font/kabel_bold"
+                android:text="@string/feature_title"/>
+
+            <TextView
+                android:id="@+id/feature_list_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/feature_list"/>
+
+            <Button
+                android:id="@+id/buy_pro_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center"
+                android:paddingRight="5dp"
+                android:paddingLeft="5dp"
+                android:background="@drawable/button_background"
+                android:fontFamily="@font/kabel_bold"
+                android:textColor="@android:color/white"/>
 
         </LinearLayout>
 
-
     </ScrollView>
+
 </LinearLayout>

@@ -234,8 +234,12 @@ mortgaged property owned, at one-half the price printed on the board;
 (4) houses, valued at purchase price; (5) hotels, valued at purchase
 price including the value of the three houses turned in.
 The richest player wins!</string>
+
+
     <string name="rules_menu">Rules</string>
     <string name="send_feedback">Send Feedback</string>
     <string name="go_pro">Go Pro</string>
+    <string name="feature_title">Upgrade to Monopoly Calculator Pro to get access to these unique features:</string>
+    <string name="feature_list">- No ads\n\n- Save Game (currently being developed)</string>
 
 </resources>
