@@ -87,7 +87,7 @@ public class GoProActivity extends AppCompatActivity {
 
             @Override
             public void onBindingDied(ComponentName name) {
-                loadingDialog.dismiss();
+                showError();
             }
         };
 
