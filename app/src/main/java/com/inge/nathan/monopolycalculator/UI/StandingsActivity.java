@@ -1,8 +1,10 @@
 package com.inge.nathan.monopolycalculator.UI;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -71,7 +73,10 @@ public class StandingsActivity extends AppCompatActivity {
 
         playerStandingsList.setAdapter(adapter);
 
-        if(PRO_VERSION) {
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        boolean proVersion = sharedPref.getBoolean("proVersion", false);
+
+        if(proVersion) {
             LinearLayout adLinearLayout = findViewById(R.id.banner_ad_standings);
             adLinearLayout.setVisibility(View.GONE);
 

@@ -1,8 +1,10 @@
 package com.inge.nathan.monopolycalculator.UI;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.media.Image;
 import android.support.v4.content.ContextCompat;
@@ -76,7 +78,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        if(PRO_VERSION) {
+
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        boolean proVersion = sharedPref.getBoolean("proVersion", false);
+
+        if(proVersion) {
             CardView adCardView = findViewById(R.id.banner_ad_main);
             adCardView.setVisibility(View.GONE);
         } else {
