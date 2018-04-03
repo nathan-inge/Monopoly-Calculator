@@ -1,8 +1,10 @@
 package com.inge.nathan.monopolycalculator.UI;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -26,6 +28,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyGame;
 import com.inge.nathan.monopolycalculator.R;
+import com.inge.nathan.monopolycalculator.Utilities.MCPreferencesManager;
 import com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants;
 import com.inge.nathan.monopolycalculator.Utilities.NoCurrentGameException;
 import com.inge.nathan.monopolycalculator.Lists.StandingsListAdapter;
@@ -38,6 +41,7 @@ public class StandingsActivity extends AppCompatActivity {
     private ImageButton backButton;
 
     private MonopolyGame currentGame;
+    private boolean hasProVersion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +75,9 @@ public class StandingsActivity extends AppCompatActivity {
 
         playerStandingsList.setAdapter(adapter);
 
-        if(PRO_VERSION) {
+        hasProVersion = MCPreferencesManager.getProStatus(getApplicationContext());
+
+        if(hasProVersion) {
             LinearLayout adLinearLayout = findViewById(R.id.banner_ad_standings);
             adLinearLayout.setVisibility(View.GONE);
 
@@ -115,6 +121,11 @@ public class StandingsActivity extends AppCompatActivity {
             case R.id.rules_menu_item:
                 Intent j = new Intent(this, RulesActivity.class);
                 startActivity(j);
+                return true;
+
+            case R.id.pro_menu_item:
+                Intent k = new Intent(this, GoProActivity.class);
+                startActivity(k);
                 return true;
 
             default:

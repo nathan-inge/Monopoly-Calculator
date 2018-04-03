@@ -26,6 +26,9 @@
     <string name="copyright">Monopoly and all related trademarks are owned by Hasbro.</string>
     <string name="NBI_software">Developed by NBI Software</string>
 
+    <string name="pro_bool">proVersion</string>
+    <string name="pro_pref_key">mc_pro_version</string>
+
 
     <string name="rules_info">In 1934, Charles B. Darrow of Germantown, Pennsylvania, presented a
 game called MONOPOLY to the executives of Parker Brothers. Mr.
@@ -234,7 +237,13 @@ mortgaged property owned, at one-half the price printed on the board;
 (4) houses, valued at purchase price; (5) hotels, valued at purchase
 price including the value of the three houses turned in.
 The richest player wins!</string>
+
+
     <string name="rules_menu">Rules</string>
     <string name="send_feedback">Send Feedback</string>
+    <string name="go_pro">Go Pro</string>
+    <string name="feature_title">Upgrade to Monopoly Calculator Pro to get access to these unique features:</string>
+    <string name="feature_list">- No ads\n\n- Save Game (currently being developed)</string>
+    <string name="has_pro">Congrats! You have already upgraded to pro. Enjoy the above pro features!</string>
 
 </resources>
