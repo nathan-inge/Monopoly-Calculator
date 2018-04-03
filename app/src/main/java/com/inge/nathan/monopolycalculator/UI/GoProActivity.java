@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.android.vending.billing.IInAppBillingService;
 import com.inge.nathan.monopolycalculator.InAppBillingUtil.IabHelper;
 import com.inge.nathan.monopolycalculator.R;
+import com.inge.nathan.monopolycalculator.Utilities.MCPreferencesManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,8 +41,10 @@ public class GoProActivity extends AppCompatActivity {
 
     private ProgressDialog loadingDialog;
     private Button buyProButton;
+    private TextView hasProText;
 
     private String skuPro;
+    private boolean hasProVersion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +54,19 @@ public class GoProActivity extends AppCompatActivity {
         TextView activityTitle = findViewById(R.id.end_activity_title);
         activityTitle.setText("Go Pro");
 
-        buyProButton = findViewById(R.id.buy_pro_button);
-        buyProButton.setOnClickListener(v -> buyPro());
-
         ImageButton backButton = findViewById(R.id.end_back_button);
         backButton.setOnClickListener(v -> finish());
+
+        buyProButton = findViewById(R.id.buy_pro_button);
+        hasProText = findViewById(R.id.has_pro_view);
+
+        hasProVersion = MCPreferencesManager.getProStatus(getApplicationContext());
+        if(!hasProVersion) {
+            buyProButton.setVisibility(View.VISIBLE);
+            buyProButton.setOnClickListener(v -> buyPro());
+        } else {
+            hasProText.setVisibility(View.VISIBLE);
+        }
 
         loadingDialog = ProgressDialog.show(this, "",
             "Loading Pro Version Details...", true);
@@ -73,6 +84,11 @@ public class GoProActivity extends AppCompatActivity {
                 mService = IInAppBillingService.Stub.asInterface(service);
                 getProduct();
             }
+
+            @Override
+            public void onBindingDied(ComponentName name) {
+                loadingDialog.dismiss();
+            }
         };
 
         Intent serviceIntent =
@@ -88,10 +104,7 @@ public class GoProActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 Toast.makeText(this, "Thank you for your purchase!", Toast.LENGTH_SHORT).show();
 
-                SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPref.edit();
-                editor.putBoolean("proVersion", true);
-                editor.commit();
+                MCPreferencesManager.upgradeToPro(getApplicationContext());
             }
         }
     }

@@ -28,6 +28,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyGame;
 import com.inge.nathan.monopolycalculator.R;
+import com.inge.nathan.monopolycalculator.Utilities.MCPreferencesManager;
 import com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants;
 import com.inge.nathan.monopolycalculator.Utilities.NoCurrentGameException;
 import com.inge.nathan.monopolycalculator.Lists.StandingsListAdapter;
@@ -40,6 +41,7 @@ public class StandingsActivity extends AppCompatActivity {
     private ImageButton backButton;
 
     private MonopolyGame currentGame;
+    private boolean hasProVersion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,10 +75,9 @@ public class StandingsActivity extends AppCompatActivity {
 
         playerStandingsList.setAdapter(adapter);
 
-        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
-        boolean proVersion = sharedPref.getBoolean("proVersion", false);
+        hasProVersion = MCPreferencesManager.getProStatus(getApplicationContext());
 
-        if(proVersion) {
+        if(hasProVersion) {
             LinearLayout adLinearLayout = findViewById(R.id.banner_ad_standings);
             adLinearLayout.setVisibility(View.GONE);
 

@@ -28,6 +28,8 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyGame;
 import com.inge.nathan.monopolycalculator.R;
+import com.inge.nathan.monopolycalculator.Utilities.MCPreferencesManager;
+
 import static com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants.*;
 
 import java.util.ArrayList;
@@ -44,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
     private Button nextButton;
     private Toolbar customToolbar;
     private ImageButton resetButton;
+
+    private boolean hasProVersion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,11 +82,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        hasProVersion = MCPreferencesManager.getProStatus(getApplicationContext());
 
-        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
-        boolean proVersion = sharedPref.getBoolean("proVersion", false);
-
-        if(proVersion) {
+        if(hasProVersion) {
             CardView adCardView = findViewById(R.id.banner_ad_main);
             adCardView.setVisibility(View.GONE);
         } else {
