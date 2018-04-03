@@ -25,6 +25,7 @@ import com.android.vending.billing.IInAppBillingService;
 import com.inge.nathan.monopolycalculator.InAppBillingUtil.IabHelper;
 import com.inge.nathan.monopolycalculator.InAppBillingUtil.IabResult;
 import com.inge.nathan.monopolycalculator.R;
+import com.inge.nathan.monopolycalculator.Utilities.MCPreferencesManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,9 +39,7 @@ public class AboutActivity extends AppCompatActivity {
     private ImageButton backButton;
     private Button sendFeedbackButton;
 
-    private IabHelper mHelper;
-    private IInAppBillingService mService;
-    private ServiceConnection mServiceConn;
+    private boolean hasProVersion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +55,12 @@ public class AboutActivity extends AppCompatActivity {
         backButton = findViewById(R.id.end_back_button);
         backButton.setOnClickListener(v -> finish());
 
+        hasProVersion = MCPreferencesManager.getProStatus(getApplicationContext());
+
         try {
             PackageInfo pInfo = this.getPackageManager().getPackageInfo(getPackageName(), 0);
-            String version = "Version: " + pInfo.versionName + " (free)";
+            String proText = (hasProVersion) ? "PRO" : "standard";
+            String version = "Version: " + pInfo.versionName + " " + proText;
             versionText.setText(version);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();

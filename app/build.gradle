@@ -6,8 +6,8 @@ android {
         applicationId "com.inge.nathan.monopolycalculator"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 4
-        versionName "1.3 (Closed Beta)"
+        versionCode 5
+        versionName "1.4 (Closed Beta)"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
