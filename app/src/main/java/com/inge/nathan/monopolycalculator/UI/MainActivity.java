@@ -1,8 +1,10 @@
 package com.inge.nathan.monopolycalculator.UI;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.media.Image;
 import android.support.v4.content.ContextCompat;
@@ -26,6 +28,8 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyGame;
 import com.inge.nathan.monopolycalculator.R;
+import com.inge.nathan.monopolycalculator.Utilities.MCPreferencesManager;
+
 import static com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants.*;
 
 import java.util.ArrayList;
@@ -42,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
     private Button nextButton;
     private Toolbar customToolbar;
     private ImageButton resetButton;
+
+    private boolean hasProVersion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +82,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        if(PRO_VERSION) {
+        hasProVersion = MCPreferencesManager.getProStatus(getApplicationContext());
+
+        if(hasProVersion) {
             CardView adCardView = findViewById(R.id.banner_ad_main);
             adCardView.setVisibility(View.GONE);
         } else {
@@ -113,6 +121,12 @@ public class MainActivity extends AppCompatActivity {
                 Intent j = new Intent(this, RulesActivity.class);
                 startActivity(j);
                 return true;
+
+            case R.id.pro_menu_item:
+                Intent k = new Intent(this, GoProActivity.class);
+                startActivity(k);
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }

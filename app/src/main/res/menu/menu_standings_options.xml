@@ -11,6 +11,11 @@
           android:icon="@drawable/rules_icon">
     </item>
 
+    <item android:id="@+id/pro_menu_item"
+          android:title="@string/go_pro"
+          android:icon="@drawable/add_button">
+    </item>
+
     <item android:id="@+id/about_menu_item"
           android:title="@string/about_menu"
           android:icon="@drawable/info_menu">
