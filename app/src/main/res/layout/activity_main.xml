@@ -150,19 +150,12 @@
                     android:layout_marginBottom="20dp"
                     android:layout_marginTop="30dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <com.inge.nathan.monopolycalculator.Lists.NonScrollListView
+                        android:id="@+id/saved_games_list"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="This is where list of saved games will appear
-
-
-
-
-
-
-
-
-Yay"/>
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"/>
 
                 </LinearLayout>
 

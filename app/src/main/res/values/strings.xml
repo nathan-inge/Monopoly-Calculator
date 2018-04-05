@@ -245,5 +245,7 @@ The richest player wins!</string>
     <string name="feature_title">Upgrade to Monopoly Calculator Pro to get access to these unique features:</string>
     <string name="feature_list">- No ads\n\n- Save Game (currently being developed)</string>
     <string name="has_pro">Congrats! You have already upgraded to pro. Enjoy the above pro features!</string>
+    <string name="game_name_placeholder">Game Name</string>
+    <string name="game_date_placeholder">Date</string>
 
 </resources>

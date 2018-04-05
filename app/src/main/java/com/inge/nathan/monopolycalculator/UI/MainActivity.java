@@ -26,6 +26,8 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.inge.nathan.monopolycalculator.Lists.GameListAdapter;
+import com.inge.nathan.monopolycalculator.Lists.NonScrollListView;
 import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyGame;
 import com.inge.nathan.monopolycalculator.R;
 import com.inge.nathan.monopolycalculator.Utilities.MCPreferencesManager;
@@ -87,7 +89,11 @@ public class MainActivity extends AppCompatActivity {
         if(hasProVersion) {
             CardView adCardView = findViewById(R.id.banner_ad_main);
             adCardView.setVisibility(View.GONE);
+
+            setUpSavedGameList();
+
         } else {
+            // Remove saved game card and set up ads
             CardView savedGamesCardView = findViewById(R.id.saved_games_card);
             savedGamesCardView.setVisibility(View.GONE);
             MobileAds.initialize(this, "ca-app-pub-1213633519254149~9428094547");
@@ -180,6 +186,17 @@ public class MainActivity extends AppCompatActivity {
             Intent i = new Intent(this, StandingsActivity.class);
             startActivity(i);
         }
+    }
+
+    private void setUpSavedGameList() {
+        // Set up list adapter
+        NonScrollListView savedGamesList = findViewById(R.id.saved_games_list);
+//        GameListAdapter adapter = new GameListAdapter(
+//            this,
+//            R.layout.list_row_saved_game,
+//            currentGame.getPlayers());
+//        savedGamesList.setAdapter(adapter);
+
     }
 
     private boolean containsDuplicates(ArrayList<String> playerNames) {
