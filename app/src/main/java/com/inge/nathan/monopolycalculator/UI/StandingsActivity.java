@@ -1,10 +1,7 @@
 package com.inge.nathan.monopolycalculator.UI;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -21,8 +18,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import static com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants.*;
-
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -30,7 +25,7 @@ import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyGame;
 import com.inge.nathan.monopolycalculator.R;
 import com.inge.nathan.monopolycalculator.Utilities.MCPreferencesManager;
 import com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants;
-import com.inge.nathan.monopolycalculator.Utilities.NoCurrentGameException;
+import com.inge.nathan.monopolycalculator.Utilities.MCExceptions.NoCurrentGameException;
 import com.inge.nathan.monopolycalculator.Lists.StandingsListAdapter;
 
 public class StandingsActivity extends AppCompatActivity {
@@ -128,6 +123,10 @@ public class StandingsActivity extends AppCompatActivity {
                 startActivity(k);
                 return true;
 
+            case R.id.save_game_menu_item:
+                saveGame();
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -144,24 +143,31 @@ public class StandingsActivity extends AppCompatActivity {
         }
     }
 
-    public void restart() {
+    private void restart() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Restart calculations?")
             .setMessage(("All entered information for this game will be lost."))
-            .setPositiveButton("Restart", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                }
+            .setPositiveButton("Restart", (dialog, which) -> {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             })
-            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    // do nothing
-                }
+            .setNegativeButton("Cancel", (dialog, which) -> {
+                // do nothing
             })
             .show();
+    }
+
+    private void saveGame() {
+        if(hasProVersion) {
+            //Save game
+
+        } else {
+            Toast.makeText(
+                getApplicationContext(),
+                "Upgrade to PRO to save games!",
+                Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

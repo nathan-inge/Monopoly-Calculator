@@ -1,7 +1,7 @@
 package com.inge.nathan.monopolycalculator.MonopolyObjects;
 
 import com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants;
-import com.inge.nathan.monopolycalculator.Utilities.NoCurrentGameException;
+import com.inge.nathan.monopolycalculator.Utilities.MCExceptions.NoCurrentGameException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,7 +14,9 @@ public class MonopolyGame {
 
     // Static instance variables
     private static MonopolyGame currentGame;
-    private static String savedFileName = "MCSavedGames.ser";
+
+    // Saved game variables
+    private static ArrayList<MonopolyGame> savedGames;
 
     // Instance variables
     private ArrayList<MonopolyPlayer> players;
@@ -67,18 +69,17 @@ public class MonopolyGame {
      * @return user's saved games
      */
     public static ArrayList<MonopolyGame> getSavedGames() {
-        ArrayList<MonopolyGame> savedGames = new ArrayList<>();
-
         return savedGames;
     }
 
-    /**
-     * Save user's games
-     * @param gamesToSave list of games to save
-     */
-    public static void saveGames(ArrayList<MonopolyGame> gamesToSave) {
-
-    }
+//    /**
+//     * Save user's games
+//     * @param gamesToSave list of games to save
+//     */
+//    public static void saveGame(String gameName) {
+//        savedGames = gamesToSave;
+//
+//    }
 
     /**
      * Gets the number of players in the game

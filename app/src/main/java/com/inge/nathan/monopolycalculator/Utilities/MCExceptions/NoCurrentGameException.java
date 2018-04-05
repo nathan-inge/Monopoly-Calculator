@@ -1,4 +1,4 @@
-package com.inge.nathan.monopolycalculator.Utilities;
+package com.inge.nathan.monopolycalculator.Utilities.MCExceptions;
 
 import android.widget.Toast;
 import android.content.Context;
