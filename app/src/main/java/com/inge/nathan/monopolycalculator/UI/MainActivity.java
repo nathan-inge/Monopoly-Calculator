@@ -88,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
             CardView adCardView = findViewById(R.id.banner_ad_main);
             adCardView.setVisibility(View.GONE);
         } else {
+            CardView savedGamesCardView = findViewById(R.id.saved_games_card);
+            savedGamesCardView.setVisibility(View.GONE);
             MobileAds.initialize(this, "ca-app-pub-1213633519254149~9428094547");
             AdView adView = findViewById(R.id.adViewMain);
             AdRequest adRequest = new AdRequest.Builder().build();
