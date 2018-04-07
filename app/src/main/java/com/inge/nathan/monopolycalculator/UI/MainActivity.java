@@ -30,10 +30,13 @@ import com.inge.nathan.monopolycalculator.Lists.GameListAdapter;
 import com.inge.nathan.monopolycalculator.Lists.NonScrollListView;
 import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyGame;
 import com.inge.nathan.monopolycalculator.R;
+import com.inge.nathan.monopolycalculator.Utilities.MCExceptions.NoSavedGamesException;
+import com.inge.nathan.monopolycalculator.Utilities.MCFileManager;
 import com.inge.nathan.monopolycalculator.Utilities.MCPreferencesManager;
 
 import static com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -189,19 +192,44 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setUpSavedGameList() {
-        // Set up list adapter
-        NonScrollListView savedGamesList = findViewById(R.id.saved_games_list);
-//        GameListAdapter adapter = new GameListAdapter(
-//            this,
-//            R.layout.list_row_saved_game,
-//            currentGame.getPlayers());
-//        savedGamesList.setAdapter(adapter);
 
+        ArrayList<MonopolyGame> savedGames = new ArrayList<>();
+
+        try {
+            savedGames = MonopolyGame.getSavedGames(getApplicationContext());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            showSavedGamesError();
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            showSavedGamesError();
+
+        } finally {
+            // Set up list adapter
+            NonScrollListView savedGamesList = findViewById(R.id.saved_games_list);
+            GameListAdapter adapter = new GameListAdapter(
+                this,
+                R.layout.list_row_saved_game,
+                savedGames);
+            savedGamesList.setAdapter(adapter);
+        }
     }
 
     private boolean containsDuplicates(ArrayList<String> playerNames) {
         Set<String> set = new HashSet<>(playerNames);
 
         return set.size() < playerNames.size();
+    }
+
+    private void showSavedGamesError() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Error Loading Saved Games")
+            .setMessage(("Please try again."))
+            .setPositiveButton("OK", (dialog, which) -> {
+                // do nothing
+            })
+            .show();
     }
 }

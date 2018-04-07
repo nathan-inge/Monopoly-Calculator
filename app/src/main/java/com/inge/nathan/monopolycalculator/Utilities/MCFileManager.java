@@ -4,7 +4,6 @@ package com.inge.nathan.monopolycalculator.Utilities;
 import android.content.Context;
 
 import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyGame;
-import com.inge.nathan.monopolycalculator.Utilities.MCExceptions.SavedGamesException;
 import com.inge.nathan.monopolycalculator.Utilities.MCExceptions.NoSavedGamesException;
 
 import java.io.File;

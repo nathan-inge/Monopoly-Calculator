@@ -2,20 +2,25 @@ package com.inge.nathan.monopolycalculator.UI;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.widget.Toolbar;
+import android.text.InputFilter;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
@@ -27,6 +32,8 @@ import com.inge.nathan.monopolycalculator.Utilities.MCPreferencesManager;
 import com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants;
 import com.inge.nathan.monopolycalculator.Utilities.MCExceptions.NoCurrentGameException;
 import com.inge.nathan.monopolycalculator.Lists.StandingsListAdapter;
+
+import java.io.IOException;
 
 public class StandingsActivity extends AppCompatActivity {
 
@@ -160,7 +167,24 @@ public class StandingsActivity extends AppCompatActivity {
 
     private void saveGame() {
         if(hasProVersion) {
-            //Save game
+            final EditText input = new EditText(this);
+            input.setHint("Game name");
+            input.setFilters( new InputFilter[] { new InputFilter.LengthFilter(15) } );
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Save as...")
+                .setView(input)
+                .setPositiveButton("Save", (dialog, which) -> {
+                    if(input.getText().toString().trim().isEmpty()) {
+                        Toast.makeText(getApplicationContext(), "Name cannot be empty!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        performSave(input.getText().toString());
+                    }
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> {
+                    // do nothing
+                })
+                .show();
 
         } else {
             Toast.makeText(
@@ -168,6 +192,31 @@ public class StandingsActivity extends AppCompatActivity {
                 "Upgrade to PRO to save games!",
                 Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void performSave(String gameName) {
+        try {
+            MonopolyGame.saveCurrentGame(getApplicationContext(), gameName);
+            Toast.makeText(getApplicationContext(), "Game Saved!" , Toast.LENGTH_SHORT).show();
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            showSavedGamesError();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            showSavedGamesError();
+        }
+    }
+
+    private void showSavedGamesError() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Error Saving Game")
+            .setMessage(("Please try again."))
+            .setPositiveButton("OK", (dialog, which) -> {
+                // do nothing
+            })
+            .show();
     }
 
 }
