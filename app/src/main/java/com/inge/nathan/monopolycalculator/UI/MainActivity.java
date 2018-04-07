@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private Button nextButton;
     private Toolbar customToolbar;
     private ImageButton resetButton;
+    private NonScrollListView savedGamesList;
 
     private boolean hasProVersion;
 
@@ -208,12 +210,16 @@ public class MainActivity extends AppCompatActivity {
 
         } finally {
             // Set up list adapter
-            NonScrollListView savedGamesList = findViewById(R.id.saved_games_list);
+            savedGamesList = findViewById(R.id.saved_games_list);
             GameListAdapter adapter = new GameListAdapter(
                 this,
                 R.layout.list_row_saved_game,
                 savedGames);
             savedGamesList.setAdapter(adapter);
+
+            if(savedGames.size() > 0) {
+                showClearAllButton();
+            }
         }
     }
 
@@ -231,5 +237,26 @@ public class MainActivity extends AppCompatActivity {
                 // do nothing
             })
             .show();
+    }
+
+    private void showClearAllButton() {
+//        Button clearButton = findViewById(R.id.clear_saved_games_button);
+//
+//        clearButton.setVisibility(View.VISIBLE);
+//
+//        clearButton.setOnClickListener(v -> {
+//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//            builder.setTitle("Confirm Clear")
+//                .setMessage(("Are you sure you want to clear all saved games? \nThis action cannot be undone."))
+//                .setPositiveButton("Clear", (dialog, which) -> {
+//                    MCFileManager.deleteSavedGames(this);
+//
+//                    ((BaseAdapter) savedGamesList.getAdapter()).notifyDataSetChanged();
+//                })
+//                .setNegativeButton("Cancel", (dialog, which) -> {
+//                    // do nothing
+//                })
+//                .show();
+//        });
     }
 }

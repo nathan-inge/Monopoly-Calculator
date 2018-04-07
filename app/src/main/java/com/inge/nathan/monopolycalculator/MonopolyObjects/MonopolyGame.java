@@ -94,6 +94,9 @@ public class MonopolyGame implements Serializable {
             }
         }
 
+        Collections.sort(savedGames, (g1, g2) -> Long.compare(g1.getDateModified().getTime(), g2.getDateModified().getTime()));
+        Collections.reverse(savedGames);
+
         return savedGames;
     }
 
@@ -106,7 +109,8 @@ public class MonopolyGame implements Serializable {
         currentGame.dateModified = Calendar.getInstance().getTime();
 
         ArrayList<MonopolyGame> gameToSave = getSavedGames(context);
-        gameToSave.add(currentGame);
+        gameToSave.add(0, currentGame);
+
         MCFileManager.saveGames(context, gameToSave);
     }
 
