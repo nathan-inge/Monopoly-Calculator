@@ -1,15 +1,12 @@
 package com.inge.nathan.monopolycalculator.UI;
 
 import android.content.Intent;
-import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyGame;
 import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyPlayer;
@@ -17,7 +14,7 @@ import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyProperty;
 import com.inge.nathan.monopolycalculator.R;
 import com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants;
 import com.inge.nathan.monopolycalculator.Utilities.MoneyTextWatcher;
-import com.inge.nathan.monopolycalculator.Utilities.NoCurrentGameException;
+import com.inge.nathan.monopolycalculator.Utilities.MCExceptions.NoCurrentGameException;
 import com.inge.nathan.monopolycalculator.Lists.NonScrollListView;
 import com.inge.nathan.monopolycalculator.Lists.PropertiesListAdapter;
 

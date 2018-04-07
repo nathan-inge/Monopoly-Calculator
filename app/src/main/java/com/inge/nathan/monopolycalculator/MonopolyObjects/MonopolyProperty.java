@@ -2,7 +2,9 @@ package com.inge.nathan.monopolycalculator.MonopolyObjects;
 
 import com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants;
 
-public class MonopolyProperty {
+import java.io.Serializable;
+
+public class MonopolyProperty implements Serializable {
 
     private int id;
     private String name;
