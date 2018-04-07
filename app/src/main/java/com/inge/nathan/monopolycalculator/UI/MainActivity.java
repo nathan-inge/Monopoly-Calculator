@@ -251,7 +251,10 @@ public class MainActivity extends AppCompatActivity {
 //                .setPositiveButton("Clear", (dialog, which) -> {
 //                    MCFileManager.deleteSavedGames(this);
 //
-//                    ((BaseAdapter) savedGamesList.getAdapter()).notifyDataSetChanged();
+//                    finish();
+//                    overridePendingTransition(0, 0);
+//                    startActivity(getIntent());
+//                    overridePendingTransition(0,0);
 //                })
 //                .setNegativeButton("Cancel", (dialog, which) -> {
 //                    // do nothing

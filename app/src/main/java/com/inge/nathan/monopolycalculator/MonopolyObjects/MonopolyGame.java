@@ -53,6 +53,10 @@ public class MonopolyGame implements Serializable {
         return currentGame;
     }
 
+    public static void setCurrentGame(MonopolyGame newCurrentGame) {
+        currentGame = newCurrentGame;
+    }
+
     /**
      * Setup a new game
      * @param playerNames list of new player names to create game with

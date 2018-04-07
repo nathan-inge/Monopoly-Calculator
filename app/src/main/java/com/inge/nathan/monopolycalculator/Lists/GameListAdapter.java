@@ -1,15 +1,18 @@
 package com.inge.nathan.monopolycalculator.Lists;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyGame;
 import com.inge.nathan.monopolycalculator.R;
+import com.inge.nathan.monopolycalculator.UI.StandingsActivity;
 
 import java.util.ArrayList;
 
@@ -42,6 +45,16 @@ public class GameListAdapter extends ArrayAdapter<MonopolyGame> {
 
             nameView.setText(game.getName());
             dateView.setText(game.getFormattedDateModified());
+
+            gameListView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MonopolyGame.setCurrentGame(game);
+                    // Go to standings activity
+                    Intent i = new Intent(getContext(), StandingsActivity.class);
+                    getContext().startActivity(i);
+                }
+            });
 
         }
 
