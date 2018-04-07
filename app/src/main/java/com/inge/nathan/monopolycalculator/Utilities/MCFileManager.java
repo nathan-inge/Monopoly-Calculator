@@ -34,12 +34,7 @@ public final class MCFileManager {
         ois = new ObjectInputStream(fis);
         Object savedGamesObject = ois.readObject();
 
-        if (!(savedGamesObject instanceof ArrayList<?>)) {
-            throw new ClassCastException();
-
-        } else {
-            savedGames = (ArrayList<MonopolyGame>) savedGamesObject;
-        }
+        savedGames = (ArrayList<MonopolyGame>) savedGamesObject;
 
         fis.close();
         ois.close();
@@ -51,9 +46,9 @@ public final class MCFileManager {
         FileOutputStream fos;
         ObjectOutputStream oos;
 
-        File file = new File(context.getFilesDir(), savedGamesFolderName);
-        if(!file.exists()){
-            boolean created = file.mkdir();
+        File dir = new File(context.getFilesDir(), savedGamesFolderName);
+        if(!dir.exists()){
+            dir.mkdir();
         }
 
         File savedFile = new File(context.getFilesDir() + "/" + savedGamesFolderName + "/", savedFileName);
@@ -66,12 +61,9 @@ public final class MCFileManager {
         oos.close();
     }
 
-    public static void deleteSavedGames(Context context) {
-        File file = new File(context.getFilesDir(), savedFileName);
-
-        if(file.exists()){
-            file.delete();
-        }
+    public static boolean deleteSavedGames(Context context) {
+        File savedFile = new File(context.getFilesDir() + "/" + savedGamesFolderName + "/", savedFileName);
+        return savedFile.delete();
     }
 }
 

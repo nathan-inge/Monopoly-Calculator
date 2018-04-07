@@ -38,10 +38,11 @@ public class MCFileManagerTest {
         } catch (IOException e) {
             Log.e("MC Integration Tests", "exception", e);
             assertTrue(false);
+
+        } catch (ClassNotFoundException e) {
+            Log.e("MC Integration Tests", "exception", e);
+            assertTrue(false);
         }
-
-
-
 
         ArrayList<MonopolyGame> savedGames = null;
         try {
@@ -57,17 +58,12 @@ public class MCFileManagerTest {
         } catch (ClassNotFoundException e) {
             Log.e("MC Integration Tests", "exception", e);
             assertTrue(false);
-
-
-
-
-
-
-
         }
 
         assertEquals(1, savedGames.size());
         assertEquals("Game #1", savedGames.get(0).getName());
+
+        MCFileManager.deleteSavedGames(context);
 
     }
 }

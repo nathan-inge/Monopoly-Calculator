@@ -8,6 +8,8 @@ import com.inge.nathan.monopolycalculator.Utilities.MCFileManager;
 import com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants;
 import com.inge.nathan.monopolycalculator.Utilities.MCExceptions.NoCurrentGameException;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -88,24 +90,26 @@ public class MonopolyGame implements Serializable {
      * Save user's games
      * @param gameName name of game to save
      */
-    public static void saveCurrentGame(Context context, String gameName) throws IOException {
+    public static void saveCurrentGame(Context context, String gameName) throws ClassNotFoundException, IOException {
         currentGame.name = gameName;
         currentGame.dateModified = Calendar.getInstance().getTime();
 
         ArrayList<MonopolyGame> gameToSave = new ArrayList<>();
-        gameToSave.add(currentGame);
-        MCFileManager.saveGames(context, gameToSave);
 
-//        try {
-//            ArrayList<MonopolyGame> gameToSave = new ArrayList<>();
-//            gameToSave.add(currentGame);
-//            MCFileManager.saveGames(context, gameToSave);
-//            //MCFileManager.saveGames(context, getSavedGames(context));
-//        } catch (NoSavedGamesException e) {
-//            ArrayList<MonopolyGame> gameToSave = new ArrayList<>();
-//            gameToSave.add(currentGame);
-//            MCFileManager.saveGames(context, gameToSave);
-//        }
+        try {
+            gameToSave = getSavedGames(context);
+
+        } catch (NoSavedGamesException e) {
+            // Do nothing
+
+        } catch (FileNotFoundException e){
+            // Do nothing
+
+        } finally {
+            gameToSave.add(currentGame);
+            MCFileManager.saveGames(context, gameToSave);
+
+        }
     }
 
     /**
