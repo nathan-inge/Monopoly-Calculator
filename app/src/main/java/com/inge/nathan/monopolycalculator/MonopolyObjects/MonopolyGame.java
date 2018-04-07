@@ -1,16 +1,24 @@
 package com.inge.nathan.monopolycalculator.MonopolyObjects;
 
+import android.content.Context;
+
+import com.inge.nathan.monopolycalculator.Utilities.MCExceptions.NoSavedGamesException;
+import com.inge.nathan.monopolycalculator.Utilities.MCExceptions.SavedGamesException;
+import com.inge.nathan.monopolycalculator.Utilities.MCFileManager;
 import com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants;
 import com.inge.nathan.monopolycalculator.Utilities.MCExceptions.NoCurrentGameException;
 
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 
 /**
  * Singleton class containing current Monopoly Game
  */
-public class MonopolyGame {
+public class MonopolyGame implements Serializable {
 
     // Static instance variables
     private static MonopolyGame currentGame;
@@ -68,18 +76,37 @@ public class MonopolyGame {
      * Get user's saved games
      * @return user's saved games
      */
-    public static ArrayList<MonopolyGame> getSavedGames() {
+    public static ArrayList<MonopolyGame> getSavedGames(Context context) throws NoSavedGamesException, IOException, ClassNotFoundException {
+        if(savedGames == null) {
+            savedGames = MCFileManager.getSavedGames(context);
+        }
+
         return savedGames;
     }
 
-//    /**
-//     * Save user's games
-//     * @param gamesToSave list of games to save
-//     */
-//    public static void saveGame(String gameName) {
-//        savedGames = gamesToSave;
-//
-//    }
+    /**
+     * Save user's games
+     * @param gameName name of game to save
+     */
+    public static void saveCurrentGame(Context context, String gameName) throws IOException {
+        currentGame.name = gameName;
+        currentGame.dateModified = Calendar.getInstance().getTime();
+
+        ArrayList<MonopolyGame> gameToSave = new ArrayList<>();
+        gameToSave.add(currentGame);
+        MCFileManager.saveGames(context, gameToSave);
+
+//        try {
+//            ArrayList<MonopolyGame> gameToSave = new ArrayList<>();
+//            gameToSave.add(currentGame);
+//            MCFileManager.saveGames(context, gameToSave);
+//            //MCFileManager.saveGames(context, getSavedGames(context));
+//        } catch (NoSavedGamesException e) {
+//            ArrayList<MonopolyGame> gameToSave = new ArrayList<>();
+//            gameToSave.add(currentGame);
+//            MCFileManager.saveGames(context, gameToSave);
+//        }
+    }
 
     /**
      * Gets the number of players in the game

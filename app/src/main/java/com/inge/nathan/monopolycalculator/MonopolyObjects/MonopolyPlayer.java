@@ -1,9 +1,10 @@
 package com.inge.nathan.monopolycalculator.MonopolyObjects;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class MonopolyPlayer {
+public class MonopolyPlayer implements Serializable {
 
     private String name;
     private long cashValue;

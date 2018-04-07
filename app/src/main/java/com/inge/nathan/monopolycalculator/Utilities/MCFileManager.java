@@ -3,62 +3,76 @@ package com.inge.nathan.monopolycalculator.Utilities;
 
 import android.content.Context;
 
-import com.google.android.gms.dynamite.descriptors.com.google.android.gms.ads.dynamite.ModuleDescriptor;
 import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyGame;
-import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyPlayer;
-import com.inge.nathan.monopolycalculator.Utilities.MCExceptions.GetSavedGamesException;
+import com.inge.nathan.monopolycalculator.Utilities.MCExceptions.SavedGamesException;
 import com.inge.nathan.monopolycalculator.Utilities.MCExceptions.NoSavedGamesException;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInput;
 import java.io.ObjectInputStream;
-import java.io.UncheckedIOException;
-import java.lang.reflect.Array;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 public final class MCFileManager {
 
-    private static final String savedFileName = "MCSavedGames.ser";
+    public static final String savedFileName = "MCSavedGames.ser";
+    private static final String savedGamesFolderName = "MCSavedGames";
 
     private MCFileManager() { }
 
-    public static ArrayList<MonopolyGame> getSavedGames(Context context) throws GetSavedGamesException, NoSavedGamesException {
+    public static ArrayList<MonopolyGame> getSavedGames(Context context) throws NoSavedGamesException, IOException, ClassNotFoundException {
         ArrayList<MonopolyGame> savedGames;
         FileInputStream fis;
         ObjectInputStream ois;
 
-        try {
-            fis = context.openFileInput(savedFileName);
-            ois = new ObjectInputStream(fis);
-            Object savedGamesObject = ois.readObject();
+        File savedFile = new File(context.getFilesDir() + "/" + savedGamesFolderName + "/", savedFileName);
 
-            if (!(savedGamesObject instanceof ArrayList<?>)) {
-                throw new GetSavedGamesException(new ClassCastException());
+        fis = new FileInputStream(savedFile);
+        ois = new ObjectInputStream(fis);
+        Object savedGamesObject = ois.readObject();
 
-            } else {
-                savedGames = (ArrayList<MonopolyGame>) savedGamesObject;
-            }
+        if (!(savedGamesObject instanceof ArrayList<?>)) {
+            throw new ClassCastException();
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            throw new NoSavedGamesException();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new GetSavedGamesException(new IOException());
-
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            throw new GetSavedGamesException(new ClassNotFoundException());
+        } else {
+            savedGames = (ArrayList<MonopolyGame>) savedGamesObject;
         }
+
+        fis.close();
+        ois.close();
 
         return savedGames;
     }
 
-    public static void saveGames(ArrayList<MonopolyGame> gamesToSave) {
+    public static void saveGames(Context context, ArrayList<MonopolyGame> gamesToSave) throws IOException {
+        FileOutputStream fos;
+        ObjectOutputStream oos;
 
+        File file = new File(context.getFilesDir(), savedGamesFolderName);
+        if(!file.exists()){
+            boolean created = file.mkdir();
+        }
+
+        File savedFile = new File(context.getFilesDir() + "/" + savedGamesFolderName + "/", savedFileName);
+
+        fos = new FileOutputStream(savedFile);
+        oos = new ObjectOutputStream(fos);
+        oos.writeObject(gamesToSave);
+
+        fos.close();
+        oos.close();
+    }
+
+    public static void deleteSavedGames(Context context) {
+        File file = new File(context.getFilesDir(), savedFileName);
+
+        if(file.exists()){
+            file.delete();
+        }
     }
 }
+
+

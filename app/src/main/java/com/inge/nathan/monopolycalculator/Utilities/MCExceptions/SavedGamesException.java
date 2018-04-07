@@ -7,11 +7,15 @@ import android.widget.Toast;
  * Exception thrown when there is error getting saved files
  */
 
-public class GetSavedGamesException extends Exception {
+public class SavedGamesException extends Exception {
     private Exception originalExeption;
 
-    public GetSavedGamesException(Exception originalException) {
+    public SavedGamesException(Exception originalException) {
         this.originalExeption = originalException;
+    }
+
+    public Exception getException() {
+        return originalExeption;
     }
 
 //    public static void showToast(Context context) {
