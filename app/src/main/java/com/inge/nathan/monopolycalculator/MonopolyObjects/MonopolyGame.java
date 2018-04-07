@@ -78,9 +78,19 @@ public class MonopolyGame implements Serializable {
      * Get user's saved games
      * @return user's saved games
      */
-    public static ArrayList<MonopolyGame> getSavedGames(Context context) throws NoSavedGamesException, IOException, ClassNotFoundException {
+    public static ArrayList<MonopolyGame> getSavedGames(Context context) throws IOException, ClassNotFoundException {
         if(savedGames == null) {
-            savedGames = MCFileManager.getSavedGames(context);
+            savedGames = new ArrayList<>();
+
+            try {
+                savedGames = MCFileManager.getSavedGames(context);
+
+            } catch (NoSavedGamesException e) {
+                // Do nothing
+
+            } catch (FileNotFoundException e){
+                // Do nothing
+            }
         }
 
         return savedGames;
@@ -94,22 +104,9 @@ public class MonopolyGame implements Serializable {
         currentGame.name = gameName;
         currentGame.dateModified = Calendar.getInstance().getTime();
 
-        ArrayList<MonopolyGame> gameToSave = new ArrayList<>();
-
-        try {
-            gameToSave = getSavedGames(context);
-
-        } catch (NoSavedGamesException e) {
-            // Do nothing
-
-        } catch (FileNotFoundException e){
-            // Do nothing
-
-        } finally {
-            gameToSave.add(currentGame);
-            MCFileManager.saveGames(context, gameToSave);
-
-        }
+        ArrayList<MonopolyGame> gameToSave = getSavedGames(context);
+        gameToSave.add(currentGame);
+        MCFileManager.saveGames(context, gameToSave);
     }
 
     /**

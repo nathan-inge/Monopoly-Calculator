@@ -27,6 +27,9 @@ public class MCFileManagerTest {
     public void test_saveGames() {
         Context context = InstrumentationRegistry.getTargetContext();
 
+        // Reset saved games file
+        MCFileManager.deleteSavedGames(context);
+
         ArrayList<String> playerNames = new ArrayList<>();
         playerNames.add("Jim");
         playerNames.add("Sally");
@@ -44,13 +47,11 @@ public class MCFileManagerTest {
             assertTrue(false);
         }
 
-        ArrayList<MonopolyGame> savedGames = null;
-        try {
-            savedGames = MonopolyGame.getSavedGames(context);
-        } catch (NoSavedGamesException e) {
-            Log.e("MC Integration Tests", "exception", e);
-            assertTrue(false);
+        playerNames.add("Yo mama");
+        MonopolyGame game2 = MonopolyGame.setupNewGame(playerNames);
 
+        try {
+            MonopolyGame.saveCurrentGame(context, "Game #2");
         } catch (IOException e) {
             Log.e("MC Integration Tests", "exception", e);
             assertTrue(false);
@@ -60,10 +61,27 @@ public class MCFileManagerTest {
             assertTrue(false);
         }
 
-        assertEquals(1, savedGames.size());
+        ArrayList<MonopolyGame> savedGames = null;
+        try {
+            savedGames = MonopolyGame.getSavedGames(context);
+        } catch (IOException e) {
+            Log.e("MC Integration Tests", "exception", e);
+            assertTrue(false);
+
+        } catch (ClassNotFoundException e) {
+            Log.e("MC Integration Tests", "exception", e);
+            assertTrue(false);
+        }
+
+        assertEquals(2, savedGames.size());
+
         assertEquals("Game #1", savedGames.get(0).getName());
+        assertEquals(2, savedGames.get(0).numPlayers());
 
+        assertEquals("Game #2", savedGames.get(1).getName());
+        assertEquals(3, savedGames.get(1).numPlayers());
+
+        // Reset saved games file
         MCFileManager.deleteSavedGames(context);
-
     }
 }
