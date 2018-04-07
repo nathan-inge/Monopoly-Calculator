@@ -10,6 +10,7 @@ import com.inge.nathan.monopolycalculator.Utilities.MCExceptions.NoCurrentGameEx
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -19,6 +20,8 @@ import java.util.Date;
  * Singleton class containing current Monopoly Game
  */
 public class MonopolyGame implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     // Static instance variables
     private static MonopolyGame currentGame;
@@ -177,6 +180,10 @@ public class MonopolyGame implements Serializable {
     public void setName(String name) { this.name = name; }
 
     public Date getDateModified() { return this.dateModified; }
+
+    public String getFormattedDateModified() {
+        return DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(this.dateModified);
+    }
 
     public void setDateModified(Date dateModified) { this.dateModified = dateModified; }
 

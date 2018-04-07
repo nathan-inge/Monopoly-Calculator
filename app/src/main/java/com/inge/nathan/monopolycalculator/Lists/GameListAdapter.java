@@ -41,7 +41,7 @@ public class GameListAdapter extends ArrayAdapter<MonopolyGame> {
             TextView dateView = gameListView.findViewById(R.id.game_date_view);
 
             nameView.setText(game.getName());
-            dateView.setText(game.getDateModified().toString());
+            dateView.setText(game.getFormattedDateModified());
 
         }
 
