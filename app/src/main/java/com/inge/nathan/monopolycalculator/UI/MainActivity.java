@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -96,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
             adCardView.setVisibility(View.GONE);
 
             setUpSavedGameList();
+            setUpClearAllButton();
 
         } else {
             // Remove saved game card and set up ads
@@ -216,10 +218,6 @@ public class MainActivity extends AppCompatActivity {
                 R.layout.list_row_saved_game,
                 savedGames);
             savedGamesList.setAdapter(adapter);
-
-            if(savedGames.size() > 0) {
-                showClearAllButton();
-            }
         }
     }
 
@@ -239,27 +237,22 @@ public class MainActivity extends AppCompatActivity {
             .show();
     }
 
-    private void showClearAllButton() {
-//        Button clearButton = findViewById(R.id.clear_saved_games_button);
-//
-//        clearButton.setVisibility(View.VISIBLE);
-//
-//        clearButton.setOnClickListener(v -> {
-//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//            builder.setTitle("Confirm Clear")
-//                .setMessage(("Are you sure you want to clear all saved games? \nThis action cannot be undone."))
-//                .setPositiveButton("Clear", (dialog, which) -> {
-//                    MCFileManager.deleteSavedGames(this);
-//
-//                    finish();
-//                    overridePendingTransition(0, 0);
-//                    startActivity(getIntent());
-//                    overridePendingTransition(0,0);
-//                })
-//                .setNegativeButton("Cancel", (dialog, which) -> {
-//                    // do nothing
-//                })
-//                .show();
-//        });
+    private void setUpClearAllButton() {
+        ImageButton clearButton = findViewById(R.id.clear_saved_games_button);
+
+        clearButton.setOnClickListener(v -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Confirm Clear")
+                .setMessage(("Are you sure you want to clear all saved games? \nThis action cannot be undone."))
+                .setPositiveButton("Clear", (dialog, which) -> {
+                    MCFileManager.deleteSavedGames(this);
+                    ((ArrayAdapter) savedGamesList.getAdapter()).clear();
+                    Toast.makeText(this, "All Games Deleted!", Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> {
+                    // do nothing
+                })
+                .show();
+        });
     }
 }
