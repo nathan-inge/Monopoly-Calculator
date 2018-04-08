@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -26,12 +27,17 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.inge.nathan.monopolycalculator.Lists.GameListAdapter;
+import com.inge.nathan.monopolycalculator.Lists.NonScrollListView;
 import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyGame;
 import com.inge.nathan.monopolycalculator.R;
+import com.inge.nathan.monopolycalculator.Utilities.MCExceptions.NoSavedGamesException;
+import com.inge.nathan.monopolycalculator.Utilities.MCFileManager;
 import com.inge.nathan.monopolycalculator.Utilities.MCPreferencesManager;
 
 import static com.inge.nathan.monopolycalculator.Utilities.MonopolyConstants.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -46,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private Button nextButton;
     private Toolbar customToolbar;
     private ImageButton resetButton;
+    private NonScrollListView savedGamesList;
 
     private boolean hasProVersion;
 
@@ -87,7 +94,13 @@ public class MainActivity extends AppCompatActivity {
         if(hasProVersion) {
             CardView adCardView = findViewById(R.id.banner_ad_main);
             adCardView.setVisibility(View.GONE);
+
+            setUpSavedGameList();
+
         } else {
+            // Remove saved game card and set up ads
+            CardView savedGamesCardView = findViewById(R.id.saved_games_card);
+            savedGamesCardView.setVisibility(View.GONE);
             MobileAds.initialize(this, "ca-app-pub-1213633519254149~9428094547");
             AdView adView = findViewById(R.id.adViewMain);
             AdRequest adRequest = new AdRequest.Builder().build();
@@ -180,9 +193,73 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void setUpSavedGameList() {
+
+        ArrayList<MonopolyGame> savedGames = new ArrayList<>();
+
+        try {
+            savedGames = MonopolyGame.getSavedGames(getApplicationContext());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            showSavedGamesError();
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            showSavedGamesError();
+
+        } finally {
+            // Set up list adapter
+            savedGamesList = findViewById(R.id.saved_games_list);
+            GameListAdapter adapter = new GameListAdapter(
+                this,
+                R.layout.list_row_saved_game,
+                savedGames);
+            savedGamesList.setAdapter(adapter);
+
+            if(savedGames.size() > 0) {
+                showClearAllButton();
+            }
+        }
+    }
+
     private boolean containsDuplicates(ArrayList<String> playerNames) {
         Set<String> set = new HashSet<>(playerNames);
 
         return set.size() < playerNames.size();
+    }
+
+    private void showSavedGamesError() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Error Loading Saved Games")
+            .setMessage(("Please try again."))
+            .setPositiveButton("OK", (dialog, which) -> {
+                // do nothing
+            })
+            .show();
+    }
+
+    private void showClearAllButton() {
+//        Button clearButton = findViewById(R.id.clear_saved_games_button);
+//
+//        clearButton.setVisibility(View.VISIBLE);
+//
+//        clearButton.setOnClickListener(v -> {
+//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//            builder.setTitle("Confirm Clear")
+//                .setMessage(("Are you sure you want to clear all saved games? \nThis action cannot be undone."))
+//                .setPositiveButton("Clear", (dialog, which) -> {
+//                    MCFileManager.deleteSavedGames(this);
+//
+//                    finish();
+//                    overridePendingTransition(0, 0);
+//                    startActivity(getIntent());
+//                    overridePendingTransition(0,0);
+//                })
+//                .setNegativeButton("Cancel", (dialog, which) -> {
+//                    // do nothing
+//                })
+//                .show();
+//        });
     }
 }

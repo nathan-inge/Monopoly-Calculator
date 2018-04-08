@@ -14,12 +14,16 @@ import static org.junit.Assert.*;
 
 @RunWith(AndroidJUnit4.class)
 public class MCPreferencesManagerTest {
-    @Test
-    public void test_buyPro() {
-        Context context = InstrumentationRegistry.getTargetContext();
 
-        MCPreferencesManager.upgradeToPro(context);
-
-        assertTrue(MCPreferencesManager.getProStatus(context));
-    }
+    /*
+    This test will have the effect of giving the tested device PRO status
+     */
+//    @Test
+//    public void test_buyPro() {
+//        Context context = InstrumentationRegistry.getTargetContext();
+//
+//        MCPreferencesManager.upgradeToPro(context);
+//
+//        assertTrue(MCPreferencesManager.getProStatus(context));
+//    }
 }

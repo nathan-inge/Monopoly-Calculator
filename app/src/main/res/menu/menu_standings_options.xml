@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item android:id="@+id/save_game_menu_item"
+          android:title="@string/save_game"
+          android:icon="@drawable/save_menu_icon" />
+
     <item android:id="@+id/restart_menu_item"
           android:title="@string/restart"
           android:icon="@drawable/reset_button">
