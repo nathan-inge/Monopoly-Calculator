@@ -81,8 +81,12 @@ public class GameListAdapter extends ArrayAdapter<MonopolyGame> {
 
                                     try {
                                         MCFileManager.saveGames(getContext(), savedGames);
+                                        Toast.makeText(getContext(), "Game Deleted!", Toast.LENGTH_SHORT).show();
+
                                     } catch (IOException e) {
                                         e.printStackTrace();
+                                        savedGames.add(game);
+                                        Toast.makeText(getContext(), "Error Deleting Game", Toast.LENGTH_SHORT).show();
                                     }
                                     return true;
 
