@@ -15,7 +15,9 @@ import android.widget.Toast;
 import com.inge.nathan.monopolycalculator.MonopolyObjects.MonopolyGame;
 import com.inge.nathan.monopolycalculator.R;
 import com.inge.nathan.monopolycalculator.UI.StandingsActivity;
+import com.inge.nathan.monopolycalculator.Utilities.MCFileManager;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class GameListAdapter extends ArrayAdapter<MonopolyGame> {
@@ -72,6 +74,16 @@ public class GameListAdapter extends ArrayAdapter<MonopolyGame> {
                             switch (item.getItemId()) {
                                 case R.id.delete_popup_item:
                                     finalGameListAdapter.remove(game);
+
+                                    ArrayList<MonopolyGame> savedGames = new ArrayList<>();
+                                    for (int i = 0; i < finalGameListAdapter .getCount(); i++)
+                                        savedGames.add(finalGameListAdapter .getItem(i));
+
+                                    try {
+                                        MCFileManager.saveGames(getContext(), savedGames);
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
                                     return true;
 
                                 default:
@@ -84,7 +96,6 @@ public class GameListAdapter extends ArrayAdapter<MonopolyGame> {
                     return true;
                 }
             });//closing the setOnClickListener method
-
         }
 
         return gameListView;
