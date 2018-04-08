@@ -249,5 +249,6 @@ The richest player wins!</string>
     <string name="game_date_placeholder">Date</string>
     <string name="save_game">Save Game</string>
     <string name="clear_all">Clear All</string>
+    <string name="delete">Delete</string>
 
 </resources>
