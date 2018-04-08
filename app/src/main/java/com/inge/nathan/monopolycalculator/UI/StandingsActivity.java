@@ -67,6 +67,10 @@ public class StandingsActivity extends AppCompatActivity {
             finish();
         }
 
+        TextView titleView = findViewById(R.id.activity_title);
+        String title = (currentGame.getName() != null) ? currentGame.getName() : "Monopoly Calculator";
+        titleView.setText(title);
+
         currentGame.sortStandings();
 
         // Set up list adapter
