@@ -83,6 +83,17 @@ public class MCFileManagerTest {
             assertTrue(false);
         }
 
+        try {
+            MonopolyGame.saveCurrentGame(context, "Game #3");
+        } catch (IOException e) {
+            Log.e("MC Integration Tests", "exception", e);
+            assertTrue(false);
+
+        } catch (ClassNotFoundException e) {
+            Log.e("MC Integration Tests", "exception", e);
+            assertTrue(false);
+        }
+
         ArrayList<MonopolyGame> savedGames = null;
         try {
             savedGames = MonopolyGame.getSavedGames(context);
@@ -95,13 +106,16 @@ public class MCFileManagerTest {
             assertTrue(false);
         }
 
-        assertEquals(2, savedGames.size());
+        assertEquals(3, savedGames.size());
 
-        assertEquals("Game #1", savedGames.get(0).getName());
-        assertEquals(2, savedGames.get(0).numPlayers());
+        assertEquals("Game #3", savedGames.get(0).getName());
+        assertEquals(3, savedGames.get(0).numPlayers());
 
         assertEquals("Game #2", savedGames.get(1).getName());
         assertEquals(3, savedGames.get(1).numPlayers());
+
+        assertEquals("Game #1", savedGames.get(2).getName());
+        assertEquals(2, savedGames.get(2).numPlayers());
 
         // Reset saved games file
         MCFileManager.deleteSavedGames(context);

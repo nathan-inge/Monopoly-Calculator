@@ -247,7 +247,7 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("Clear", (dialog, which) -> {
                     MCFileManager.deleteSavedGames(this);
                     ((ArrayAdapter) savedGamesList.getAdapter()).clear();
-                    Toast.makeText(this, "All Games Deleted!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "All Ga mes Deleted!", Toast.LENGTH_SHORT).show();
                 })
                 .setNegativeButton("Cancel", (dialog, which) -> {
                     // do nothing
