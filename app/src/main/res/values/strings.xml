@@ -250,5 +250,10 @@ The richest player wins!</string>
     <string name="save_game">Save Game</string>
     <string name="clear_all">Clear All</string>
     <string name="delete">Delete</string>
+    <string name="player_5">Player 5</string>
+    <string name="player_6">Player 6</string>
+    <string name="player_7">Player 7</string>
+    <string name="player_8">Player 8</string>
+    <string name="add_another_player">Add Another Player</string>
 
 </resources>

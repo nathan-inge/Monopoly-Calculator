@@ -52,12 +52,19 @@ public class MainActivity extends AppCompatActivity {
     private EditText playerTwoEdit;
     private EditText playerThreeEdit;
     private EditText playerFourEdit;
+    private EditText playerFiveEdit;
+    private EditText playerSixEdit;
+    private EditText playerSevenEdit;
+    private EditText playerEightEdit;
     private Button nextButton;
+    private Button addPlayerButton;
     private Toolbar customToolbar;
     private ImageButton resetButton;
     private NonScrollListView savedGamesList;
 
+    // Private instance vars
     private boolean hasProVersion;
+    private int numPlayerEdits = 4;
 
     private GameListAdapter adapter;
 
@@ -71,6 +78,11 @@ public class MainActivity extends AppCompatActivity {
         playerTwoEdit = findViewById(R.id.p2_name_edit);
         playerThreeEdit = findViewById(R.id.p3_name_edit);
         playerFourEdit = findViewById(R.id.p4_name_edit);
+        playerFiveEdit = findViewById(R.id.p5_name_edit);
+        playerSixEdit = findViewById(R.id.p6_name_edit);
+        playerSevenEdit = findViewById(R.id.p7_name_edit);
+        playerEightEdit = findViewById(R.id.p8_name_edit);
+        addPlayerButton = findViewById(R.id.add_player_button);
         nextButton = findViewById(R.id.next_button);
         resetButton = findViewById(R.id.reset_button);
         customToolbar = findViewById(R.id.custom_home_toolbar);
@@ -91,6 +103,10 @@ public class MainActivity extends AppCompatActivity {
                 playerTwoEdit.setText(null);
                 playerThreeEdit.setText(null);
                 playerFourEdit.setText(null);
+                playerFiveEdit.setText(null);
+                playerSixEdit.setText(null);
+                playerSevenEdit.setText(null);
+                playerEightEdit.setText(null);
             }
         });
 
@@ -102,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
             setUpSavedGameList();
             setUpClearAllButton();
+            setUpAddPlayerButton();
 
         } else {
             // Remove saved game card and set up ads
@@ -178,11 +195,19 @@ public class MainActivity extends AppCompatActivity {
         String p2Name = playerTwoEdit.getText().toString().trim();
         String p3Name = playerThreeEdit.getText().toString().trim();
         String p4Name = playerFourEdit.getText().toString().trim();
+        String p5Name = playerFiveEdit.getText().toString().trim();
+        String p6Name = playerSixEdit.getText().toString().trim();
+        String p7Name = playerSevenEdit.getText().toString().trim();
+        String p8Name = playerEightEdit.getText().toString().trim();
 
         if (!p1Name.isEmpty()) { playerNames.add(p1Name); }
         if (!p2Name.isEmpty()) { playerNames.add(p2Name); }
         if (!p3Name.isEmpty()) { playerNames.add(p3Name); }
         if (!p4Name.isEmpty()) { playerNames.add(p4Name); }
+        if (!p5Name.isEmpty()) { playerNames.add(p5Name); }
+        if (!p6Name.isEmpty()) { playerNames.add(p6Name); }
+        if (!p7Name.isEmpty()) { playerNames.add(p7Name); }
+        if (!p8Name.isEmpty()) { playerNames.add(p8Name); }
 
 
         if(playerNames.size() < 2) {
@@ -273,6 +298,37 @@ public class MainActivity extends AppCompatActivity {
                     // do nothing
                 })
                 .show();
+        });
+    }
+
+    private void setUpAddPlayerButton() {
+        addPlayerButton.setVisibility(View.VISIBLE);
+
+        addPlayerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (numPlayerEdits) {
+                    case 4:
+                        playerFiveEdit.setVisibility(View.VISIBLE);
+                        numPlayerEdits = 5;
+                        break;
+                    case 5:
+                        playerSixEdit.setVisibility(View.VISIBLE);
+                        numPlayerEdits = 6;
+                        break;
+                    case 6:
+                        playerSevenEdit.setVisibility(View.VISIBLE);
+                        numPlayerEdits = 7;
+                        break;
+                    case 7:
+                        playerEightEdit.setVisibility(View.VISIBLE);
+                        numPlayerEdits = 8;
+                        addPlayerButton.setVisibility(View.GONE);
+                        break;
+                    default:
+                        break;
+                }
+            }
         });
     }
 }

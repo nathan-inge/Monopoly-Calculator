@@ -40,6 +40,14 @@ public class MonopolyPlayer implements Serializable {
                 return "3rd";
             case 3:
                 return "4th";
+            case 4:
+                return "5th";
+            case 5:
+                return "6th";
+            case 6:
+                return "7th";
+            case 7:
+                return "8th";
             default:
                 return "-";
         }
