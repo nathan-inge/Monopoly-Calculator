@@ -1,4 +1,4 @@
-![Alt text](https://img.shields.io/badge/version-1.5_(Closed_Beta)-brightgreen.svg)
+![Alt text](https://img.shields.io/badge/version-1.6_(Closed_Beta)-brightgreen.svg)
 # Monopoly-Calculator
 
 <p align="center">
