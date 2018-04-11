@@ -40,6 +40,21 @@ public class MonopolyGame implements Serializable {
      */
     private MonopolyGame() { }
 
+    public MonopolyGame(MonopolyGame other) {
+        this.players = new ArrayList<>();
+        for(MonopolyPlayer otherPlayer : other.players) {
+            this.players.add(new MonopolyPlayer(otherPlayer));
+        }
+
+        this.availableProperties = new ArrayList<>();
+        for(MonopolyProperty otherProperty : other.availableProperties) {
+            this.availableProperties.add(new MonopolyProperty(otherProperty));
+        }
+
+        this.dateModified = other.dateModified;
+        this.name = other.name;
+    }
+
     /**
      * Get the current game
      * @return MonopolyGame the current game
@@ -109,13 +124,17 @@ public class MonopolyGame implements Serializable {
      * @param gameName name of game to save
      */
     public static void saveCurrentGame(Context context, String gameName) throws ClassNotFoundException, IOException {
-        currentGame.name = gameName;
-        currentGame.dateModified = Calendar.getInstance().getTime();
-
         ArrayList<MonopolyGame> gameToSave = getSavedGames(context);
-        gameToSave.add(0, currentGame);
+
+        MonopolyGame newSaveGame = new MonopolyGame(currentGame);
+        newSaveGame.name = gameName;
+        newSaveGame.dateModified = Calendar.getInstance().getTime();
+
+        gameToSave.add(0, newSaveGame);
 
         MCFileManager.saveGames(context, gameToSave);
+
+        currentGame = newSaveGame;
     }
 
     /**

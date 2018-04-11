@@ -29,4 +29,18 @@ public final class MCPreferencesManager {
         return sharedPreferences.getBoolean(
             context.getResources().getString(R.string.pro_bool), false);
     }
+
+    /**
+     * Should only be run for testing purposes
+     */
+    public static void downgrade(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(
+            context.getResources().getString(R.string.pro_pref_key),
+            Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+
+        edit.putBoolean(context.getResources().getString(R.string.pro_bool), false);
+        edit.apply();
+    }
 }

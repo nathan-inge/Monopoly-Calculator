@@ -26,4 +26,14 @@ public class MCPreferencesManagerTest {
 //
 //        assertTrue(MCPreferencesManager.getProStatus(context));
 //    }
+
+    /*
+    This test will have the effect of giving the tested device STANDARD status
+     */
+//    @Test
+//    public void test_downgrade() {
+//        Context context = InstrumentationRegistry.getTargetContext();
+//
+//        MCPreferencesManager.downgrade(context);
+//    }
 }
