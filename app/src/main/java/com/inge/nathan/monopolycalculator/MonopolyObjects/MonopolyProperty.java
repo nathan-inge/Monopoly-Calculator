@@ -17,6 +17,15 @@ public class MonopolyProperty implements Serializable {
         this.id = id;
     }
 
+    public MonopolyProperty(MonopolyProperty other) {
+        this.id = other.id;
+        this.name = other.name;
+        this.numHouses = other.numHouses;
+        this.hasHotel = other.hasHotel;
+        this.isMortgaged = other.isMortgaged;
+        this.isOwned = other.isOwned;
+    }
+
     // MARK - Equality
     @Override
     public boolean equals(Object obj) {

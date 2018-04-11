@@ -59,7 +59,7 @@ public class AboutActivity extends AppCompatActivity {
 
         try {
             PackageInfo pInfo = this.getPackageManager().getPackageInfo(getPackageName(), 0);
-            String proText = (hasProVersion) ? "PRO" : "standard";
+            String proText = (hasProVersion) ? "PRO" : "Standard";
             String version = "Version: " + pInfo.versionName + " " + proText;
             versionText.setText(version);
         } catch (PackageManager.NameNotFoundException e) {
