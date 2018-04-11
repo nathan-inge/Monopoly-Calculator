@@ -15,9 +15,11 @@ public final class MonopolyConstants {
 
     // Requests
     public static final int REQUEST_EDIT_PLAYER = 1000;
+    public static final int REQUEST_DISPLAY_STANDINGS = 1001;
 
     // Responses
     public static final int PLAYER_EDITTED = 100;
+    public static final int GAME_SAVED = 101;
 
     // Property IDs
     public static final int MED_AVE = 10;

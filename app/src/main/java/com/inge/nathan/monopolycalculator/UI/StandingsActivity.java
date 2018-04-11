@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -45,6 +47,8 @@ public class StandingsActivity extends AppCompatActivity {
     private MonopolyGame currentGame;
     private boolean hasProVersion;
 
+    private StandingsListAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +78,7 @@ public class StandingsActivity extends AppCompatActivity {
         currentGame.sortStandings();
 
         // Set up list adapter
-        StandingsListAdapter adapter = new StandingsListAdapter(
+        adapter = new StandingsListAdapter(
             this,
             R.layout.list_row_standings,
             currentGame.getPlayers());
@@ -147,11 +151,20 @@ public class StandingsActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if((requestCode == MonopolyConstants.REQUEST_EDIT_PLAYER) && (resultCode == MonopolyConstants.PLAYER_EDITTED)) {
             // Refresh info
-            finish();
-            overridePendingTransition(0, 0);
-            startActivity(getIntent());
-            overridePendingTransition(0,0);
+            updateStandings();
         }
+    }
+
+    private void updateStandings() {
+        Handler mainHandler = new Handler(Looper.getMainLooper());
+        Runnable myRunnable = new Runnable() {
+            @Override
+            public void run() {
+                currentGame.sortStandings();
+                adapter.notifyDataSetChanged();
+            } // This is your code
+        };
+        mainHandler.post(myRunnable);
     }
 
     private void restart() {
@@ -202,6 +215,11 @@ public class StandingsActivity extends AppCompatActivity {
         try {
             MonopolyGame.saveCurrentGame(getApplicationContext(), gameName);
             Toast.makeText(getApplicationContext(), "Game Saved!" , Toast.LENGTH_SHORT).show();
+
+            TextView title = findViewById(R.id.activity_title);
+            title.setText(gameName);
+
+            setResult(MonopolyConstants.GAME_SAVED);
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

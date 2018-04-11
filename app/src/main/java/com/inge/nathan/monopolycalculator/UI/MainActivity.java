@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.media.Image;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -56,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
     private NonScrollListView savedGamesList;
 
     private boolean hasProVersion;
+
+    private GameListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +114,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if((resultCode == GAME_SAVED)) {
+            if(adapter != null) {
+                updateSavedGameList();
+            }
+        }
+    }
+
     @SuppressLint("RestrictedApi")
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -147,6 +160,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void updateSavedGameList() {
+        Handler mainHandler = new Handler(Looper.getMainLooper());
+        Runnable myRunnable = new Runnable() {
+            @Override
+            public void run() {
+                adapter.notifyDataSetChanged();
+            } // This is your code
+        };
+        mainHandler.post(myRunnable);
+    }
+
     private void verifyPlayers() {
         ArrayList<String> playerNames = new ArrayList<>();
 
@@ -166,10 +190,8 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Invalid Player Names")
                 .setMessage(("Please enter at least two player names."))
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        // do nothing
-                    }
+                .setPositiveButton("OK", (dialog, which) -> {
+                    // do nothing
                 })
                 .show();
 
@@ -178,10 +200,8 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Invalid Player Names")
                 .setMessage(("Player names must be unique."))
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        // do nothing
-                    }
+                .setPositiveButton("OK", (dialog, which) -> {
+                    // do nothing
                 })
                 .show();
 
@@ -191,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
 
             // Go to standings activity
             Intent i = new Intent(this, StandingsActivity.class);
-            startActivity(i);
+            startActivityForResult(i, REQUEST_DISPLAY_STANDINGS);
         }
     }
 
@@ -213,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
         } finally {
             // Set up list adapter
             savedGamesList = findViewById(R.id.saved_games_list);
-            GameListAdapter adapter = new GameListAdapter(
+            adapter = new GameListAdapter(
                 this,
                 R.layout.list_row_saved_game,
                 savedGames);

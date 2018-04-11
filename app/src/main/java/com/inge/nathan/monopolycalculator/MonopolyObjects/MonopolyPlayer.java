@@ -15,6 +15,16 @@ public class MonopolyPlayer implements Serializable {
         this.properties = new ArrayList<>();
     }
 
+    public MonopolyPlayer(MonopolyPlayer other) {
+        this.name = other.name;
+        this.cashValue = other.cashValue;
+
+        this.properties = new ArrayList<>();
+        for(MonopolyProperty otherProperty : other.properties) {
+            this.properties.add(new MonopolyProperty(otherProperty));
+        }
+    }
+
     public static String formatMoney(long amount) {
         DecimalFormat currencyFormat = new DecimalFormat("'$',###.##");
         return currencyFormat.format(amount);

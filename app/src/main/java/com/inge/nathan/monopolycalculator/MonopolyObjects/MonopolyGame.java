@@ -40,9 +40,19 @@ public class MonopolyGame implements Serializable {
      */
     private MonopolyGame() { }
 
-    private MonopolyGame(MonopolyGame other) {
-        this.players = other.players;
-        this.availableProperties = other.availableProperties;
+    public MonopolyGame(MonopolyGame other) {
+        this.players = new ArrayList<>();
+        for(MonopolyPlayer otherPlayer : other.players) {
+            this.players.add(new MonopolyPlayer(otherPlayer));
+        }
+
+        this.availableProperties = new ArrayList<>();
+        for(MonopolyProperty otherProperty : other.availableProperties) {
+            this.availableProperties.add(new MonopolyProperty(otherProperty));
+        }
+
+        this.dateModified = other.dateModified;
+        this.name = other.name;
     }
 
     /**
