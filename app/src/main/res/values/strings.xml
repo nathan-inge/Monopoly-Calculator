@@ -243,12 +243,19 @@ The richest player wins!</string>
     <string name="send_feedback">Send Feedback</string>
     <string name="go_pro">Go Pro</string>
     <string name="feature_title">Upgrade to Monopoly Calculator Pro to get access to these unique features:</string>
-    <string name="feature_list">- No ads\n\n- Save Game</string>
+    <string name="feature_list">- No ads\n\n- Save Game\n\n- Enter up to eight players</string>
     <string name="has_pro">Congrats! You have already upgraded to pro. Enjoy the above pro features!</string>
     <string name="game_name_placeholder">Game Name</string>
     <string name="game_date_placeholder">Date</string>
     <string name="save_game">Save Game</string>
     <string name="clear_all">Clear All</string>
     <string name="delete">Delete</string>
+    <string name="player_5">Player 5</string>
+    <string name="player_6">Player 6</string>
+    <string name="player_7">Player 7</string>
+    <string name="player_8">Player 8</string>
+    <string name="add_another_player">Add Another Player</string>
+    <string name="redeem_description">Purchased PRO on another device? Reinstalled after upgrading to PRO previously?\nClick \'Redeem\' to claim your PRO status.</string>
+    <string name="redeem">Redeem</string>
 
 </resources>

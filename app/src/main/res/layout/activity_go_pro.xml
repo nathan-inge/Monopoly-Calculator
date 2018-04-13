@@ -64,6 +64,28 @@
                 android:fontFamily="@font/kabel_bold"
                 android:text="@string/has_pro"/>
 
+            <TextView
+                android:id="@+id/redeem_pro_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:gravity="center"
+                android:visibility="gone"
+                android:fontFamily="@font/kabel_regular"
+                android:text="@string/redeem_description"/>
+
+            <Button
+                android:id="@+id/redeem_pro_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:paddingRight="5dp"
+                android:paddingLeft="5dp"
+                android:fontFamily="@font/kabel_regular"
+                android:text="@string/redeem"
+                android:visibility="gone"/>
+
         </LinearLayout>
 
     </ScrollView>
