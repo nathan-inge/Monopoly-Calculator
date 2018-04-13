@@ -96,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        hasProVersion = MCPreferencesManager.getProStatus(getApplicationContext());
+
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,10 +109,10 @@ public class MainActivity extends AppCompatActivity {
                 playerSixEdit.setText(null);
                 playerSevenEdit.setText(null);
                 playerEightEdit.setText(null);
+
+                if(hasProVersion) { resetExtraPlayers(); }
             }
         });
-
-        hasProVersion = MCPreferencesManager.getProStatus(getApplicationContext());
 
         if(hasProVersion) {
             CardView adCardView = findViewById(R.id.banner_ad_main);
@@ -330,5 +332,16 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void resetExtraPlayers() {
+        addPlayerButton.setVisibility(View.VISIBLE);
+
+        playerFiveEdit.setVisibility(View.GONE);
+        playerSixEdit.setVisibility(View.GONE);
+        playerSevenEdit.setVisibility(View.GONE);
+        playerEightEdit.setVisibility(View.GONE);
+
+        numPlayerEdits = 4;
     }
 }
