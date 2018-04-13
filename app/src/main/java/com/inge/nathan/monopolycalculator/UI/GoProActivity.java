@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.RemoteException;
+import android.support.design.widget.CheckableImageButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class GoProActivity extends AppCompatActivity {
 
@@ -42,14 +44,20 @@ public class GoProActivity extends AppCompatActivity {
     private ProgressDialog loadingDialog;
     private Button buyProButton;
     private TextView hasProText;
+    private TextView redeemView;
+    private Button redeemButton;
 
     private String skuPro;
     private boolean hasProVersion;
+
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_go_pro);
+
+        context = this;
 
         TextView activityTitle = findViewById(R.id.end_activity_title);
         activityTitle.setText("Go Pro");
@@ -60,12 +68,27 @@ public class GoProActivity extends AppCompatActivity {
         buyProButton = findViewById(R.id.buy_pro_button);
         hasProText = findViewById(R.id.has_pro_view);
 
+        redeemView = findViewById(R.id.redeem_pro_view);
+        redeemButton = findViewById(R.id.redeem_pro_button);
+
         hasProVersion = MCPreferencesManager.getProStatus(getApplicationContext());
-        if(!hasProVersion) {
+        if (!hasProVersion) {
             buyProButton.setVisibility(View.VISIBLE);
             buyProButton.setOnClickListener(v -> buyPro());
+
+            redeemView.setVisibility(View.VISIBLE);
+            redeemButton.setVisibility(View.VISIBLE);
+
+            redeemButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    redeemPurchase();
+                }
+            });
+
         } else {
             hasProText.setVisibility(View.VISIBLE);
+            return;
         }
 
         loadingDialog = ProgressDialog.show(this, "",
@@ -105,6 +128,7 @@ public class GoProActivity extends AppCompatActivity {
                 Toast.makeText(this, "Thank you for your purchase!", Toast.LENGTH_SHORT).show();
 
                 MCPreferencesManager.upgradeToPro(getApplicationContext());
+                setupLayout(true);
             }
         }
     }
@@ -117,10 +141,10 @@ public class GoProActivity extends AppCompatActivity {
         }
     }
 
-    public void getProduct() {
+    private void getProduct() {
         new Thread(() -> {
             // Insert some method call here.
-            ArrayList<String> skuList = new ArrayList<String> ();
+            ArrayList<String> skuList = new ArrayList<String>();
             skuList.add("pro_mc_version");
             Bundle querySkus = new Bundle();
             querySkus.putStringArrayList("ITEM_ID_LIST", skuList);
@@ -146,9 +170,7 @@ public class GoProActivity extends AppCompatActivity {
                         skuPro = object.getString("productId");
                         String price = object.getString("price");
 
-
-                        Handler mainHandler = new Handler(Looper.getMainLooper());
-                        mainHandler.post(new Runnable() {
+                        this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 loadingDialog.dismiss();
@@ -166,7 +188,7 @@ public class GoProActivity extends AppCompatActivity {
         }).start();
     }
 
-    public void showError() {
+    private void showError() {
         loadingDialog.dismiss();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -176,7 +198,7 @@ public class GoProActivity extends AppCompatActivity {
             .show();
     }
 
-    public void buyPro() {
+    private void buyPro() {
         try {
             Bundle buyIntentBundle = mService.getBuyIntent(3, getPackageName(),
                 skuPro, "inapp", "monopolyCalculatorProUpgrade");
@@ -196,6 +218,83 @@ public class GoProActivity extends AppCompatActivity {
         } catch (IntentSender.SendIntentException e) {
             e.printStackTrace();
             showError();
+        }
+    }
+
+    private void redeemPurchase() {
+
+        loadingDialog = ProgressDialog.show(this, "",
+            "Connecting to Google Play", true);
+        loadingDialog.show();
+
+        Bundle ownedItems = null;
+
+        try {
+            ownedItems = mService.getPurchases(3,
+                getPackageName(), "inapp", null);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            showError();
+        }
+
+        int response = ownedItems.getInt("RESPONSE_CODE");
+        int BILLING_RESPONSE_RESULT_OK = 0;
+        if (response == BILLING_RESPONSE_RESULT_OK) {
+            boolean hasPro = false;
+
+            ArrayList<String> ownedSkus =
+                ownedItems.getStringArrayList("INAPP_PURCHASE_ITEM_LIST");
+
+            for(String sku : ownedSkus) {
+                if(sku == skuPro) {
+                    hasPro = true;
+                }
+            }
+
+            boolean finalHasPro = hasPro;
+            this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if(finalHasPro) {
+                        MCPreferencesManager.upgradeToPro(context);
+                        Toast.makeText(getApplicationContext(), "Successfully redeemed PRO upgrade!", Toast.LENGTH_SHORT).show();
+                        setupLayout(true);
+
+                    } else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                        builder.setTitle("Upgrade not found!")
+                            .setMessage(("According to Google Play Store, you have not purchased the PRO upgrade already. Please upgrade to PRO by tapping the upgrade button."))
+                            .setPositiveButton("OK", (dialog, which) -> {
+                                // Close dialog
+                            })
+                            .show();
+                    }
+                }
+            });
+
+        } else {
+            showError();
+        }
+
+        loadingDialog.dismiss();
+
+    }
+
+    private void setupLayout(boolean hasPro) {
+        if (!hasProVersion) {
+            hasProText.setVisibility(View.GONE);
+
+            buyProButton.setVisibility(View.VISIBLE);
+            redeemView.setVisibility(View.VISIBLE);
+            redeemButton.setVisibility(View.VISIBLE);
+
+        } else {
+            hasProText.setVisibility(View.VISIBLE);
+
+            buyProButton.setVisibility(View.GONE);
+            redeemView.setVisibility(View.GONE);
+            redeemButton.setVisibility(View.GONE);
+
         }
     }
 }

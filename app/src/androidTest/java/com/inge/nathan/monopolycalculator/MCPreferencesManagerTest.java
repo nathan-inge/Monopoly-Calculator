@@ -18,14 +18,14 @@ public class MCPreferencesManagerTest {
     /*
     This test will have the effect of giving the tested device PRO status
      */
-    @Test
-    public void test_buyPro() {
-        Context context = InstrumentationRegistry.getTargetContext();
-
-        MCPreferencesManager.upgradeToPro(context);
-
-        assertTrue(MCPreferencesManager.getProStatus(context));
-    }
+//    @Test
+//    public void test_buyPro() {
+//        Context context = InstrumentationRegistry.getTargetContext();
+//
+//        MCPreferencesManager.upgradeToPro(context);
+//
+//        assertTrue(MCPreferencesManager.getProStatus(context));
+//    }
 
     /*
     This test will have the effect of giving the tested device STANDARD status
