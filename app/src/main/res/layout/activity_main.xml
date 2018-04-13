@@ -100,6 +100,52 @@
                         android:layout_gravity="center"
                         android:maxLength="12"/>
 
+                    <EditText
+                        android:id="@+id/p5_name_edit"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/player_5"
+                        android:layout_gravity="center"
+                        android:maxLength="12"/>
+
+                    <EditText
+                        android:id="@+id/p6_name_edit"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/player_6"
+                        android:layout_gravity="center"
+                        android:maxLength="12"/>
+
+                    <EditText
+                        android:id="@+id/p7_name_edit"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/player_7"
+                        android:layout_gravity="center"
+                        android:maxLength="12"/>
+
+                    <EditText
+                        android:id="@+id/p8_name_edit"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/player_8"
+                        android:layout_gravity="center"
+                        android:maxLength="12"/>
+
+                    <Button
+                        android:id="@+id/add_player_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:text="@string/add_another_player"
+                        android:fontFamily="@font/kabel_regular"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"/>
+
                     <Button
                         android:id="@+id/next_button"
                         android:layout_width="wrap_content"
