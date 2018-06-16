@@ -126,9 +126,13 @@ public class GoProActivity extends AppCompatActivity {
 
             if (resultCode == RESULT_OK) {
                 Toast.makeText(this, "Thank you for your purchase!", Toast.LENGTH_SHORT).show();
-
                 MCPreferencesManager.upgradeToPro(getApplicationContext());
                 setupLayout(true);
+
+                // Restart app to reflect changes
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         }
     }
@@ -281,7 +285,7 @@ public class GoProActivity extends AppCompatActivity {
     }
 
     private void setupLayout(boolean hasPro) {
-        if (!hasProVersion) {
+        if (!hasPro) {
             hasProText.setVisibility(View.GONE);
 
             buyProButton.setVisibility(View.VISIBLE);
